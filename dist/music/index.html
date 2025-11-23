@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gate 7 Coffee Playlist Manager | Music for Every Moment</title>
+<meta name="description" content="Curated Spotify playlists for every moment at Gate 7 Coffee Roastery. Jazz, lo-fi, and indie music for morning, afternoon, lunch, and evening in Ho Chi Minh City.">
+<meta name="keywords" content="Gate 7 Coffee Music, Spotify Playlist, Coffee Playlist, Jazz Music, Lo-Fi Chill, Coffee Shop Music, Gate 7 Playlist">
+<meta name="author" content="Gate 7 Coffee Roastery">
+<meta name="theme-color" content="#201F20">
+<link rel="canonical" href="https://gate7.vn/music/index.html">
+<link rel="alternate" hreflang="en" href="https://gate7.vn/music/index.html">
+<link rel="alternate" hreflang="vi" href="https://gate7.vn/music/index.html">
+<link rel="alternate" hreflang="x-default" href="https://gate7.vn/music/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gate 7 Coffee Playlist Manager | Music for Every Moment">
+<meta property="og:description" content="Curated Spotify playlists for every moment at Gate 7 Coffee. Jazz, lo-fi, and indie music selections.">
+<meta property="og:image" content="https://gate7.vn/images/logo-color-black-bg1.png">
+<meta property="og:url" content="https://gate7.vn/music/index.html">
+<meta property="og:site_name" content="Gate 7 Coffee Roastery">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gate 7 Coffee Playlist Manager">
+<meta name="twitter:description" content="Curated Spotify playlists for every moment of your day at Gate 7">
+<meta name="twitter:image" content="https://gate7.vn/images/logo-color-black-bg1.png">
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "LocalBusiness",
+"name": "Gate 7 Coffee Roastery",
+"image": "https://gate7.vn/images/logo-color-black-bg1.png",
+"description": "Specialty coffee roastery featuring authentic Vietnamese Phin coffee, specialty espresso drinks, matcha, and curated Spotify playlists for every moment of your day. Premium Arabica and Robusta coffee in Ho Chi Minh City.",
+"telephone": "+84-971-091-120",
+"email": "hello@gate7.vn",
+"address": {
+"@type": "PostalAddress",
+"streetAddress": "162A Nguyễn Trường Tộ",
+"addressLocality": "Ho Chi Minh City",
+"addressRegion": "Ho Chi Minh City",
+"postalCode": "",
+"addressCountry": "VN"
+},
+"openingHoursSpecification": [
+{
+"@type": "OpeningHoursSpecification",
+"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+"opens": "06:00",
+"closes": "21:00"
+},
+{
+"@type": "OpeningHoursSpecification",
+"dayOfWeek": ["Saturday", "Sunday"],
+"opens": "06:00",
+"closes": "21:00"
+}
+],
+"sameAs": [
+"https://instagram.com/gate7.coffee",
+"https://www.facebook.com/share/1CnRHZ9QSz/",
+"https://zalo.me/2485475799709134069"
+],
+"priceRange": "VND 5000 - VND 60000"
+}
+</script>
+<link rel="icon" type="image/png" href="../images/logo-only-white.png">
+<link rel="apple-touch-icon" href="../images/logo-only-white.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S72S3FXR6Z"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-S72S3FXR6Z');
+</script>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body {
+font-family: 'Averta', sans-serif;
+background-color: #201F20;
+color: #ffffff;
+min-height: 100vh;
+padding: 40px 20px;
+position: relative;
+}
+body::before {
+content: '';
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 600px;
+height: 600px;
+background: url('../images/coffee-as-you-are.png') center/contain no-repeat;
+opacity: 0.35;
+z-index: 0;
+pointer-events: none;
+}
+.container {
+max-width: 1100px;
+margin: 0 auto;
+position: relative;
+z-index: 1;
+}
+/* Welcome Message */
+.welcome-message {
+color: #FEBC11;
+padding: 24px 32px;
+border-radius: 12px;
+margin-bottom: 40px;
+box-shadow: 0 4px 12px rgba(254, 188, 17, 0.2);
+}
+.welcome-message h2 {
+font-family: 'Averta', sans-serif;
+font-size: 1.5em;
+margin-bottom: 8px;
+font-weight: 600;
+}
+.welcome-message .datetime {
+font-size: 0.95em;
+opacity: 0.95;
+font-weight: 500;
+}
+/* Language Switcher */
+.language-switcher {
+position: absolute;
+top: 20px;
+right: 20px;
+display: flex;
+gap: 8px;
+background: #2a2a2a;
+padding: 8px;
+border-radius: 8px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+border: 1px solid rgba(254, 188, 17, 0.2);
+}
+.lang-btn {
+padding: 6px 14px;
+border: none;
+background: transparent;
+color: rgba(255, 255, 255, 0.8);
+font-weight: 600;
+font-size: 0.85em;
+cursor: pointer;
+border-radius: 6px;
+transition: all 0.2s ease;
+font-family: 'Averta', sans-serif;
+}
+.lang-btn.active {
+background: #FEBC11;
+color: #201F20;
+}
+.lang-btn:hover:not(.active) {
+background: rgba(254, 188, 17, 0.1);
+color: #FEBC11;
+}
+/* Header Section */
+.header {
+text-align: center;
+margin-bottom: 60px;
+padding-bottom: 40px;
+border-bottom: 1px solid #e8e6e1;
+position: relative;
+}
+.logo {
+width: 120px;
+height: auto;
+margin: 0 auto 20px;
+display: block;
+}
+.logo-text {
+font-family: 'Averta', sans-serif;
+font-size: 2em;
+font-weight: 700;
+color: #FEBC11;
+margin-bottom: 12px;
+letter-spacing: -0.5px;
+}
+.header h1 {
+font-family: 'Averta', sans-serif;
+font-size: 2.2em;
+color: #FEBC11;
+margin-bottom: 12px;
+font-weight: 600;
+letter-spacing: -0.3px;
+}
+.header p {
+font-size: 0.95em;
+color: rgba(255, 255, 255, 0.8);
+line-height: 1.6;
+max-width: 500px;
+margin: 0 auto;
+font-weight: 400;
+}
+/* Playlist Grid */
+.playlist-grid {
+column-count: 2;
+column-gap: 28px;
+margin-bottom: 60px;
+}
+.time-slot {
+border-radius: 12px;
+padding: 28px;
+border: 1px solid rgba(254, 188, 17, 0.2);
+box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+transition: all 0.3s ease;
+position: relative;
+overflow: hidden;
+break-inside: avoid;
+margin-bottom: 28px;
+}
+.time-slot::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+height: 3px;
+background: linear-gradient(90deg, #FEBC11 0%, #FEC844 100%);
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+.time-slot:hover {
+transform: translateY(-2px);
+box-shadow: 0 6px 16px rgba(254, 188, 17, 0.15);
+border-color: #FEBC11;
+}
+.time-slot:hover::before {
+opacity: 1;
+}
+.time-period {
+font-family: 'Averta', sans-serif;
+font-size: 1.25em;
+font-weight: 600;
+color: #FEBC11;
+margin-bottom: 6px;
+letter-spacing: -0.3px;
+}
+.audience {
+color: rgba(255, 255, 255, 0.7);
+font-size: 0.85em;
+margin-bottom: 16px;
+font-weight: 500;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+.vibe-description {
+background: rgba(254, 188, 17, 0.1);
+padding: 12px 14px;
+border-radius: 8px;
+margin-bottom: 18px;
+font-size: 0.85em;
+color: rgba(255, 255, 255, 0.8);
+border-left: 3px solid #FEBC11;
+line-height: 1.5;
+}
+.playlist-list {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+.playlist-item {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 12px 14px;
+background: rgba(254, 188, 17, 0.1);
+border-radius: 8px;
+transition: all 0.2s ease;
+border: 1px solid transparent;
+text-decoration: none;
+cursor: pointer;
+}
+.playlist-item:hover {
+background: rgba(254, 188, 17, 0.2);
+border-color: #FEBC11;
+transform: translateX(4px);
+}
+.spotify-icon {
+width: 28px;
+height: 28px;
+min-width: 28px;
+background: #1DB954;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+font-weight: 600;
+font-size: 12px;
+flex-shrink: 0;
+}
+.playlist-link {
+flex: 1;
+text-decoration: none;
+color: #ffffff;
+font-weight: 500;
+font-size: 0.9em;
+transition: color 0.2s ease;
+}
+.playlist-item:hover .playlist-link {
+color: #FEBC11;
+}
+/* Footer Section */
+.footer {
+background: #201F20;
+color: white;
+padding: 40px;
+border-radius: 12px;
+margin-top: 60px;
+}
+.footer-content {
+max-width: 800px;
+margin: 0 auto;
+}
+.footer h3 {
+font-family: 'Averta', sans-serif;
+margin-bottom: 16px;
+font-size: 1.3em;
+font-weight: 600;
+letter-spacing: -0.3px;
+color: #FEBC11;
+}
+.footer-text {
+font-size: 0.9em;
+line-height: 1.8;
+color: rgba(255, 255, 255, 0.8);
+margin-bottom: 20px;
+}
+.footer-highlight {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+gap: 20px;
+margin-top: 24px;
+padding-top: 24px;
+border-top: 1px solid #404040;
+}
+.highlight-item {
+font-size: 0.85em;
+}
+.highlight-label {
+color: #FEBC11;
+font-weight: 600;
+margin-bottom: 4px;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+.highlight-value {
+color: rgba(255, 255, 255, 0.8);
+line-height: 1.4;
+}
+/* Brand accent color */
+.accent-brown {
+color: #8b6f47;
+}
+/* Responsive */
+@media (max-width: 768px) {
+.language-switcher {
+position: static;
+margin: 0 auto 20px;
+width: fit-content;
+}
+.welcome-message {
+padding: 20px 24px;
+}
+.welcome-message h2 {
+font-size: 1.2em;
+}
+.welcome-message .datetime {
+font-size: 0.85em;
+}
+.header h1 {
+font-size: 1.6em;
+}
+.header p {
+font-size: 0.9em;
+}
+.playlist-grid {
+column-count: 1;
+}
+.time-slot {
+margin-bottom: 20px;
+}
+.time-slot {
+padding: 20px;
+}
+.footer {
+padding: 28px 20px;
+}
+.footer-highlight {
+grid-template-columns: 1fr;
+}
+}
+@media (max-width: 480px) {
+body {
+padding: 20px 16px;
+}
+.header h1 {
+font-size: 1.4em;
+}
+.time-period {
+font-size: 1.1em;
+}
+.playlist-grid {
+gap: 20px;
+}
+}
+</style>
+
+<script id="cdn-loader">
+(function() {
+  // CDN Configuration Loader
+  window.CDN_CONFIG = {
+    "primaryCdn": "cloudflare",
+    "cdns": {
+      "cloudflare": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/",
+      "jsdelivr": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@latest",
+      "github": "https://raw.githubusercontent.com/JayEmVey/gate7/master"
+    },
+    "fallbackOrder": ["cloudflare", "jsdelivr", "github"],
+    "timeout": 5000,
+    "retryAttempts": 2
+  };
+  
+  // CDN Asset Helper
+  window.getCdnUrl = function(assetPath) {
+    const cdnUrl = window.CDN_CONFIG.cdns[window.CDN_CONFIG.primaryCdn];
+    return cdnUrl + assetPath;
+  };
+  
+  // CDN Fallback Resolver
+  window.resolveCdnAsset = async function(assetPath) {
+    const config = window.CDN_CONFIG;
+    const timeoutMs = config.timeout;
+    
+    for (let cdn of config.fallbackOrder) {
+      const baseUrl = config.cdns[cdn];
+      const url = baseUrl + assetPath;
+      
+      try {
+        const response = await Promise.race([
+          fetch(url, { method: 'HEAD' }),
+          new Promise((_, reject) => 
+            setTimeout(() => reject(new Error('Timeout')), timeoutMs)
+          )
+        ]);
+        
+        if (response.ok) {
+          console.log('[CDN] Using ' + cdn + ' for ' + assetPath);
+          return url;
+        }
+      } catch (error) {
+        console.warn('[CDN] Failed on ' + cdn + ': ' + error.message);
+      }
+    }
+    
+    // Fallback to current domain
+    console.warn('[CDN] All CDNs failed, using local: ' + assetPath);
+    return assetPath;
+  };
+  
+  // Store current CDN in localStorage
+  localStorage.setItem('activeCdn', window.CDN_CONFIG.primaryCdn);
+})();
+</script>
+</head>
+<body>
+<div class="language-switcher">
+<button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+<button class="lang-btn" onclick="switchLanguage('vn')">VN</button>
+</div>
+<div class="container">
+<div class="welcome-message">
+<h2 data-en="Gate 7 Welcome!" data-vn="Gate 7 Xin Chào!">Gate 7 Welcome!</h2>
+<div class="datetime" id="datetime"></div>
+</div>
+<div class="header">
+<img src="../images/logo-color-black-bg1.png" alt="Gate 7 Logo" class="logo" onerror="this.style.display='none'; document.querySelector('.logo-text').style.display='block'"> <h1 data-en="Your Soundtrack" data-vn="Nhạc Của Bạn">Your Soundtrack</h1>
+<p data-en="Curated playlists for every moment of your day at Gate 7. Click any playlist to open it in Spotify and set the mood." data-vn="Danh sách nhạc được tuyển chọn cho mọi khoảnh khắc trong ngày tại Gate 7. Nhấp vào bất kỳ danh sách nào để mở trong Spotify và tạo không khí.">Curated playlists for every moment of your day at Gate 7. Click any playlist to open it in Spotify and set the mood.</p>
+</div>
+<div class="playlist-grid">
+<div class="time-slot">
+<div class="time-period">6 AM – 9 AM</div>
+<div class="audience" data-en="Morning Regulars" data-vn="Khách Buổi Sáng">Morning Regulars</div>
+<div class="vibe-description" data-en="Smooth awakening. Jazz and indie tracks to energize your morning ritual." data-vn="Thức dậy nhẹ nhàng. Nhạc jazz và indie để tràn đầy năng lượng cho buổi sáng của bạn.">
+Smooth awakening. Jazz and indie tracks to energize your morning ritual.
+</div>
+<div class="playlist-list">
+<a onclick="openSpotifyPlaylist('37i9dQZF1DXdwTUxmGKrdN'); return false;" class="playlist-item">
+<div class="spotify-icon">♪</div>
+<span class="playlist-link">Coffee Table Jazz</span>
+</a>
+<a onclick="openSpotifyPlaylist('1JJgzNrj8GZhgPkGpKXI2s'); return false;" class="playlist-item">
+<div class="spotify-icon">♪</div>
+<span class="playlist-link">Jazz Cafe Playlist</span>
+</a>
+<a onclick="openSpotifyPlaylist('5kHQ3Cp945yye3pKQMnPg2'); return false;" class="playlist-item">
+<div class="spotify-icon">♪</div>
+<span class="playlist-link">Morning Coffee Music</span>
+</a>
+</div>
+</div>
+<div class="time-slot">
+<div class="time-period">9 AM – 11 AM</div>
+<div class="audience" data-en="Afternoon Community" data-vn="Cộng Đồng Buổi Chiều">Afternoon Community</div>
+<div class="vibe-description" data-en="Refined and relaxed. Classic jazz for conversation and connection." data-vn="Tinh tế và thư giãn. Nhạc jazz cổ điển cho cuộc trò chuyện và kết nối.">
+Refined and relaxed. Classic jazz for conversation and connection.
+</div>
+<div class="playlist-list">
+<a onclick="openSpotifyPlaylist('37i9dQZF1DXbITWG1ZJKYt'); return false;" class="playlist-item">
+<div class="spotify-icon">♪</div>
+<span class="playlist-link">Jazz Classics</span>
+</a>
+<a onclick="openSpotifyPlaylist('37i9dQZF1DWSSSls9eK29h'); return false;" class="playlist-item">
+<div class="spotify-icon">♪</div>
+<span class="playlist-link">Smooth Jazz Classics</span>
+</a>
+<a onclick="openSpotifyPlaylist('2XgAG7lLZ4w9atuENOthbA'); return false;" class="playlist-item">
+<div class="spotify-icon">♪</div>
+<span class="playlist-link">Old Jazz Classics</span>
+</a>
+<a onclick="openSpotifyPlaylist('3ywHgnkZYffTgfiZ0tcaXs'); return false;" class="playlist-item">
+<div class="spotify-icon">♪</div>
+<span class="playlist-link">Classic Film Noir Jazz</span>
+</a>
+</div>
+</div>
+<div class="time-slot">
+<div class="time-period">11 AM – 3 PM</div>
+<div class="audience" data-en="Lunch & Afternoon" data-vn="Trưa & Chiều">Lunch & Afternoon</div>
+<div class="vibe-description" data-en="Diverse and dynamic. Lo-fi and indie blends for every mood during the day." data-vn="Đa dạng và năng động. Sự kết hợp lo-fi và indie cho mọi tâm trạng trong ngày.">
+Diverse and dynamic. Lo-fi and indie blends for every mood during the day.
+</div>
+<div class="playlist-list">
+<a onclick="openSpotifyPlaylist('37i9dQZF1DWYoYGBbGKurt'); return false;" class="playlist-item">
+<div class="spotify-icon">♪</div>
+<span class="playlist-link">lofi chill</span>
+</a>
+<a onclick="openSpotifyPlaylist('37i9dQZF1DX0CIO5EOSHeD'); return false;" class="playlist-item">
+<div class="spotify-icon">♪</div>
+<span class="playlist-link">Lofi Indie</span>
+</a>
+<a onclick="openSpotifyPlaylist('0I3GwneqvQlrFhIsDxz9IF'); return false;" class="playlist-item">
+<div class="spotify-icon">♪</div>
+<span class="playlist-link">lofi Indie Pop 2025</span>
+</a>
+<a onclick="openSpotifyPlaylist('37i9dQZF1DX9RwfGbeGQwP'); return false;" class="playlist-item">
+<div class="spotify-icon">♪</div>
+<span class="playlist-link">lofi cafe</span>
+</a>
+</div>
+</div>
+<div class="time-slot">
+<div class="time-period">3 PM – 10 PM</div>
+<div class="audience" data-en="Evening Vibes" data-vn="Không Khí Buổi Tối">Evening Vibes</div>
+<div class="vibe-description" data-en="Contemporary and energetic. Trending tracks for our younger community." data-vn="Hiện đại và năng động. Những ca khúc thịnh hành cho cộng đồng trẻ của chúng tôi.">
+Contemporary and energetic. Trending tracks for our younger community.
+</div>
+<div class="playlist-list">
+<a onclick="openSpotifyPlaylist('0I3GwneqvQlrFhIsDxz9IF'); return false;" class="playlist-item">
+<div class="spotify-icon">♪</div>
+<span class="playlist-link">lofi Indie Pop 2025</span>
+</a>
+<a onclick="openSpotifyPlaylist('37i9dQZF1DWYoYGBbGKurt'); return false;" class="playlist-item">
+<div class="spotify-icon">♪</div>
+<span class="playlist-link">lofi chill</span>
+</a>
+<a onclick="openSpotifyPlaylist('37i9dQZF1DWSoyxGghlqv5'); return false;" class="playlist-item">
+<div class="spotify-icon">♪</div>
+<span class="playlist-link">hot girl bops</span>
+</a>
+<a onclick="openSpotifyPlaylist('37i9dQZF1DX0XUsuxWHRQd'); return false;" class="playlist-item">
+<div class="spotify-icon">♪</div>
+<span class="playlist-link">Today's Top Hits</span>
+</a>
+</div>
+</div>
+</div>
+<div class="footer">
+<div class="footer-content">
+<h3 data-en="Your Second Home, Your Soundtrack" data-vn="Ngôi Nhà Thứ Hai, Nhạc Của Bạn">Your Second Home, Your Soundtrack</h3>
+<p class="footer-text" data-en="At Gate 7, we believe music is part of what makes a space feel like home. These playlists are carefully curated for each moment of your day – whether you're starting your morning ritual, settling in for work, catching up with friends, or unwinding in the evening." data-vn="Tại Gate 7, chúng tôi tin rằng âm nhạc là một phần tạo nên cảm giác như ở nhà. Các danh sách phát này được tuyển chọn cẩn thận cho từng khoảnh khắc trong ngày của bạn – dù bạn đang bắt đầu nghi lễ buổi sáng, làm việc, gặp gỡ bạn bè, hay thư giãn vào buổi tối.">
+At Gate 7, we believe music is part of what makes a space feel like home. These playlists are carefully curated for each moment of your day – whether you're starting your morning ritual, settling in for work, catching up with friends, or unwinding in the evening.
+</p>
+<div class="footer-highlight">
+<div class="highlight-item">
+<div class="highlight-label" data-en="Smooth Transitions" data-vn="Chuyển Đổi Mượt Mà">Smooth Transitions</div>
+<div class="highlight-value" data-en="Switch playlists 15 minutes before each time slot for a natural flow" data-vn="Chuyển danh sách phát trước 15 phút mỗi khung giờ để chuyển tiếp tự nhiên">Switch playlists 15 minutes before each time slot for a natural flow</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-label" data-en="Community Feel" data-vn="Cảm Giác Cộng Đồng">Community Feel</div>
+<div class="highlight-value" data-en="Music that complements conversation and connection at every hour" data-vn="Âm nhạc bổ trợ cho cuộc trò chuyện và kết nối mọi lúc">Music that complements conversation and connection at every hour</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-label" data-en="Quality Curation" data-vn="Tuyển Chọn Chất Lượng">Quality Curation</div>
+<div class="highlight-value" data-en="Playlists that evolve with Spotify's regular updates" data-vn="Danh sách phát được cập nhật thường xuyên từ Spotify">Playlists that evolve with Spotify's regular updates</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-label" data-en="Personal Touch" data-vn="Nét Cá Nhân">Personal Touch</div>
+<div class="highlight-value" data-en="Mix your own blend from multiple playlists for a custom Gate 7 sound" data-vn="Trộn các danh sách phát để tạo âm thanh Gate 7 riêng của bạn">Mix your own blend from multiple playlists for a custom Gate 7 sound</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer-bottom" style="text-align: center;">
+<span data-en="© 2025 Gate 7 Coffee Roastery. All rights reserved." data-vn="© 2025 Gate 7 Coffee Roastery. Tất cả quyền được bảo lưu.">© 2025 Gate 7 Coffee Roastery. All rights reserved.</span>
+</div>
+</div>
+<script>
+// Current language (default: English)
+let currentLang = 'en';
+// Playlist data for different languages and time slots
+const playlists = {
+en: {
+morning: [
+{ id: '37i9dQZF1DXdwTUxmGKrdN', name: 'Coffee Table Jazz' },
+{ id: '1JJgzNrj8GZhgPkGpKXI2s', name: 'Jazz Cafe Playlist' },
+{ id: '5kHQ3Cp945yye3pKQMnPg2', name: 'Morning Coffee Music' }
+],
+afternoon: [
+{ id: '37i9dQZF1DXbITWG1ZJKYt', name: 'Jazz Classics' },
+{ id: '37i9dQZF1DWSSSls9eK29h', name: 'Smooth Jazz Classics' },
+{ id: '2XgAG7lLZ4w9atuENOthbA', name: 'Old Jazz Classics' },
+{ id: '3ywHgnkZYffTgfiZ0tcaXs', name: 'Classic Film Noir Jazz' }
+],
+lunch: [
+{ id: '37i9dQZF1DWYoYGBbGKurt', name: 'lofi chill' },
+{ id: '37i9dQZF1DX0CIO5EOSHeD', name: 'Lofi Indie' },
+{ id: '0I3GwneqvQlrFhIsDxz9IF', name: 'lofi Indie Pop 2025' },
+{ id: '37i9dQZF1DX9RwfGbeGQwP', name: 'lofi cafe' }
+],
+evening: [
+{ id: '0I3GwneqvQlrFhIsDxz9IF', name: 'lofi Indie Pop 2025' },
+{ id: '37i9dQZF1DWYoYGBbGKurt', name: 'lofi chill' },
+{ id: '37i9dQZF1DWSoyxGghlqv5', name: 'hot girl bops' },
+{ id: '37i9dQZF1DX0XUsuxWHRQd', name: 'Today\'s Top Hits' }
+]
+},
+vn: {
+morning: [
+{ id: '37i9dQZF1DX4PP3DA4J0N8', name: 'Chill Hits Việt Nam' },
+{ id: '37i9dQZF1DX0XUfEo1d0IQ', name: 'Nhạc Việt Nam Hay Nhất' },
+{ id: '37i9dQZF1DX4jP4eebSNFH', name: 'Coffee & Chill' }
+],
+afternoon: [
+{ id: '37i9dQZF1DX0XUfEo1d0IQ', name: 'Nhạc Việt Nam Hay Nhất' },
+{ id: '37i9dQZF1DWZrc3lwvImLj', name: 'V-Pop Không Thể Thiếu' },
+{ id: '37i9dQZF1DX4jP4eebSNFH', name: 'Coffee & Chill' },
+{ id: '37i9dQZF1DX4PP3DA4J0N8', name: 'Chill Hits Việt Nam' }
+],
+lunch: [
+{ id: '37i9dQZF1DWZrc3lwvImLj', name: 'V-Pop Không Thể Thiếu' },
+{ id: '37i9dQZF1DX4PP3DA4J0N8', name: 'Chill Hits Việt Nam' },
+{ id: '37i9dQZF1DX0XUfEo1d0IQ', name: 'Nhạc Việt Nam Hay Nhất' },
+{ id: '37i9dQZF1DX4jP4eebSNFH', name: 'Coffee & Chill' }
+],
+evening: [
+{ id: '37i9dQZF1DWZrc3lwvImLj', name: 'V-Pop Không Thể Thiếu' },
+{ id: '37i9dQZF1DX0XUfEo1d0IQ', name: 'Nhạc Việt Nam Hay Nhất' },
+{ id: '37i9dQZF1DX4PP3DA4J0N8', name: 'Chill Hits Việt Nam' },
+{ id: '37i9dQZF1DX6GwdWRQMQpq', name: 'Trending Việt Nam' }
+]
+}
+};
+// Function to open Spotify desktop app with a playlist
+function openSpotifyPlaylist(playlistId) {
+// Create the Spotify URI
+const spotifyUri = `spotify:playlist:${playlistId}`;
+// Open the URI directly - this will launch Spotify desktop app
+window.location.href = spotifyUri;
+}
+// Function to update date and time
+function updateDateTime() {
+const now = new Date();
+const options = {
+weekday: 'long',
+year: 'numeric',
+month: 'long',
+day: 'numeric',
+hour: '2-digit',
+minute: '2-digit',
+second: '2-digit'
+};
+let dateTimeStr;
+if (currentLang === 'vn') {
+dateTimeStr = now.toLocaleDateString('vi-VN', options);
+} else {
+dateTimeStr = now.toLocaleDateString('en-US', options);
+}
+document.getElementById('datetime').textContent = dateTimeStr;
+}
+// Function to update playlists based on current language
+function updatePlaylists() {
+const timeSlots = ['morning', 'afternoon', 'lunch', 'evening'];
+const slotSelectors = ['.time-slot:nth-child(1) .playlist-list', '.time-slot:nth-child(2) .playlist-list', '.time-slot:nth-child(3) .playlist-list', '.time-slot:nth-child(4) .playlist-list'];
+timeSlots.forEach((slot, index) => {
+const playlistList = document.querySelector(slotSelectors[index]);
+if (playlistList && playlists[currentLang][slot]) {
+const playlistItems = playlistList.querySelectorAll('.playlist-item');
+playlists[currentLang][slot].forEach((playlist, i) => {
+if (playlistItems[i]) {
+// Update onclick attribute
+playlistItems[i].setAttribute('onclick', `openSpotifyPlaylist('${playlist.id}'); return false;`);
+// Update playlist name
+const linkSpan = playlistItems[i].querySelector('.playlist-link');
+if (linkSpan) {
+linkSpan.textContent = playlist.name;
+}
+}
+});
+}
+});
+}
+// Function to switch language
+function switchLanguage(lang) {
+currentLang = lang;
+// Update active button
+document.querySelectorAll('.lang-btn').forEach(btn => {
+btn.classList.remove('active');
+});
+document.querySelector(`.lang-btn[onclick*="'${lang}'"]`).classList.add('active');
+// Update all elements with data attributes
+document.querySelectorAll('[data-en]').forEach(element => {
+const text = lang === 'en' ? element.getAttribute('data-en') : element.getAttribute('data-vn');
+element.textContent = text;
+});
+// Update playlists for the new language
+updatePlaylists();
+// Update date/time format
+updateDateTime();
+}
+// Initialize date/time and playlists, update every second
+updateDateTime();
+updatePlaylists();
+setInterval(updateDateTime, 1000);
+</script>
+
+<script defer src="js/cdn-resolver.js"></script>
+<script defer src="js/asset-loader.js"></script>
+</body>
+</html>
