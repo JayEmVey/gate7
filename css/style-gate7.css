@@ -18,7 +18,7 @@
 /* Modern Reset and Base Styles */
 :root {
     /*--primary-color: #0B0C06;*/
-    --primary-color: #202020;
+    --primary-color: #201F20;
     --accent-color: #FEBC11;
     --text-color: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.8);
@@ -192,8 +192,8 @@ input[type="email"]:focus {
     color: var(--text-secondary);
     padding: 40px 0;
     margin-top: 4rem;
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 0;
+    transform: translateY(30px);
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
@@ -350,8 +350,8 @@ input[type="email"]:focus {
     padding: 96px 40px;
     background: var(--primary-color);
     color: var(--text-color);
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 0;
+    transform: translateY(30px);
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
 

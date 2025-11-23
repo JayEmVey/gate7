@@ -9,8 +9,8 @@
 - **Canonical URL**: https://gate7.vn/
 
 ## Theme & Display
-- **Theme Color**: #202020
-- **Tile Color**: #202020
+- **Theme Color**: #201F20
+- **Tile Color**: #201F20
 - **Apple Mobile Web App Status Bar Style**: black-translucent
 
 ## Social Media & SEO

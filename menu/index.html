@@ -10,8 +10,8 @@
     <meta name="keywords"
         content="Gate 7 Coffee Menu, Thực đơn Gate 7, cà phê chất lượng cao, cà phê pha phin, espresso, matcha, houjicha, trà Việt Nam, giá cà phê, TPHCM, Hồ Chí Minh, Robusta, Arabica, cà phê đặc sản, quán cà phê">
     <meta name="author" content="Gate 7 Coffee Roastery">
-    <meta name="msapplication-TileColor" content="#202020">
-    <meta name="theme-color" content="#202020">
+    <meta name="msapplication-TileColor" content="#201F20">
+    <meta name="theme-color" content="#201F20">
     <link rel="canonical" href="https://gate7.vn/">
     <link rel="alternate" hreflang="vi" href="https://gate7.vn/">
     <link rel="alternate" hreflang="en" href="https://gate7.vn/en/">
@@ -160,7 +160,7 @@
 
     <link rel="icon" type="image/png" href="https://gate7.vn/images/logo-only-black.png">
     <link rel="apple-touch-icon" href="https://gate7.vn/images/logo-only-black.png">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <!-- Critical styles (Phase 2 optimization ready) -->
     <link rel="stylesheet" href="/css/style-gate7.css">
@@ -214,7 +214,7 @@
 
         :root {
             /*--primary-color: #0B0C06;*/
-            --primary-color: #202020;
+            --primary-color: #201F20;
             --accent-color: #FEBC11;
             --text-color: #ffffff;
             --text-secondary: rgba(255, 255, 255, 0.8);
@@ -587,12 +587,68 @@
         // Smooth scroll behavior (critical for UX)
         document.documentElement.style.scrollBehavior = 'smooth';
 
-        // Show menu section immediately to prevent flashing/hiding
+        // Show menu section and footer immediately to prevent flashing/hiding
         document.addEventListener('DOMContentLoaded', function() {
             const menuSection = document.querySelector('.menu-section');
             if (menuSection && !menuSection.classList.contains('animate-in')) {
                 menuSection.classList.add('animate-in');
             }
+            
+            const footer = document.querySelector('.footer');
+            if (footer && !footer.classList.contains('animate-in')) {
+                footer.classList.add('animate-in');
+            }
+        });
+    </script>
+
+    <!-- Language Switcher (inline for reliability) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const langBtns = document.querySelectorAll('.lang-btn');
+            let currentLang = 'vn';
+
+            function switchLanguage(lang) {
+                if (!['en', 'vn'].includes(lang)) {
+                    lang = 'en';
+                }
+
+                langBtns.forEach(btn => {
+                    if (btn.dataset.lang === lang) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+
+                const elements = document.querySelectorAll('[data-en][data-vn]');
+                elements.forEach(el => {
+                    const translations = {
+                        'en': el.getAttribute('data-en'),
+                        'vn': el.getAttribute('data-vn')
+                    };
+                    
+                    if (translations[lang]) {
+                        el.textContent = translations[lang];
+                    }
+                });
+
+                currentLang = lang;
+                localStorage.setItem('selectedLanguage', lang);
+                document.documentElement.lang = lang;
+            }
+
+            const savedLang = localStorage.getItem('selectedLanguage') || 'vn';
+            switchLanguage(savedLang);
+
+            langBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const lang = btn.dataset.lang;
+                    switchLanguage(lang);
+                });
+            });
+
+            window.switchLanguage = switchLanguage;
         });
     </script>
 
@@ -605,8 +661,7 @@
         document.addEventListener('DOMContentLoaded', async () => {
             const scripts = [
                 'js/responsive-images.js',
-                'js/scroll-animations.js',
-                'js/language-switcher.js'
+                'js/scroll-animations.js'
             ];
             
             for (const scriptPath of scripts) {

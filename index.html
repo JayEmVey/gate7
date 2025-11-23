@@ -6,11 +6,11 @@
     <title>Gate 7 Coffee Roastery - Coffee As You Are</title>
     <meta name="description" content="Quán cà phê chất lượng cao Việt Nam nguyên chất tại TPHCM. Gate có: Cà phê pha phin (100% Robusta), espresso (100% Arabica), và đồ uống matcha, houjicha. Cà phê Arabica & Robusta cao cấp. Gate 7 Coffee Roastery tại 162A Nguyễn Trường Tộ.">
     <meta name="keywords" content="Gate 7 Coffee Roastery, cà phê chất lượng cao Việt Nam, cà phê cao cấp TPHCM, cà phê pha phin Việt Nam, espresso đặc sản, quán cà phê roastery Hồ Chí Minh, Arabica Robusta, quán cà phê Việt Nam, 100% Robusta, 100% Arabica">
-    <meta name="msapplication-TileColor" content="#202020">
+    <meta name="msapplication-TileColor" content="#201F20">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="author" content="Gate 7 Coffee Roastery">
-    <meta name="theme-color" content="#202020">
+    <meta name="theme-color" content="#201F20">
     <link rel="canonical" href="https://gate7.vn/">
     <link rel="alternate" hreflang="vi" href="https://gate7.vn/">
     <link rel="alternate" hreflang="en" href="https://gate7.vn/en/">
@@ -103,6 +103,8 @@
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.9",
+        "bestRating": "5",
+        "worstRating": "1",
         "reviewCount": "277"
       },
       "servesCuisine": ["Cà Phê Phin", "Cà Phê Việt Nam", "Cà Phê Chất Lượng Cao", "Espresso", "Matcha", "Houjicha"]
@@ -153,11 +155,13 @@
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.9",
+        "bestRating": "5",
+        "worstRating": "1",
         "reviewCount": "277"
       },
       "servesCuisine": ["Vietnamese Coffee", "High Quality Coffee", "Espresso", "Matcha", "Houjicha"]
-    }
-    </script>
+      }
+      </script>
     
     <!-- Website Schema for Multi-Language Support -->
     <script type="application/ld+json">
@@ -457,32 +461,10 @@
         document.documentElement.style.scrollBehavior = 'smooth';
     </script>
 
-    <!-- CDN Resolver (must load first, no defer) -->
-    <script src="https://cdn.jsdelivr.net/gh/JayEmVey/gate7@latest/js/cdn-resolver.js"></script>
-
-    <!-- Deferred non-critical scripts (loaded via CDN resolver) -->
-    <script id="load-scripts">
-        // Load scripts from CDN with fallback to local
-        document.addEventListener('DOMContentLoaded', async () => {
-            const scripts = [
-                'js/responsive-images.js',
-                'js/scroll-animations.js',
-                'js/language-switcher.js'
-            ];
-            
-            for (const scriptPath of scripts) {
-                try {
-                    const cdnUrl = await window.cdnResolver.resolveAsset(scriptPath);
-                    const script = document.createElement('script');
-                    script.src = cdnUrl;
-                    script.defer = true;
-                    document.head.appendChild(script);
-                } catch (error) {
-                    console.warn(`[CDN] Failed to load ${scriptPath}:`, error);
-                }
-            }
-        });
-    </script>
+    <!-- Load deferred scripts -->
+    <script defer src="js/scroll-animations.js"></script>
+    <script defer src="js/language-switcher.js"></script>
+    <script defer src="js/responsive-images.js"></script>
 
 
 

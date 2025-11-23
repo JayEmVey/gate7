@@ -9,8 +9,8 @@
 - **URL Chính Tắc**: https://gate7.vn/
 
 ## Giao Diện & Hiển Thị
-- **Màu Chủ Đề**: #202020
-- **Màu Tile**: #202020
+- **Màu Chủ Đề**: #201F20
+- **Màu Tile**: #201F20
 - **Kiểu Thanh Trạng Thái Ứng Dụng Nền Tảng Apple**: black-translucent
 
 ## Mạng Xã Hội & SEO
