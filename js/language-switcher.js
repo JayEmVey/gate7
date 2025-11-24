@@ -2,17 +2,22 @@
 document.addEventListener('DOMContentLoaded', function() {
     const langBtns = document.querySelectorAll('.lang-btn');
     
-    // Detect language from URL pathname (/en/ = English)
-    const pathname = window.location.pathname;
-    let urlLang = pathname.startsWith('/en/') ? 'en' : 'vn';
+    // Detect language from URL parameter (?lang=en or ?lang=vi)
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang');
     
     let currentLang = 'vn'; // Default to Vietnamese (primary language)
 
-    function switchLanguage(lang) {
+    function updateLanguageContent(lang) {
+        // Normalize language code (vi -> vn for internal consistency)
+        if (lang === 'vi') {
+            lang = 'vn';
+        }
+        
         // Validate language code
         if (!['en', 'vn'].includes(lang)) {
-            console.warn(`Invalid language: ${lang}, defaulting to en`);
-            lang = 'en';
+            console.warn(`Invalid language: ${lang}, defaulting to vn`);
+            lang = 'vn';
         }
 
         // Update button states
@@ -45,10 +50,34 @@ document.addEventListener('DOMContentLoaded', function() {
         document.documentElement.lang = lang;
     }
 
-    // Load language: prioritize URL path, then saved preference, then default
+    // Main switchLanguage function that handles both URL and content updates
+    function switchLanguage(lang) {
+        // Update content
+        updateLanguageContent(lang);
+        
+        // Update URL with lang parameter (keep other URL parameters)
+        const url = new URL(window.location);
+        if (lang === 'vn') {
+            // Remove lang parameter for Vietnamese (default)
+            url.searchParams.delete('lang');
+        } else {
+            // Set lang parameter for other languages
+            url.searchParams.set('lang', lang);
+        }
+        // Use replaceState to avoid adding to browser history for simple language switches
+        window.history.replaceState({}, '', url);
+    }
+
+    // Load language: prioritize URL parameter, then saved preference, then default
     const savedLang = localStorage.getItem('selectedLanguage') || 'vn';
-    const langToUse = urlLang || savedLang;
-    switchLanguage(langToUse);
+    let langToUse = urlLang || savedLang;
+    
+    // Normalize language code if URL has ?lang=vi
+    if (langToUse === 'vi') {
+        langToUse = 'vn';
+    }
+    
+    updateLanguageContent(langToUse);
 
     // Event listeners for language buttons
     langBtns.forEach(btn => {
