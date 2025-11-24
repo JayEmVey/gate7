@@ -57,14 +57,17 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 0;
 }
 
 /* Logo Styles */
 .logo-container {
-    margin-bottom: 1rem;
+    margin: 0;
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .logo {
@@ -82,13 +85,36 @@ main {
     transform: translateY(-5px);
 }
 
+/* Typography */
+h1 {
+    font-family: 'Averta', sans-serif;
+    font-size: 4rem;
+    margin: 1rem 0;
+    text-align: center;
+    width: 100%;
+    background-color: #FEBC11;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Tagline Container */
+.tagline-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
 /* Phin Filter Styles */
 .vietnamese-phin-filter {
-    margin-top: 1rem;
+    margin: 1rem 0;
     text-align: center;
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .vietnamese-phin-filter img {
@@ -96,18 +122,6 @@ main {
     max-width: 247px;
     height: auto;
     display: block;
-    margin: 0 auto;
-}
-
-/* Typography */
-h1 {
-    font-family: 'Averta', sans-serif;
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
-    background-color: #FEBC11;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .tagline-container p {
@@ -329,7 +343,8 @@ input[type="email"]:focus {
 
 /* Scroll Indicator */
 .scroll-indicator {
-    margin-top: 2rem;
+    margin-top: auto;
+    margin-bottom: 0;
     text-align: center;
     font-size: 0.9rem;
     color: var(--text-secondary);
@@ -337,6 +352,11 @@ input[type="email"]:focus {
     transform: translateY(20px);
     animation: fadeInUp 1s var(--animation-timing) 0.6s forwards;
     transition: opacity 0.5s ease;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .chevron {
@@ -443,6 +463,7 @@ input[type="email"]:focus {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -450,9 +471,12 @@ input[type="email"]:focus {
 }
 
 @keyframes chevron-float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(8px);
     }
@@ -464,6 +488,7 @@ input[type="email"]:focus {
         padding: 1.5rem;
         min-height: 100vh;
         justify-content: center;
+        align-items: center;
         padding-top: max(1.5rem, 5vh);
         padding-bottom: 1.5rem;
     }
@@ -524,6 +549,7 @@ input[type="email"]:focus {
         padding: 1rem;
         min-height: 100vh;
         justify-content: center;
+        align-items: center;
         padding-top: max(1rem, 4vh);
         padding-bottom: 1rem;
     }
@@ -656,7 +682,7 @@ input[type="email"]:focus {
     .countdown-display {
         gap: 1rem;
     }
-    
+
     .time-number {
         font-size: 2rem;
     }
@@ -666,11 +692,11 @@ input[type="email"]:focus {
     .time-number {
         font-size: 1.5rem;
     }
-    
+
     .countdown-display {
         gap: 0.5rem;
     }
-    
+
     .time-unit {
         min-width: 50px;
     }
