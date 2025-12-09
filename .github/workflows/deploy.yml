@@ -30,15 +30,19 @@ jobs:
         with:
           node-version: '18'
       
-      - name: Build production bundle with SEO validation
-        run: node build-seo-enhanced.js
+      - name: Build production bundle
+        run: npm run build
       
-      - name: Copy static files to dist
+      - name: Verify build output
         run: |
-          cp CNAME dist/CNAME 2>/dev/null || true
-          cp robots.txt dist/robots.txt 2>/dev/null || true
-          cp sitemap.xml dist/sitemap.xml 2>/dev/null || true
-          cp .htaccess dist/.htaccess 2>/dev/null || true
+          echo "📦 Build artifacts:"
+          ls -lh dist/ | head -20
+          echo ""
+          echo "📄 Key files:"
+          test -f dist/index.html && echo "✓ index.html" || echo "✗ index.html missing"
+          test -f dist/CNAME && echo "✓ CNAME" || echo "✗ CNAME missing"
+          test -f dist/robots.txt && echo "✓ robots.txt" || echo "✗ robots.txt missing"
+          test -f dist/sitemap.xml && echo "✓ sitemap.xml" || echo "✗ sitemap.xml missing"
       
       - name: Configure Pages
         uses: actions/configure-pages@v4
@@ -57,3 +61,10 @@ jobs:
           echo "✅ Build completed successfully"
           echo "📦 Deploying to GitHub Pages..."
           echo "🎉 Site will be available at: https://gate7.vn"
+          echo ""
+          echo "📊 Summary:"
+          echo "  - Build: build-simple.js (zero dependencies)"
+          echo "  - Assets: Self-hosted (GitHub Pages)"
+          echo "  - Deployment: Automatic"
+          echo "  - Branch: main"
+          echo "  - Domain: gate7.vn"
