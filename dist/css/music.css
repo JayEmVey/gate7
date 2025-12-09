@@ -1,0 +1,418 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Averta', sans-serif;
+    background-color: #201F20;
+    color: #ffffff;
+    min-height: 100vh;
+    padding: 40px 20px;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: url('/images/coffee-as-you-are.png') center/contain no-repeat;
+    opacity: 0.35;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Welcome Message */
+.welcome-message {
+    color: #FEBC11;
+    padding: 24px 32px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 12px rgba(254, 188, 17, 0.2);
+}
+
+.welcome-message p {
+    font-family: 'Averta', sans-serif;
+    font-size: 1em;
+    margin-bottom: 8px;
+    font-weight: 400;
+}
+
+.welcome-message .datetime {
+    font-size: 0.95em;
+    opacity: 0.95;
+    font-weight: 500;
+    text-align: right;
+}
+
+/* Language Switcher */
+.language-switcher {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+    background: #2a2a2a;
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    border: 1px solid rgba(254, 188, 17, 0.2);
+}
+
+.lang-btn {
+    padding: 6px 14px;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+    font-size: 0.85em;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    font-family: 'Averta', sans-serif;
+}
+
+.lang-btn.active {
+    background: #FEBC11;
+    color: #201F20;
+}
+
+.lang-btn:hover:not(.active) {
+    background: rgba(254, 188, 17, 0.1);
+    color: #FEBC11;
+}
+
+/* Header Section */
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #e8e6e1;
+    position: relative;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+    margin: 0 auto 20px;
+}
+
+.logo-text {
+    font-family: 'Averta', sans-serif;
+    font-size: 2em;
+    font-weight: 700;
+    color: #FEBC11;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.header h1 {
+    font-family: 'Averta', sans-serif;
+    font-size: 2.2em;
+    color: #FEBC11;
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+}
+
+.header p {
+    font-size: 0.95em;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+/* Playlist Grid */
+.playlist-grid {
+    column-count: 2;
+    column-gap: 28px;
+    margin-bottom: 60px;
+}
+
+.time-slot {
+    border-radius: 12px;
+    padding: 28px;
+    border: 1px solid rgba(254, 188, 17, 0.2);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    break-inside: avoid;
+    margin-bottom: 28px;
+}
+
+.time-slot.full-width-slot {
+    column-span: all;
+}
+
+.time-slot::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #FEBC11 0%, #FEC844 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.time-slot:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(254, 188, 17, 0.15);
+    border-color: #FEBC11;
+}
+
+.time-slot:hover::before {
+    opacity: 1;
+}
+
+.time-period {
+    font-family: 'Averta', sans-serif;
+    font-size: 1.25em;
+    font-weight: 600;
+    color: #FEBC11;
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+}
+
+.audience {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85em;
+    margin-bottom: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.vibe-description {
+    background: rgba(254, 188, 17, 0.1);
+    padding: 12px 14px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.8);
+    border-left: 3px solid #FEBC11;
+    line-height: 1.5;
+}
+
+.playlist-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.playlist-list.playlist-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.playlist-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: rgba(254, 188, 17, 0.1);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.playlist-item:hover {
+    background: rgba(254, 188, 17, 0.2);
+    border-color: #FEBC11;
+    transform: translateX(4px);
+}
+
+.spotify-icon {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    background: #1DB954;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.spotify-icon-xmas {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    background: #b00f0f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.playlist-link {
+    flex: 1;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 0.9em;
+    transition: color 0.2s ease;
+}
+
+.playlist-item:hover .playlist-link {
+    color: #FEBC11;
+}
+
+/* Footer Section */
+.footer {
+    background: #201F20;
+    color: white;
+    padding: 40px;
+    border-radius: 12px;
+    margin-top: 60px;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer h3 {
+    font-family: 'Averta', sans-serif;
+    margin-bottom: 16px;
+    font-size: 1.3em;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: #FEBC11;
+}
+
+.footer-text {
+    font-size: 0.9em;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+}
+
+.footer-highlight {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #404040;
+}
+
+.highlight-item {
+    font-size: 0.85em;
+}
+
+.highlight-label {
+    color: #FEBC11;
+    font-weight: 600;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.highlight-value {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.4;
+}
+
+/* Brand accent color */
+.accent-brown {
+    color: #8b6f47;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .language-switcher {
+        position: static;
+        margin: 0 auto 20px;
+        width: fit-content;
+    }
+
+    .welcome-message {
+        padding: 20px 24px;
+    }
+
+    .welcome-message h2 {
+        font-size: 1.2em;
+    }
+
+    .welcome-message .datetime {
+        font-size: 0.85em;
+        text-align:right;
+    }
+
+    .header h1 {
+        font-size: 1.6em;
+    }
+
+    .header p {
+        font-size: 0.9em;
+    }
+
+    .playlist-grid {
+        column-count: 1;
+    }
+    
+    .playlist-list.playlist-grid-2 {
+        grid-template-columns: 1fr;
+    }
+    
+    .time-slot {
+        margin-bottom: 20px;
+    }
+
+    .time-slot {
+        padding: 20px;
+    }
+
+    .footer {
+        padding: 28px 20px;
+    }
+
+    .footer-highlight {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 20px 16px;
+    }
+
+    .header h1 {
+        font-size: 1.4em;
+    }
+
+    .time-period {
+        font-size: 1.1em;
+    }
+
+    .playlist-grid {
+        gap: 20px;
+    }
+}

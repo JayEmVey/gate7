@@ -1,0 +1,46 @@
+{
+  "default": "local",
+  "cdns": {
+    "local": {
+      "name": "Self-Hosted (Local)",
+      "baseUrl": "",
+      "description": "Assets served from self-hosted server"
+    },
+    "github": {
+      "name": "GitHub Raw (Fallback)",
+      "baseUrl": "https://raw.githubusercontent.com/JayEmVey/gate7/master",
+      "description": "GitHub raw content fallback CDN"
+    },
+    "jsdelivr": {
+      "name": "jsDelivr CDN (Fallback)",
+      "baseUrl": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@latest",
+      "description": "Global CDN routing fallback"
+    },
+    "cloudflare": {
+      "name": "Cloudflare CDN (Legacy)",
+      "baseUrl": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/",
+      "description": "Cloudflare edge legacy fallback"
+    }
+  },
+  "assetPaths": {
+    "css": "/css",
+    "js": "/js",
+    "images": "/images"
+  },
+  "fallbackOrder": [
+    "local",
+    "github",
+    "jsdelivr",
+    "cloudflare"
+  ],
+  "timeout": 8000,
+  "retryAttempts": 2,
+  "buildDate": "2025-12-09",
+  "version": "1.0.0",
+  "enableDetailedLogging": true,
+  "activeCdn": {
+    "name": "Self-Hosted (Local)",
+    "provider": "local",
+    "baseUrl": ""
+  }
+}
