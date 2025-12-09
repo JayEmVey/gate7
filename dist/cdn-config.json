@@ -1,20 +1,25 @@
 {
-  "default": "cloudflare",
+  "default": "local",
   "cdns": {
-    "cloudflare": {
-      "name": "Cloudflare CDN (via GitHub)",
-      "baseUrl": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/",
-      "description": "Fast Cloudflare edge with jsDelivr routing"
-    },
-    "jsdelivr": {
-      "name": "jsDelivr CDN (Convert from Github)",
-      "baseUrl": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@latest",
-      "description": "Global CDN routing optimization"
+    "local": {
+      "name": "Self-Hosted (Local)",
+      "baseUrl": "",
+      "description": "Assets served from self-hosted server"
     },
     "github": {
       "name": "GitHub Raw (Fallback)",
       "baseUrl": "https://raw.githubusercontent.com/JayEmVey/gate7/master",
-      "description": "GitHub raw content fallback"
+      "description": "GitHub raw content fallback CDN"
+    },
+    "jsdelivr": {
+      "name": "jsDelivr CDN (Fallback)",
+      "baseUrl": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@latest",
+      "description": "Global CDN routing fallback"
+    },
+    "cloudflare": {
+      "name": "Cloudflare CDN (Legacy)",
+      "baseUrl": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/",
+      "description": "Cloudflare edge legacy fallback"
     }
   },
   "assetPaths": {
@@ -22,15 +27,20 @@
     "js": "/js",
     "images": "/images"
   },
-  "fallbackStrategy": "github",
+  "fallbackOrder": [
+    "local",
+    "github",
+    "jsdelivr",
+    "cloudflare"
+  ],
   "timeout": 8000,
   "retryAttempts": 2,
   "buildDate": "2025-12-09",
   "version": "1.0.0",
   "enableDetailedLogging": true,
   "activeCdn": {
-    "name": "Cloudflare CDN",
-    "provider": "cloudflare",
-    "baseUrl": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/"
+    "name": "Self-Hosted (Local)",
+    "provider": "local",
+    "baseUrl": ""
   }
 }

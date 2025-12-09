@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Tuyển Dụng Barista | Gate 7 Coffee Roastery - Barista Hiring</title>
+<title>Gate 7 Coffee Roastery - Tuyển Dụng Barista</title>
 <meta name="description" content="Tuyển dụng Barista tại Gate 7 Coffee Roastery. Mức lương cạnh tranh, cà phê miễn phí, ca làm việc linh hoạt. We are hiring Barista with competitive salary, free coffee, flexible shifts.">
 <meta name="keywords" content="Tuyển dụng Barista, Gate 7 Coffee, Công việc HCM, Cà phê Việt Nam, Barista hiring, Job HCMC, Coffee shop hiring, Gate 7 Hiring">
 <meta name="author" content="Gate 7 Coffee Roastery">
 <meta name="theme-color" content="#201F20">
-<link rel="icon" type="image/png" href="/images/logo-only-white.png">
+<link rel="icon" type="image/png" href="/images/logo-only-black.png">
 <link rel="canonical" href="https://gate7.vn/hiring/">
 <link rel="alternate" hreflang="vi" href="https://gate7.vn/hiring/">
 <link rel="alternate" hreflang="x-default" href="https://gate7.vn/hiring/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Gate 7 Coffee Roastery - We're Hiring Barista">
 <meta property="og:description" content="Join our team at Gate 7 Coffee Roastery. Competitive salary, free coffee, flexible shifts, and great team environment.">
-<meta property="og:image" content="/images/logo-color-black-bg1.png">
+<meta property="og:image" content="/images/logo-color-black-bg.png">
 <meta property="og:url" content="https://gate7.vn/hiring/">
 <meta property="og:site_name" content="Gate 7 Coffee Roastery">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Gate 7 Coffee Roastery - We're Hiring Barista">
 <meta name="twitter:description" content="Join our team. Competitive salary, free coffee, flexible shifts.">
 <meta name="twitter:image" content="/images/logo-color-black-bg1.png">
-<link rel="preload" as="image" href="/images/logo-only-white.png" fetchpriority="high">
+<link rel="preload" as="image" href="/images/logo-only-black.png" fetchpriority="high">
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script type="application/ld+json">
@@ -30,7 +30,7 @@
 "@context": "https://schema.org",
 "@type": "LocalBusiness",
 "name": "Gate 7 Coffee Roastery",
-"image": "https://gate7.vn/images/logo-color-black-bg1.png",
+"image": "https://gate7.vn/images/logo-color-black-bg.png",
 "description": "Specialty coffee roastery hiring barista. Competitive salary, free coffee, flexible shifts, training provided.",
 "telephone": "+84-971-091-120",
 "email": "hello@gate7.vn",
@@ -95,13 +95,14 @@ gtag('config', 'G-S72S3FXR6Z');
 (function() {
   // CDN Configuration Loader
   window.CDN_CONFIG = {
-    "primaryCdn": "cloudflare",
+    "primaryCdn": "local",
     "cdns": {
-      "cloudflare": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/",
+      "local": "",
+      "github": "https://raw.githubusercontent.com/JayEmVey/gate7/master",
       "jsdelivr": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@latest",
-      "github": "https://raw.githubusercontent.com/JayEmVey/gate7/master"
+      "cloudflare": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/"
     },
-    "fallbackOrder": ["cloudflare", "jsdelivr", "github"],
+    "fallbackOrder": ["local"],
     "timeout": 5000,
     "retryAttempts": 2
   };
@@ -424,5 +425,16 @@ trackEvent('click', 'social_media', this.href);
 
 <script defer src="js/cdn-resolver.js"></script>
 <script defer src="js/asset-loader.js"></script>
+<script defer>
+  // Load CSS and JS from CDN with fallback
+  document.addEventListener('DOMContentLoaded', async function() {
+    const loader = window.assetLoader;
+    if (loader) {
+      // Load main CSS
+      await loader.loadCSS('/css/style-gate7.css');
+      console.log('[CDN] CSS loading complete');
+    }
+  });
+</script>
 </body>
 </html>

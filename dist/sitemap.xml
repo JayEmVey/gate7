@@ -54,7 +54,7 @@
     <priority>0.7</priority>
     <mobile:mobile/>
     <image:image>
-      <image:loc>https://gate7.vn/hiring/hiring-banner.png</image:loc>
+      <image:loc>https://gate7.vn/images/hiring-banner.png</image:loc>
       <image:title>Gate 7 Coffee Hiring Opportunities</image:title>
     </image:image>
   </url>

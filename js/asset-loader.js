@@ -24,13 +24,14 @@ class AssetLoader {
    */
   getDefaultConfig() {
     return {
-      primaryCdn: 'cloudflare',
+      primaryCdn: 'local',
       cdns: {
-        cloudflare: 'https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist',
+        local: '',
+        github: 'https://raw.githubusercontent.com/JayEmVey/gate7/master',
         jsdelivr: 'https://cdn.jsdelivr.net/gh/JayEmVey/gate7@latest',
-        github: 'https://raw.githubusercontent.com/JayEmVey/gate7/master'
+        cloudflare: 'https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist'
       },
-      fallbackOrder: ['cloudflare', 'jsdelivr', 'github'],
+      fallbackOrder: ['local', 'github', 'jsdelivr', 'cloudflare'],
       timeout: 5000,
       retryAttempts: 2
     };
@@ -47,26 +48,38 @@ class AssetLoader {
     
     // Check if already loaded
     if (this.loadedAssets.has(cacheKey)) {
-      imgElement.src = this.getCdnUrl(imagePath) || imagePath;
+      const resolvedUrl = this.getCdnUrl(imagePath) || imagePath;
+      imgElement.src = resolvedUrl;
+      imgElement.removeAttribute('data-src');
       return true;
     }
 
     // Check if already failed
     if (this.failedAssets.has(cacheKey)) {
       imgElement.src = imagePath;
+      imgElement.removeAttribute('data-src');
       return true;
     }
 
     try {
-      const cdnUrl = await this.resolver.resolveAsset(imagePath);
+      // For self-hosted builds, use local asset directly
+      let cdnUrl = imagePath;
+      if (this.config.primaryCdn !== 'local') {
+        cdnUrl = await this.resolver.resolveAsset(imagePath);
+      }
       imgElement.src = cdnUrl;
+      imgElement.removeAttribute('data-src');
       this.loadedAssets.add(cacheKey);
       
       return new Promise((resolve) => {
-        imgElement.onload = () => resolve(true);
+        imgElement.onload = () => {
+          console.log(`[AssetLoader] Image loaded successfully: ${imagePath}`);
+          resolve(true);
+        };
         imgElement.onerror = () => {
           console.warn(`[AssetLoader] Image failed from CDN: ${imagePath}, using local`);
           imgElement.src = imagePath;
+          imgElement.removeAttribute('data-src');
           this.failedAssets.add(cacheKey);
           resolve(true);
         };
@@ -74,7 +87,9 @@ class AssetLoader {
         // Timeout fallback
         setTimeout(() => {
           if (imgElement.src === cdnUrl && !imgElement.complete) {
+            console.warn(`[AssetLoader] Image timeout for ${imagePath}, using local`);
             imgElement.src = imagePath;
+            imgElement.removeAttribute('data-src');
             this.failedAssets.add(cacheKey);
           }
         }, 3000);
@@ -82,9 +97,74 @@ class AssetLoader {
     } catch (error) {
       console.warn(`[AssetLoader] Failed to load image ${imagePath}:`, error);
       imgElement.src = imagePath;
+      imgElement.removeAttribute('data-src');
       this.failedAssets.add(cacheKey);
       return true;
     }
+  }
+
+  /**
+   * Load CSS from CDN with fallback to local
+   * @param {string} cssPath - CSS path (e.g., '/css/style.css')
+   * @returns {Promise<boolean>} - Success status
+   */
+  async loadCSS(cssPath) {
+    const cacheKey = `css:${cssPath}`;
+    
+    // Check if already loaded
+    if (this.loadedAssets.has(cacheKey)) {
+      return true;
+    }
+
+    // For self-hosted builds, use local asset directly
+    let cdnUrl = cssPath;
+    if (this.config.primaryCdn !== 'local') {
+      cdnUrl = await this.resolver.resolveAsset(cssPath);
+    }
+    
+    return new Promise((resolve) => {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = cdnUrl;
+
+      link.onload = () => {
+        console.log(`[AssetLoader] CSS loaded: ${cssPath}`);
+        this.loadedAssets.add(cacheKey);
+        resolve(true);
+      };
+
+      link.onerror = () => {
+        console.warn(`[AssetLoader] CSS failed from CDN: ${cssPath}, trying local`);
+        link.href = cssPath;
+        
+        link.onload = () => {
+          console.log(`[AssetLoader] CSS loaded from local: ${cssPath}`);
+          this.loadedAssets.add(cacheKey);
+          resolve(true);
+        };
+        
+        link.onerror = () => {
+          console.error(`[AssetLoader] CSS failed from all sources: ${cssPath}`);
+          resolve(false);
+        };
+      };
+
+      // Timeout fallback
+      setTimeout(() => {
+        if (link.href === cdnUrl && !link.sheet) {
+          link.href = cssPath;
+          console.warn(`[AssetLoader] CSS timeout, switching to local: ${cssPath}`);
+          
+          link.onload = () => {
+            this.loadedAssets.add(cacheKey);
+            resolve(true);
+          };
+          link.onerror = () => resolve(false);
+        }
+      }, this.config.timeout);
+
+      document.head.appendChild(link);
+    });
   }
 
   /**
@@ -125,7 +205,11 @@ class AssetLoader {
    * @private
    */
   async _loadScriptInternal(scriptPath, options) {
-    const cdnUrl = await this.resolver.resolveAsset(scriptPath);
+    // For self-hosted builds, use local asset directly
+    let cdnUrl = scriptPath;
+    if (this.config.primaryCdn !== 'local') {
+      cdnUrl = await this.resolver.resolveAsset(scriptPath);
+    }
     
     return new Promise((resolve) => {
       const script = document.createElement('script');
@@ -270,12 +354,37 @@ document.addEventListener('DOMContentLoaded', function() {
   // Load images that use data-src attribute
   const images = document.querySelectorAll('img[data-src]');
   if (images.length > 0) {
-    images.forEach(img => {
-      const imagePath = img.getAttribute('data-src');
-      if (imagePath) {
-        window.assetLoader.loadImage(imagePath, img);
-      }
-    });
+    console.log(`[AssetLoader] Found ${images.length} lazy-load images to process`);
+    
+    // Use IntersectionObserver for lazy loading if available
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            const imagePath = img.getAttribute('data-src');
+            if (imagePath) {
+              console.log(`[AssetLoader] Loading visible image: ${imagePath}`);
+              window.assetLoader.loadImage(imagePath, img);
+              imageObserver.unobserve(img);
+            }
+          }
+        });
+      }, { rootMargin: '50px' });
+      
+      images.forEach(img => {
+        imageObserver.observe(img);
+      });
+    } else {
+      // Fallback: load all images immediately if IntersectionObserver not supported
+      console.log('[AssetLoader] IntersectionObserver not supported, loading all images immediately');
+      images.forEach(img => {
+        const imagePath = img.getAttribute('data-src');
+        if (imagePath) {
+          window.assetLoader.loadImage(imagePath, img);
+        }
+      });
+    }
   }
 });
 

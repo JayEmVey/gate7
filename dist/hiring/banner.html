@@ -25,13 +25,14 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 (function() {
   // CDN Configuration Loader
   window.CDN_CONFIG = {
-    "primaryCdn": "cloudflare",
+    "primaryCdn": "local",
     "cdns": {
-      "cloudflare": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/",
+      "local": "",
+      "github": "https://raw.githubusercontent.com/JayEmVey/gate7/master",
       "jsdelivr": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@latest",
-      "github": "https://raw.githubusercontent.com/JayEmVey/gate7/master"
+      "cloudflare": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/"
     },
-    "fallbackOrder": ["cloudflare", "jsdelivr", "github"],
+    "fallbackOrder": ["local"],
     "timeout": 5000,
     "retryAttempts": 2
   };
@@ -215,5 +216,16 @@ trackEvent('click', 'navigation', 'website_link_banner');
 
 <script defer src="js/cdn-resolver.js"></script>
 <script defer src="js/asset-loader.js"></script>
+<script defer>
+  // Load CSS and JS from CDN with fallback
+  document.addEventListener('DOMContentLoaded', async function() {
+    const loader = window.assetLoader;
+    if (loader) {
+      // Load main CSS
+      await loader.loadCSS('/css/style-gate7.css');
+      console.log('[CDN] CSS loading complete');
+    }
+  });
+</script>
 </body>
 </html>

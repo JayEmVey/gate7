@@ -15,19 +15,19 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Gate 7 Coffee Playlist Manager | Music for Every Moment">
 <meta property="og:description" content="Curated Spotify playlists for every moment at Gate 7 Coffee. Jazz, lo-fi, and indie music selections.">
-<meta property="og:image" content="/images/logo-color-black-bg1.png">
+<meta property="og:image" content="/images/logo-only-black.png">
 <meta property="og:url" content="https://gate7.vn/music/index.html">
 <meta property="og:site_name" content="Gate 7 Coffee Roastery">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Gate 7 Coffee Playlist Manager">
 <meta name="twitter:description" content="Curated Spotify playlists for every moment of your day at Gate 7">
-<meta name="twitter:image" content="/images/logo-color-black-bg1.png">
+<meta name="twitter:image" content="/images/logo-only-black.png">
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
 "@type": "LocalBusiness",
 "name": "Gate 7 Coffee Roastery",
-"image": "https://gate7.vn/images/logo-color-black-bg1.png",
+"image": "https://gate7.vn/images/logo-only-black.png",
 "description": "Specialty coffee roastery featuring authentic Vietnamese Phin coffee, specialty espresso drinks, matcha, and curated Spotify playlists for every moment of your day. Premium Arabica and Robusta coffee in Ho Chi Minh City.",
 "telephone": "+84-971-091-120",
 "email": "hello@gate7.vn",
@@ -69,8 +69,8 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 })(window, document, "clarity", "script", "uc19n8yku0");
 </script>
-<link rel="icon" type="image/png" href="/images/logo-only-white.png">
-<link rel="apple-touch-icon" href="/images/logo-only-white.png">
+<link rel="icon" type="image/png" href="/images/logo-only-black.png">
+<link rel="apple-touch-icon" href="/images/logo-only-black.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/music.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S72S3FXR6Z"></script>
@@ -85,13 +85,14 @@ gtag('config', 'G-S72S3FXR6Z');
 (function() {
   // CDN Configuration Loader
   window.CDN_CONFIG = {
-    "primaryCdn": "cloudflare",
+    "primaryCdn": "local",
     "cdns": {
-      "cloudflare": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/",
+      "local": "",
+      "github": "https://raw.githubusercontent.com/JayEmVey/gate7/master",
       "jsdelivr": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@latest",
-      "github": "https://raw.githubusercontent.com/JayEmVey/gate7/master"
+      "cloudflare": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/"
     },
-    "fallbackOrder": ["cloudflare", "jsdelivr", "github"],
+    "fallbackOrder": ["local"],
     "timeout": 5000,
     "retryAttempts": 2
   };
@@ -452,5 +453,16 @@ setInterval(updateDateTime, 1000);
 
 <script defer src="js/cdn-resolver.js"></script>
 <script defer src="js/asset-loader.js"></script>
+<script defer>
+  // Load CSS and JS from CDN with fallback
+  document.addEventListener('DOMContentLoaded', async function() {
+    const loader = window.assetLoader;
+    if (loader) {
+      // Load main CSS
+      await loader.loadCSS('/css/style-gate7.css');
+      console.log('[CDN] CSS loading complete');
+    }
+  });
+</script>
 </body>
 </html>

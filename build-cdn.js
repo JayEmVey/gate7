@@ -2,38 +2,44 @@
 
 /**
  * CDN-Aware Build System for Gate 7 Coffee
- * Supports Cloudflare, jsDelivr, and GitHub fallback
+ * Supports Self-Hosted (local), GitHub Raw, jsDelivr, and Cloudflare
  * 
  * Usage:
- *   npm run build              # Default: Cloudflare CDN
- *   npm run build:cdn-jsdelivr # jsDelivr CDN
+ *   npm run build              # Default: Self-Hosted (no CDN)
  *   npm run build:cdn-github   # GitHub Raw (fallback)
+ *   npm run build:cdn-jsdelivr # jsDelivr CDN
+ *   npm run build:cdn-cloudflare # Cloudflare CDN (legacy)
  */
 
 const fs = require('fs');
 const path = require('path');
 
 // Determine which CDN to use
-const cdnType = process.argv[2] || 'cloudflare';
+const cdnType = process.argv[2] || 'local';
 
 const DIST_DIR = path.join(__dirname, 'dist');
 const CDN_CONFIG_PATH = path.join(__dirname, 'cdn-config.json');
 
 const CDN_CONFIGS = {
-  cloudflare: {
-    name: 'Cloudflare CDN',
-    baseUrl: 'https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/',
-    provider: 'cloudflare'
+  local: {
+    name: 'Self-Hosted (Local)',
+    baseUrl: '',
+    provider: 'local'
+  },
+  github: {
+    name: 'GitHub Raw (Fallback)',
+    baseUrl: 'https://raw.githubusercontent.com/JayEmVey/gate7/master',
+    provider: 'github'
   },
   jsdelivr: {
     name: 'jsDelivr CDN',
     baseUrl: 'https://cdn.jsdelivr.net/gh/JayEmVey/gate7@latest',
     provider: 'jsdelivr'
   },
-  github: {
-    name: 'GitHub Raw (Fallback)',
-    baseUrl: 'https://raw.githubusercontent.com/JayEmVey/gate7/master',
-    provider: 'github'
+  cloudflare: {
+    name: 'Cloudflare CDN (legacy)',
+    baseUrl: 'https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/',
+    provider: 'cloudflare'
   }
 };
 
@@ -112,6 +118,11 @@ function copyDir(src, dest) {
 
 // Inject CDN loader script into HTML
 function injectCDNLoader(htmlContent, selectedCdn) {
+  // For self-hosted, only use local fallback
+  const fallbackOrder = selectedCdn === 'local' 
+    ? ["local"]
+    : ["local", "github", "jsdelivr", "cloudflare"];
+  
   const cdnLoaderScript = `
 <script id="cdn-loader">
 (function() {
@@ -119,11 +130,12 @@ function injectCDNLoader(htmlContent, selectedCdn) {
   window.CDN_CONFIG = {
     "primaryCdn": "${selectedCdn}",
     "cdns": {
-      "cloudflare": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/",
+      "local": "",
+      "github": "https://raw.githubusercontent.com/JayEmVey/gate7/master",
       "jsdelivr": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@latest",
-      "github": "https://raw.githubusercontent.com/JayEmVey/gate7/master"
+      "cloudflare": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/"
     },
-    "fallbackOrder": ["cloudflare", "jsdelivr", "github"],
+    "fallbackOrder": ${JSON.stringify(fallbackOrder)},
     "timeout": 5000,
     "retryAttempts": 2
   };
@@ -183,11 +195,59 @@ function injectCDNLoader(htmlContent, selectedCdn) {
   return cdnLoaderScript + htmlContent;
 }
 
+// Rewrite asset paths to use CDN
+function rewriteAssetPaths(htmlContent, baseUrl) {
+  // Rewrite script src paths (but keep inline scripts)
+  htmlContent = htmlContent.replace(/<script\s+defer\s+src="([^"]+)">/g, (match, src) => {
+    if (src.startsWith('/')) {
+      return `<script defer src="${baseUrl}${src}">`;
+    }
+    return match;
+  });
+  
+  // Rewrite link href for CSS
+  htmlContent = htmlContent.replace(/<link\s+rel="stylesheet"\s+href="([^"]+)">/g, (match, href) => {
+    if (href.startsWith('/')) {
+      return `<link rel="stylesheet" href="${baseUrl}${href}">`;
+    }
+    return match;
+  });
+  
+  // Rewrite data-src for lazy-loaded images
+  htmlContent = htmlContent.replace(/data-src="([^"]+)"/g, (match, src) => {
+    if (src.startsWith('/')) {
+      return `data-src="${baseUrl}${src}"`;
+    }
+    return match;
+  });
+  
+  // Rewrite src for images (img tags)
+  htmlContent = htmlContent.replace(/<img\s+([^>]*?)src="([^"]+)"/g, (match, attrs, src) => {
+    if (src.startsWith('/')) {
+      return `<img ${attrs}src="${baseUrl}${src}"`;
+    }
+    return match;
+  });
+  
+  return htmlContent;
+}
+
 // Inject asset loader and cdn-resolver scripts before closing body
 function injectAssetLoaders(htmlContent) {
   const assetLoaderScript = `
 <script defer src="js/cdn-resolver.js"><\/script>
-<script defer src="js/asset-loader.js"><\/script>`;
+<script defer src="js/asset-loader.js"><\/script>
+<script defer>
+  // Load CSS and JS from CDN with fallback
+  document.addEventListener('DOMContentLoaded', async function() {
+    const loader = window.assetLoader;
+    if (loader) {
+      // Load main CSS
+      await loader.loadCSS('/css/style-gate7.css');
+      console.log('[CDN] CSS loading complete');
+    }
+  });
+<\/script>`;
 
   if (htmlContent.includes('</body>')) {
     return htmlContent.replace('</body>', assetLoaderScript + '\n</body>');
@@ -221,6 +281,7 @@ function build() {
   }
 
   console.log(`\n🔨 Building production bundle with ${CDN_CONFIGS[selectedCdn].name}...\n`);
+  console.log(`📋 Default CDN set to: ${selectedCdn}\n`);
 
   // Clean dist directory
   if (fs.existsSync(DIST_DIR)) {
@@ -239,6 +300,7 @@ function build() {
     let content = fs.readFileSync(srcPath, 'utf8');
     content = minifyHTML(content);
     content = injectCDNLoader(content, selectedCdn);
+    content = rewriteAssetPaths(content, CDN_CONFIGS[selectedCdn].baseUrl);
     content = injectAssetLoaders(content);
     
     fs.writeFileSync(destPath, content);

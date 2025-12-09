@@ -24,13 +24,14 @@ class CDNResolver {
    */
   getDefaultConfig() {
     return {
-      primaryCdn: 'cloudflare',
+      primaryCdn: 'local',
       cdns: {
-        cloudflare: 'https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist',
-        jsdelivr: 'https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist',
-        github: 'https://raw.githubusercontent.com/JayEmVey/gate7/master/dist'
+        local: '',
+        github: 'https://raw.githubusercontent.com/JayEmVey/gate7/master',
+        jsdelivr: 'https://cdn.jsdelivr.net/gh/JayEmVey/gate7@latest',
+        cloudflare: 'https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist'
       },
-      fallbackOrder: ['cloudflare', 'jsdelivr', 'github'],
+      fallbackOrder: ['local', 'github', 'jsdelivr', 'cloudflare'],
       timeout: 5000,
       retryAttempts: 2
     };
@@ -83,6 +84,17 @@ class CDNResolver {
         console.log(`[CDN] Cache hit for ${assetPath}`);
       }
       return cached;
+    }
+
+    // For self-hosted (local) builds, skip fallback entirely
+    if (this.config.primaryCdn === 'local') {
+      const url = this.buildUrl('local', assetPath);
+      this.cdnCache.set(cacheKey, url);
+      this.saveCache();
+      if (this.config.enableDetailedLogging) {
+        console.log(`[CDN] Using local asset directly: ${assetPath}`);
+      }
+      return url;
     }
 
     const cdnOrder = options.preferredCdns || this.config.fallbackOrder;

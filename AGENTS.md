@@ -2,19 +2,21 @@
 
 ## Build & Deploy Commands
 
-### Build (Default - Cloudflare CDN)
+### Build (Default - Self-Hosted)
 ```bash
 npm run build
 ```
-Minifies HTML, CSS, JavaScript with Cloudflare CDN. Output in `dist/` folder. CDN configuration injected into HTML files.
+Minifies HTML, CSS, JavaScript for self-hosted deployment (no external CDN). Output in `dist/` folder. Assets serve from local domain with CDN fallback support.
 
 ### Build with CDN Selection
 ```bash
-npm run build                    # Cloudflare CDN (default, fastest)
-npm run build:cdn-jsdelivr       # jsDelivr CDN
-npm run build:cdn-github         # GitHub Raw (fallback)
+npm run build                    # Self-Hosted (default, no CDN)
+npm run build:cdn-github         # GitHub Raw (CDN fallback)
+npm run build:cdn-jsdelivr       # jsDelivr CDN (CDN fallback)
+npm run build:cdn-cloudflare     # Cloudflare CDN (legacy)
 ```
 CDN is automatically injected into build. See `cdn-config.json` for current configuration.
+**Fallback order:** Local (self-hosted) → GitHub → jsDelivr → Cloudflare
 
 ### Build with SEO Validation
 ```bash
