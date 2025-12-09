@@ -43,17 +43,18 @@ body::before {
     box-shadow: 0 4px 12px rgba(254, 188, 17, 0.2);
 }
 
-.welcome-message h2 {
+.welcome-message p {
     font-family: 'Averta', sans-serif;
-    font-size: 1.5em;
+    font-size: 1em;
     margin-bottom: 8px;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .welcome-message .datetime {
     font-size: 0.95em;
     opacity: 0.95;
     font-weight: 500;
+    text-align: right;
 }
 
 /* Language Switcher */
@@ -106,7 +107,6 @@ body::before {
     width: 120px;
     height: auto;
     margin: 0 auto 20px;
-    display: block;
 }
 
 .logo-text {
@@ -153,6 +153,10 @@ body::before {
     overflow: hidden;
     break-inside: avoid;
     margin-bottom: 28px;
+}
+
+.time-slot.full-width-slot {
+    column-span: all;
 }
 
 .time-slot::before {
@@ -212,6 +216,12 @@ body::before {
     gap: 10px;
 }
 
+.playlist-list.playlist-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
 .playlist-item {
     display: flex;
     align-items: center;
@@ -236,6 +246,21 @@ body::before {
     height: 28px;
     min-width: 28px;
     background: #1DB954;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.spotify-icon-xmas {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    background: #b00f0f;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -338,6 +363,7 @@ body::before {
 
     .welcome-message .datetime {
         font-size: 0.85em;
+        text-align:right;
     }
 
     .header h1 {
@@ -350,6 +376,10 @@ body::before {
 
     .playlist-grid {
         column-count: 1;
+    }
+    
+    .playlist-list.playlist-grid-2 {
+        grid-template-columns: 1fr;
     }
     
     .time-slot {

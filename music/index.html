@@ -100,16 +100,43 @@
 
     <div class="container">
         <div class="welcome-message">
-            <h2 data-en="Gate 7 Welcome!" data-vn="Gate 7 Xin Chào!">Gate 7 Welcome!</h2>
+            <img src="/images/logo-color-black-bg1.png" alt="Gate 7 Logo" class="logo" onerror="this.style.display='none'; document.querySelector('.logo-text').style.display='block'">            <h1 data-en="Your Soundtrack" data-vn="Nhạc Của Bạn">Your Soundtrack</h1>
+            <p data-en="Curated playlists for every moment of your day at Gate 7" data-vn="Danh sách nhạc được tuyển chọn cho mọi khoảnh khắc trong ngày tại Gate 7.">Curated playlists for every moment of your day at Gate 7.</p>
             <div class="datetime" id="datetime"></div>
         </div>
-
-        <div class="header">
-            <img src="/images/logo-color-black-bg1.png" alt="Gate 7 Logo" class="logo" onerror="this.style.display='none'; document.querySelector('.logo-text').style.display='block'">            <h1 data-en="Your Soundtrack" data-vn="Nhạc Của Bạn">Your Soundtrack</h1>
-            <p data-en="Curated playlists for every moment of your day at Gate 7. Click any playlist to open it in Spotify and set the mood." data-vn="Danh sách nhạc được tuyển chọn cho mọi khoảnh khắc trong ngày tại Gate 7. Nhấp vào bất kỳ danh sách nào để mở trong Spotify và tạo không khí.">Curated playlists for every moment of your day at Gate 7. Click any playlist to open it in Spotify and set the mood.</p>
-        </div>
-
         <div class="playlist-grid">
+            <!-- Christmas All Days -->
+            <div class="time-slot full-width-slot">
+                <div class="time-period">🎄🎄🎄 MERRY CHRISTMAS 🎄🎄🎄</div>
+                <div class="audience" data-en="Music for all day long" data-vn="Nhạc cho mọi lúc trong ngày">Music for all day long</div>
+                <div class="vibe-description" data-en="Christmas music to make your holiday season feel extra special." data-vn="Nhạc Giáng Sinh để làm cho mùa lễ hội của bạn trở nên đặc biệt hơn.">
+                    Christmas music to make your holiday season feel extra special.
+                </div>
+                <div class="playlist-list playlist-grid-2">
+                    <a onclick="openSpotifyPlaylist('37i9dQZF1DX0Yxoavh5qJV'); return false;" class="playlist-item">
+                        <div class="spotify-icon-xmas">🎄</div>
+                        <span class="playlist-link">Christmas Hits</span>
+                    </a>
+                    <a onclick="openSpotifyPlaylist('37i9dQZF1DX6R7QUWePReA'); return false;" class="playlist-item">
+                        <div class="spotify-icon-xmas">🎄</div>
+                        <span class="playlist-link">Christmas Classics</span>
+                    </a>
+                    <a onclick="openSpotifyPlaylist('37i9dQZF1DX0A8zVl7p82B'); return false;" class="playlist-item">
+                        <div class="spotify-icon-xmas">🎄</div>
+                        <span class="playlist-link">Christmas Pop</span>
+                    </a>
+                        <a onclick="openSpotifyPlaylist('5OP7itTh52BMfZS1DJrdlv'); return false;" class="playlist-item">
+                        <div class="spotify-icon-xmas">🎄</div>
+                        <span class="playlist-link">100 Greatest Christmas Songs Ever</span>
+                    </a>
+                    </a>
+                        <a onclick="openSpotifyPlaylist('37i9dQZF1DWYOLKtM77Hd7'); return false;" class="playlist-item">
+                        <div class="spotify-icon-xmas">🎄</div>
+                        <span class="playlist-link">Holiday Magic</span>
+                    </a>
+                </div>
+            </div>
+
             <!-- Morning Slot: 6 AM - 9 AM -->
             <div class="time-slot">
                 <div class="time-period">6 AM – 9 AM</div>
@@ -117,7 +144,7 @@
                 <div class="vibe-description" data-en="Smooth awakening. Jazz and indie tracks to energize your morning ritual." data-vn="Thức dậy nhẹ nhàng. Nhạc jazz và indie để tràn đầy năng lượng cho buổi sáng của bạn.">
                     Smooth awakening. Jazz and indie tracks to energize your morning ritual.
                 </div>
-                <div class="playlist-list">
+                <div class="playlist-list playlist-grid-2">
                     <a onclick="openSpotifyPlaylist('37i9dQZF1DXdwTUxmGKrdN'); return false;" class="playlist-item">
                         <div class="spotify-icon">♪</div>
                         <span class="playlist-link">Coffee Table Jazz</span>
@@ -140,7 +167,7 @@
                 <div class="vibe-description" data-en="Refined and relaxed. Classic jazz for conversation and connection." data-vn="Tinh tế và thư giãn. Nhạc jazz cổ điển cho cuộc trò chuyện và kết nối.">
                     Refined and relaxed. Classic jazz for conversation and connection.
                 </div>
-                <div class="playlist-list">
+                <div class="playlist-list playlist-grid-2">
                     <a onclick="openSpotifyPlaylist('37i9dQZF1DXbITWG1ZJKYt'); return false;" class="playlist-item">
                         <div class="spotify-icon">♪</div>
                         <span class="playlist-link">Jazz Classics</span>
@@ -167,7 +194,7 @@
                 <div class="vibe-description" data-en="Diverse and dynamic. Lo-fi and indie blends for every mood during the day." data-vn="Đa dạng và năng động. Sự kết hợp lo-fi và indie cho mọi tâm trạng trong ngày.">
                     Diverse and dynamic. Lo-fi and indie blends for every mood during the day.
                 </div>
-                <div class="playlist-list">
+                <div class="playlist-list playlist-grid-2">
                     <a onclick="openSpotifyPlaylist('37i9dQZF1DWYoYGBbGKurt'); return false;" class="playlist-item">
                         <div class="spotify-icon">♪</div>
                         <span class="playlist-link">lofi chill</span>
@@ -194,7 +221,7 @@
                 <div class="vibe-description" data-en="Contemporary and energetic. Trending tracks for our younger community." data-vn="Hiện đại và năng động. Những ca khúc thịnh hành cho cộng đồng trẻ của chúng tôi.">
                     Contemporary and energetic. Trending tracks for our younger community.
                 </div>
-                <div class="playlist-list">
+                <div class="playlist-list playlist-grid-2">
                     <a onclick="openSpotifyPlaylist('0I3GwneqvQlrFhIsDxz9IF'); return false;" class="playlist-item">
                         <div class="spotify-icon">♪</div>
                         <span class="playlist-link">lofi Indie Pop 2025</span>
@@ -253,6 +280,13 @@
         // Playlist data for different languages and time slots
         const playlists = {
             en: {
+                xmas: [
+                    { id: '37i9dQZF1DX0Yxoavh5qJV', name: 'Christmas Hits'},
+                    { id: '37i9dQZF1DX6R7QUWePReA', name: 'Christmas Classics' },
+                    { id: '37i9dQZF1DX0A8zVl7p82B', name: 'Christmas Pop' },
+                    { id: '5OP7itTh52BMfZS1DJrdlv', name: '100 Greatest Christmas Songs Ever' },
+                    { id: '37i9dQZF1DWYOLKtM77Hd7', name: 'Holiday Magic' }
+                ],
                 morning: [
                     { id: '37i9dQZF1DXdwTUxmGKrdN', name: 'Coffee Table Jazz' },
                     { id: '1JJgzNrj8GZhgPkGpKXI2s', name: 'Jazz Cafe Playlist' },
@@ -278,6 +312,13 @@
                 ]
             },
             vn: {
+                xmas: [
+                    { id: '37i9dQZF1DX0Yxoavh5qJV', name: 'Christmas Hits'},
+                    { id: '37i9dQZF1DX6R7QUWePReA', name: 'Christmas Classics' },
+                    { id: '37i9dQZF1DX0A8zVl7p82B', name: 'Christmas Pop' },
+                    { id: '5OP7itTh52BMfZS1DJrdlv', name: '100 Greatest Christmas Songs Ever' },
+                    { id: '37i9dQZF1DWYOLKtM77Hd7', name: 'Holiday Magic' }
+                ],
                 morning: [
                     { id: '37i9dQZF1DX4PP3DA4J0N8', name: 'Chill Hits Việt Nam' },
                     { id: '37i9dQZF1DX0XUfEo1d0IQ', name: 'Nhạc Việt Nam Hay Nhất' },
@@ -338,7 +379,7 @@
 
         // Function to update playlists based on current language
         function updatePlaylists() {
-            const timeSlots = ['morning', 'afternoon', 'lunch', 'evening'];
+            const timeSlots = ['xmas','morning', 'afternoon', 'lunch', 'evening'];
             const slotSelectors = ['.time-slot:nth-child(1) .playlist-list', '.time-slot:nth-child(2) .playlist-list', '.time-slot:nth-child(3) .playlist-list', '.time-slot:nth-child(4) .playlist-list'];
 
             timeSlots.forEach((slot, index) => {
