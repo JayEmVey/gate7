@@ -6,7 +6,7 @@
 ```bash
 npm run build
 ```
-Minifies HTML, CSS, JavaScript for self-hosted deployment. Output in `dist/` folder. All assets served locally.
+Minifies HTML, CSS, JavaScript for self-hosted deployment. Output in `dist/` folder. All assets served locally from GitHub Pages.
 
 ### Test Production Build
 ```bash
@@ -24,7 +24,7 @@ npm run deploy
 1. Builds production bundle
 2. Copies static assets (CNAME, robots.txt, sitemap.xml)
 3. Creates Git commit
-4. Pushes to GitHub
+4. Pushes to GitHub main branch
 
 Site live in ~2 minutes.
 
@@ -39,8 +39,9 @@ python -m http.server 8000
 
 ### HTML
 - Semantic HTML5
-- Proper meta tags and accessibility
+- Proper meta tags and accessibility (bilingual: VI + EN)
 - Alt text on all images
+- Direct `src` attributes (no lazy loading data-src)
 
 ### CSS
 - CSS custom properties for theming
@@ -51,11 +52,17 @@ python -m http.server 8000
 - ES6+ vanilla JS (no frameworks)
 - Event listeners and DOM manipulation
 - Progressive enhancement
+- No external dependencies or CDN resolvers
 
 ### Naming
 - CSS classes: kebab-case (`animate-text-delay`)
 - JS variables: camelCase
 - Files: lowercase with hyphens (`style-gate7.css`)
+
+### Assets
+- All assets self-hosted (no CDN fallback)
+- Local image paths: `/images/`, `/css/`, `/js/`
+- GitHub Pages hosting with automatic HTTPS
 
 ## Project Structure
 
@@ -63,14 +70,24 @@ python -m http.server 8000
 ├── index.html                      # Home page
 ├── menu/index.html                 # Menu page
 ├── music/index.html                # Spotify manager
-├── css/style-gate7.css             # Stylesheet
-├── images/                         # Assets
+├── hiring/index.html               # Hiring page
+├── css/                            # Stylesheets
+│   ├── style-gate7.css             # Main stylesheet
+│   ├── style-index.css             # Home page styles
+│   ├── style-menu.css              # Menu page styles
+│   └── style-music.css             # Music page styles
+├── images/                         # Assets (28 files)
 ├── js/                             # JavaScript utilities
 │   ├── scroll-animations.js        # Scroll effects
 │   └── language-switcher.js        # Language toggle
-├── build-simple.js                 # Build script
+├── build-simple.js                 # Build script (zero deps)
 ├── SEO-KEYWORDS.md                 # Keyword management
-├── package.json                    # npm config
+├── VI-Metadata.md                  # Vietnamese metadata reference
+├── EN-Metadata.md                  # English metadata reference
+├── package.json                    # npm config (simplified)
+├── CNAME                           # Custom domain configuration
+├── robots.txt                      # SEO crawler directives
+├── sitemap.xml                     # SEO sitemap
 └── README.md                       # Full documentation
 ```
 
@@ -78,6 +95,23 @@ python -m http.server 8000
 
 1. Update keywords in SEO-KEYWORDS.md
 2. Update meta tags in HTML files
-3. Deploy: `npm run deploy`
+3. Verify metadata in VI-Metadata.md and EN-Metadata.md
+4. Deploy: `npm run deploy`
 
 See README.md for complete documentation.
+
+## Deployment System
+
+**GitHub Pages Configuration:**
+- Source: GitHub Actions deployment
+- Branch: main
+- Domain: gate7.vn (CNAME configured)
+- HTTPS: Enabled automatically
+- Deployment: Auto on push
+
+**Key Features:**
+- Zero-dependency build (no npm packages required)
+- HTML minification (28-30%)
+- CSS minification (26%)
+- Auto-deployment via GitHub Pages
+- Complete production ready

@@ -1,9 +1,9 @@
 # Gate 7 Coffee Roastery - English Metadata
 
 ## Page Information
-- **Title**: Gate 7 Coffee Roastery - Coffee As You Are
-- **Description**: Gate 7 Coffee Roastery - Authentic Vietnamese specialty coffee in Ho Chi Minh City. Phin coffee, espresso, and matcha drinks. Visit 162A Nguyen Truong To, Phu Tho Hoa Ward.
-- **Keywords**: Gate 7 Coffee Roastery, Vietnamese specialty coffee, premium coffee HCMC, Vietnamese Phin coffee, specialty espresso, coffee roastery Ho Chi Minh, Arabica Robusta, Vietnamese coffee shop
+- **Title**: Gate 7 Coffee Roastery - High Quality Coffee in Ho Chi Minh City
+- **Description**: Quán cà phê chất lượng cao Việt Nam nguyên chất tại TPHCM. Gate có: Cà phê pha phin (100% Robusta), espresso (100% Arabica), và đồ uống matcha, houjicha. Cà phê Arabica & Robusta cao cấp. Gate 7 Coffee Roastery tại 162A Nguyễn Trường Tộ.
+- **Keywords**: Gate 7 Coffee Roastery, cà phê chất lượng cao Việt Nam, cà phê cao cấp TPHCM, cà phê pha phin Việt Nam, espresso đặc sản, quán cà phê roastery Hồ Chí Minh, Arabica Robusta, quán cà phê Việt Nam, 100% Robusta, 100% Arabica
 - **Language**: English
 - **Author**: Gate 7 Coffee Roastery
 - **Canonical URL**: https://gate7.vn/
@@ -16,8 +16,10 @@
 ## Social Media & SEO
 ### Open Graph
 - **Type**: business.business
-- **Title**: Gate 7 Coffee Roastery - Coffee As You Are
-- **Description**: Authentic Vietnamese specialty coffee roastery in HCMC. Phin drip coffee, specialty espresso, matcha drinks. Premium Arabica & Robusta coffee. Located at 162A Nguyen Truong To.
+- **Title (VI)**: Gate 7 Coffee Roaster - Cà Phê Phin Đậm Chất Sài Gòn
+- **Title (EN)**: Gate 7 Coffee Roastery - High Quality Coffee in Ho Chi Minh City
+- **Description (VI)**: Quán cà phê chất lượng cao Việt Nam nguyên chất tại TPHCM. Gate có: Cà phê pha phin (100% Robusta), espresso (100% Arabica), và đồ uống matcha, houjicha. Cà phê Arabica & Robusta cao cấp. Gate 7 Coffee Roastery tại 162A Nguyễn Trường Tộ.
+- **Description (EN)**: Authentic Vietnamese high quality coffee roastery in HCMC. Phin drip coffee, specialty espresso, matcha drinks. Premium Arabica & Robusta coffee. Located at 162A Nguyen Truong To.
 - **Image**: https://gate7.vn/images/logo-only-black.png
 - **Image Alt**: Gate 7 Coffee Roastery Logo
 - **URL**: https://gate7.vn/
@@ -26,8 +28,10 @@
 
 ### Twitter Card
 - **Card Type**: summary_large_image
-- **Title**: Gate 7 Coffee Roastery - Coffee As You Are
-- **Description**: Authentic Vietnamese specialty coffee in HCMC. Phin drip, espresso, matcha drinks. Premium Arabica & Robusta coffee roastery.
+- **Title (VI)**: Gate 7 Coffee Roastery - High Quality Coffee in Ho Chi Minh City
+- **Title (EN)**: Gate 7 Coffee Roastery - High Quality Coffee in Ho Chi Minh City
+- **Description (VI)**: Quán cà phê chất lượng cao Việt Nam nguyên chất tại TPHCM. Gate có: Cà phê pha phin (100% Robusta), espresso (100% Arabica), và đồ uống matcha, houjicha. Cà phê Arabica & Robusta cao cấp. Gate 7 Coffee Roastery tại 162A Nguyễn Trường Tộ.
+- **Description (EN)**: Authentic Vietnamese high quality coffee in HCMC. Phin drip, espresso, matcha drinks. Premium Arabica & Robusta coffee roastery.
 - **Image**: https://gate7.vn/images/logo-only-black.png
 - **Creator**: @gate7coffee
 
@@ -152,6 +156,6 @@
 ## Performance Features
 - DNS Prefetch: fonts.googleapis.com, www.googletagmanager.com
 - Preconnect: fonts.googleapis.com, fonts.gstatic.com
-- Analytics: Google Analytics (ID: G-S72S3FXR6Z)
-- CDN Caching: Cloudflare/jsDelivr CDN provides automatic caching for all assets
+- Analytics: Google Analytics (ID: G-S72S3FXR6Z), Clarity Analytics (ID: uc19n8yku0)
+- Self-Hosted Assets: All assets hosted on GitHub Pages
 - Web Vitals Monitoring: LCP & CLS tracking enabled

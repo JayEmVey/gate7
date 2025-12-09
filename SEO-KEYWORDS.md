@@ -4,23 +4,29 @@ Central location for all SEO keywords, organized by page and keyword type.
 
 ## Home Page (`index.html`)
 
+### Page Title & Meta
+- **Title**: Gate 7 Coffee Roastery - High Quality Coffee in Ho Chi Minh City
+- **Meta Description**: Quán cà phê chất lượng cao Việt Nam nguyên chất tại TPHCM. Gate có: Cà phê pha phin (100% Robusta), espresso (100% Arabica), và đồ uống matcha, houjicha. Cà phê Arabica & Robusta cao cấp. Gate 7 Coffee Roastery tại 162A Nguyễn Trường Tộ.
+- **Keywords**: Gate 7 Coffee Roastery, cà phê chất lượng cao Việt Nam, cà phê cao cấp TPHCM, cà phê pha phin Việt Nam, espresso đặc sản, quán cà phê roastery Hồ Chí Minh, Arabica Robusta, quán cà phê Việt Nam, 100% Robusta, 100% Arabica
+
 ### Primary Keywords
 - Gate 7 Coffee Roastery
-- Vietnamese high quality coffee
-- Premium coffee Ho Chi Minh City
-- Premium coffee Vietnam in Tan Phu
+- Cà phê chất lượng cao Việt Nam
+- Cà phê cao cấp TPHCM
+- Quán cà phê roastery Hồ Chí Minh
 
 ### Long-tail Keywords
-- Vietnamese phin coffee
-- High quality coffee shop HCMC
-- Premium Robusta coffee Vietnam
-- Permium Arabica coffee Vietnam
-- Coffee roasting Vietnam
+- Cà phê pha phin Việt Nam (100% Robusta)
+- Espresso đặc sản (100% Arabica)
+- Quán cà phê chất lượng cao TPHCM
+- Cà phê Arabica & Robusta cao cấp
+- Đồ uống matcha houjicha cà phê
 
 ### Search Volume & Difficulty
-- Vietnamese specialty coffee: 1,200 searches/month, Medium difficulty
-- Gate 7 Coffee: 50 searches/month, Low difficulty
-- Premium coffee Ho Chi Minh: 300 searches/month, Medium difficulty
+- Gate 7 Coffee Roastery: 50 searches/month, Low difficulty
+- Cà phê chất lượng cao Việt Nam: 800 searches/month, Medium difficulty
+- Cà phê cao cấp TPHCM: 400 searches/month, Medium difficulty
+- Cà phê pha phin Việt Nam: 600 searches/month, Medium difficulty
 
 ## Menu Page (`menu/index.html`)
 
@@ -67,8 +73,11 @@ Central location for all SEO keywords, organized by page and keyword type.
 
 | Keyword | Page | Target Density | Current Status |
 |---------|------|-----------------|-----------------|
-| Vietnamese high quality coffee | index.html | 1-2% | Active |
-| Gate 7 Coffee | index.html | 1% | Active |
+| Gate 7 Coffee Roastery | index.html | 1-2% | Active |
+| Cà phê chất lượng cao Việt Nam | index.html | 1-2% | Active |
+| Cà phê cao cấp TPHCM | index.html | 1-2% | Active |
+| Cà phê pha phin Việt Nam | index.html | 1% | Active |
+| Espresso đặc sản | index.html | 0.5% | Active |
 | High quality coffee menu | menu/index.html | 1-2% | Active |
 | Coffee shop music | music/index.html | 1% | Active |
 
@@ -104,19 +113,22 @@ Central location for all SEO keywords, organized by page and keyword type.
 
 ### Recent Keyword Updates
 
-- **Last Updated:** November 21, 2025
-- **Pages Updated:** index.html
-- **Keywords Added:** Gate 7 Coffee Roastery prioritized for brand recognition
-- **Meta Tags Enhanced:** Bing compatibility, OG tags, structured data
-- **Keywords Reordered:** Brand name first for Google/Bing SERPs
+- **Last Updated:** December 9, 2025
+- **Pages Updated:** index.html, VI-Metadata.md, EN-Metadata.md
+- **Title Updated:** "Gate 7 Coffee Roastery - High Quality Coffee in Ho Chi Minh City"
+- **Keywords Focus:** Vietnamese-first keywords (cà phê chất lượng cao Việt Nam)
+- **Meta Tags Enhanced:** Vietnamese/English bilingual support
+- **Analytics Added:** Google Analytics (G-S72S3FXR6Z) and Clarity (uc19n8yku0)
+- **CDN Removed:** All assets now self-hosted on GitHub Pages
 
 ## Performance Tracking
 
 ### Ranking Targets (3-6 months)
-- Vietnamese high quality coffee: Page 1
-- Gate 7 Coffee: Page 1
-- Coffee shop HCMC: Page 2-3
-- High quality coffee menu Vietnam: Page 2-3
+- Gate 7 Coffee Roastery: Page 1
+- Cà phê chất lượng cao Việt Nam: Page 1-2
+- Cà phê cao cấp TPHCM: Page 1-2
+- Cà phê pha phin Việt Nam: Page 2-3
+- Espresso đặc sản: Page 2-3
 
 ### Analytics to Monitor
 - Google Search Console impressions

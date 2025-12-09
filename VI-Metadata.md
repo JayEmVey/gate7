@@ -1,7 +1,7 @@
 # Gate 7 Coffee Roastery - Metadata Tiếng Việt
 
 ## Thông Tin Trang
-- **Tiêu Đề**: Gate 7 Coffee Roastery - Coffee As You Are
+- **Tiêu Đề**: Gate 7 Coffee Roastery - High Quality Coffee in Ho Chi Minh City
 - **Mô Tả**: Quán cà phê chất lượng cao Việt Nam nguyên chất tại TPHCM. Gate có: Cà phê pha phin (100% Robusta), espresso (100% Arabica), và đồ uống matcha, houjicha. Cà phê Arabica & Robusta cao cấp. Gate 7 Coffee Roastery tại 162A Nguyễn Trường Tộ.
 - **Từ Khóa**: Gate 7 Coffee Roastery, cà phê chất lượng cao Việt Nam, cà phê cao cấp TPHCM, cà phê pha phin Việt Nam, espresso đặc sản, quán cà phê roastery Hồ Chí Minh, Arabica Robusta, quán cà phê Việt Nam, 100% Robusta, 100% Arabica
 - **Ngôn Ngữ**: Tiếng Việt
@@ -16,7 +16,7 @@
 ## Mạng Xã Hội & SEO
 ### Open Graph
 - **Loại**: business.business
-- **Tiêu Đề**: Gate 7 Coffee Roastery - Coffee As You Are
+- **Tiêu Đề**: Gate 7 Coffee Roaster - Cà Phê Phin Đậm Chất Sài Gòn
 - **Mô Tả**: Quán cà phê chất lượng cao Việt Nam nguyên chất tại TPHCM. Gate có: Cà phê pha phin (100% Robusta), espresso (100% Arabica), và đồ uống matcha, houjicha. Cà phê Arabica & Robusta cao cấp. Gate 7 Coffee Roastery tại 162A Nguyễn Trường Tộ.
 - **Hình Ảnh**: https://gate7.vn/images/logo-only-black.png
 - **Alt Hình Ảnh**: Logo Gate 7 Coffee Roastery
@@ -26,8 +26,10 @@
 
 ### Twitter Card
 - **Loại Thẻ**: summary_large_image
-- **Tiêu Đề**: Gate 7 Coffee Roastery - Cà Phê Cao Cấp Việt Nam
-- **Mô Tả**: Quán cà phê chất lượng cao Việt Nam nguyên chất tại TPHCM. Gate có: Cà phê pha phin (100% Robusta), espresso (100% Arabica), và đồ uống matcha, houjicha. Cà phê Arabica & Robusta cao cấp. Gate 7 Coffee Roastery tại 162A Nguyễn Trường Tộ.
+- **Tiêu Đề (VI)**: Gate 7 Coffee Roastery - High Quality Coffee in Ho Chi Minh City
+- **Tiêu Đề (EN)**: Gate 7 Coffee Roastery - High Quality Coffee in Ho Chi Minh City
+- **Mô Tả (VI)**: Quán cà phê chất lượng cao Việt Nam nguyên chất tại TPHCM. Gate có: Cà phê pha phin (100% Robusta), espresso (100% Arabica), và đồ uống matcha, houjicha. Cà phê Arabica & Robusta cao cấp. Gate 7 Coffee Roastery tại 162A Nguyễn Trường Tộ.
+- **Mô Tả (EN)**: Authentic Vietnamese high quality coffee in HCMC. Phin drip, espresso, matcha drinks. Premium Arabica & Robusta coffee roastery.
 - **Hình Ảnh**: https://gate7.vn/images/logo-only-black.png
 - **Người Tạo**: @gate7coffee
 
@@ -152,6 +154,6 @@
 ## Tính Năng Hiệu Suất
 - DNS Prefetch: fonts.googleapis.com, www.googletagmanager.com
 - Preconnect: fonts.googleapis.com, fonts.gstatic.com
-- Phân Tích: Google Analytics (ID: G-S72S3FXR6Z)
-- CDN Caching: CDN Cloudflare/jsDelivr cấp cache tự động cho tất cả assets
+- Phân Tích: Google Analytics (ID: G-S72S3FXR6Z), Clarity Analytics (ID: uc19n8yku0)
+- Self-Hosted Assets: Tất cả assets được host trên GitHub Pages
 - Giám Sát Web Vitals: Theo dõi LCP & CLS được bật
