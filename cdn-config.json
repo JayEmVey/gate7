@@ -1,5 +1,5 @@
 {
-  "default": "jsdelivr",
+  "default": "cloudflare",
   "cdns": {
     "cloudflare": {
       "name": "Cloudflare CDN (via GitHub)",
@@ -25,12 +25,12 @@
   "fallbackStrategy": "github",
   "timeout": 8000,
   "retryAttempts": 2,
-  "buildDate": "2025-11-26",
+  "buildDate": "2025-12-09",
   "version": "1.0.0",
   "enableDetailedLogging": true,
   "activeCdn": {
-    "name": "jsDelivr CDN",
-    "provider": "jsdelivr",
-    "baseUrl": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@latest"
+    "name": "Cloudflare CDN",
+    "provider": "cloudflare",
+    "baseUrl": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/"
   }
 }
