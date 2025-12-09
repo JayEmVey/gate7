@@ -85,13 +85,6 @@ python -m http.server 8000
 - ✅ Auto-deployment via GitHub Actions
 - ✅ One-command manual deploy
 
-### 🛡️ Image Protection (Optional)
-- ✅ Canvas rendering for premium images
-- ✅ Invisible overlay blocking (no right-click, drag, copy)
-- ✅ Time-limited signed URLs (1-hour TTL)
-- ✅ Global right-click disabling
-- ✅ Image tiling for high-value assets
-
 ---
 
 ## Project Structure
@@ -130,30 +123,6 @@ npm run build
 - Optimizes and copies images
 - Output: `dist/` folder
 - No external dependencies required
-
-#### Build with SEO Validation
-```bash
-npm run build:seo
-```
-- Validates SEO keywords on all pages
-- Checks meta tags (title, description, keywords, og:*)
-- Analyzes keyword density (warns if too high/low)
-- Checks title/description length
-- Generates `seo-build-report.json` in dist/
-
-#### Deploy with SEO Validation
-```bash
-npm run deploy:seo
-```
-- Builds with SEO validation
-- Commits and pushes to GitHub
-- Use for content updates
-
-#### Force Deploy (Rare)
-```bash
-npm run deploy:force
-```
-- Force-pushes to git (use only if git history is out of sync)
 
 ### Deployment System
 
@@ -200,23 +169,8 @@ python -m http.server 8000
 # Build production
 npm run build
 
-# Build with image protection
-npm run build:protect
-
-# Auto-deploy (push to main branch)
-git push origin main
-
 # Manual deploy (builds + pushes)
 npm run deploy
-
-# Deploy with image protection
-npm run deploy:protect
-
-# Force deploy (rare, rewrites history)
-npm run deploy:force
-
-# Generate responsive images
-npm run generate:responsive
 
 # Check build output
 ls dist/
@@ -249,11 +203,7 @@ Edit `SEO-KEYWORDS.md` for:
 - [ ] Check keyword density (0.5-3% target)
 - [ ] Test titles (50-60 chars) & descriptions (150-160 chars)
 - [ ] Verify Open Graph tags
-- [ ] Run validation: `npm run build:seo`
-- [ ] Review SEO warnings from build
-- [ ] Fix SEO issues before deploy
-- [ ] Deploy with: `npm run deploy:seo`
-- [ ] Verify seo-build-report.json generated
+- [ ] Deploy with: `npm run deploy`
 - [ ] Submit sitemap to Google Search Console
 - [ ] Monitor keywords in Search Console
 
@@ -318,40 +268,6 @@ SEO Score:     100
 - ✅ Automatic HTTPS
 - ✅ Global edge caching
 - ✅ DDoS protection
-
----
-
-## Image Protection
-
-### Optional Multi-Layer Image Security
-
-#### Features
-- Canvas rendering for premium images
-- Invisible overlay blocking (no right-click, drag, copy)
-- Time-limited signed URLs (1-hour TTL)
-- Global right-click disabling
-- Image tiling for high-value assets
-- Multi-layer theft deterrence
-
-#### Usage
-
-Deploy with image protection:
-```bash
-npm run deploy:protect
-```
-
-Build with protection (without deploy):
-```bash
-npm run build:protect
-```
-
-#### How It Works
-
-1. **Canvas Rendering:** Premium images rendered on canvas (cannot be right-clicked)
-2. **Overlay Blocking:** Invisible overlay prevents drag/copy
-3. **Signed URLs:** Time-limited access tokens (1-hour expiry)
-4. **Tiling:** Images split into tiles for additional protection
-5. **Right-Click Disabled:** Global context menu disabled
 
 ---
 
@@ -444,10 +360,8 @@ git push origin main -f
 - Check dist/ folder after build
 
 ### SEO issues
-- Run validation: `npm run build:seo`
-- Check seo-build-report.json in dist/
 - Review SEO-KEYWORDS.md for keyword targets
-- Verify keyword density (0.5-3%)
+- Verify keyword density (0.5-3%) in HTML
 
 ---
 

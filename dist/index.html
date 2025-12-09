@@ -181,74 +181,16 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 })(window, document, "clarity", "script", "uc19n8yku0");
 </script>
-
-<script id="cdn-loader">
-(function() {
-  // CDN Configuration Loader
-  window.CDN_CONFIG = {
-    "primaryCdn": "local",
-    "cdns": {
-      "local": "",
-      "github": "https://raw.githubusercontent.com/JayEmVey/gate7/master",
-      "jsdelivr": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@latest",
-      "cloudflare": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/"
-    },
-    "fallbackOrder": ["local"],
-    "timeout": 5000,
-    "retryAttempts": 2
-  };
-  
-  // CDN Asset Helper
-  window.getCdnUrl = function(assetPath) {
-    const cdnUrl = window.CDN_CONFIG.cdns[window.CDN_CONFIG.primaryCdn];
-    return cdnUrl + assetPath;
-  };
-  
-  // CDN Fallback Resolver
-  window.resolveCdnAsset = async function(assetPath) {
-    const config = window.CDN_CONFIG;
-    const timeoutMs = config.timeout;
-    
-    for (let cdn of config.fallbackOrder) {
-      const baseUrl = config.cdns[cdn];
-      const url = baseUrl + assetPath;
-      
-      try {
-        const response = await Promise.race([
-          fetch(url, { method: 'HEAD' }),
-          new Promise((_, reject) => 
-            setTimeout(() => reject(new Error('Timeout')), timeoutMs)
-          )
-        ]);
-        
-        if (response.ok) {
-          console.log('[CDN] Using ' + cdn + ' for ' + assetPath);
-          return url;
-        }
-      } catch (error) {
-        console.warn('[CDN] Failed on ' + cdn + ': ' + error.message);
-      }
-    }
-    
-    // Fallback to current domain
-    console.warn('[CDN] All CDNs failed, using local: ' + assetPath);
-    return assetPath;
-  };
-  
-  // Store current CDN in localStorage
-  localStorage.setItem('activeCdn', window.CDN_CONFIG.primaryCdn);
-})();
-</script>
 </head>
 <body>
 <main>
 <div class="logo-container">
-<img data-src="/images/logo-color-black-bg1.png" alt="Gate 7 Coffee Roastery Logo" class="logo" loading="lazy" width="320" height="240">
+<img src="/images/logo-color-black-bg1.png" alt="Gate 7 Coffee Roastery Logo" class="logo" loading="lazy" width="320" height="240">
 </div>
 <h1 class="animate-text">GATE 7 COFFEE ROASTERY</h1>
 <div class="tagline-container">
 <div class="vietnamese-phin-filter animate-text-delay">
-<img data-src="/images/coffee-as-you-are.png" alt="Vietnamese Phin Filter" width="237" height="178" loading="lazy">
+<img src="/images/coffee-as-you-are.png" alt="Vietnamese Phin Filter" width="237" height="178" loading="lazy">
 </div>
 </div>
 <div class="scroll-indicator">
@@ -511,13 +453,13 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 <h4 data-en="Follow" data-vn="Theo Dõi Gate Tại">Theo Dõi Gate Tại</h4>
 <div class="social-links">
 <a href="https://instagram.com/gate7.coffee" target="_blank" rel="noopener noreferrer">
-<img data-src="/images/social-icon-instagram.png" alt="Instagram" loading="lazy"> Instagram
+<img src="/images/social-icon-instagram.png" alt="Instagram" loading="lazy"> Instagram
 </a>
 <a href="https://www.facebook.com/share/1CnRHZ9QSz/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
-<img data-src="/images/social-icon-facebook.png" alt="Facebook" loading="lazy"> Facebook
+<img src="/images/social-icon-facebook.png" alt="Facebook" loading="lazy"> Facebook
 </a>
 <a href="https://zalo.me/2485475799709134069" target="_blank" rel="noopener noreferrer">
-<img data-src="/images/social-icon-zalo.png" alt="Zalo" loading="lazy"> Zalo
+<img src="/images/social-icon-zalo.png" alt="Zalo" loading="lazy"> Zalo
 </a>
 </div>
 </div>
@@ -537,20 +479,5 @@ document.documentElement.style.scrollBehavior = 'smooth';
 </script>
 <script defer src="/js/scroll-animations.js"></script>
 <script defer src="/js/language-switcher.js"></script>
-<script defer src="/js/responsive-images.js"></script>
-
-<script defer src="js/cdn-resolver.js"></script>
-<script defer src="js/asset-loader.js"></script>
-<script defer>
-  // Load CSS and JS from CDN with fallback
-  document.addEventListener('DOMContentLoaded', async function() {
-    const loader = window.assetLoader;
-    if (loader) {
-      // Load main CSS
-      await loader.loadCSS('/css/style-gate7.css');
-      console.log('[CDN] CSS loading complete');
-    }
-  });
-</script>
 </body>
 </html>

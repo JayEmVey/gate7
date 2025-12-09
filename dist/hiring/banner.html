@@ -20,64 +20,6 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 })(window, document, "clarity", "script", "uc19n8yku0");
 </script>
-
-<script id="cdn-loader">
-(function() {
-  // CDN Configuration Loader
-  window.CDN_CONFIG = {
-    "primaryCdn": "local",
-    "cdns": {
-      "local": "",
-      "github": "https://raw.githubusercontent.com/JayEmVey/gate7/master",
-      "jsdelivr": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@latest",
-      "cloudflare": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/"
-    },
-    "fallbackOrder": ["local"],
-    "timeout": 5000,
-    "retryAttempts": 2
-  };
-  
-  // CDN Asset Helper
-  window.getCdnUrl = function(assetPath) {
-    const cdnUrl = window.CDN_CONFIG.cdns[window.CDN_CONFIG.primaryCdn];
-    return cdnUrl + assetPath;
-  };
-  
-  // CDN Fallback Resolver
-  window.resolveCdnAsset = async function(assetPath) {
-    const config = window.CDN_CONFIG;
-    const timeoutMs = config.timeout;
-    
-    for (let cdn of config.fallbackOrder) {
-      const baseUrl = config.cdns[cdn];
-      const url = baseUrl + assetPath;
-      
-      try {
-        const response = await Promise.race([
-          fetch(url, { method: 'HEAD' }),
-          new Promise((_, reject) => 
-            setTimeout(() => reject(new Error('Timeout')), timeoutMs)
-          )
-        ]);
-        
-        if (response.ok) {
-          console.log('[CDN] Using ' + cdn + ' for ' + assetPath);
-          return url;
-        }
-      } catch (error) {
-        console.warn('[CDN] Failed on ' + cdn + ': ' + error.message);
-      }
-    }
-    
-    // Fallback to current domain
-    console.warn('[CDN] All CDNs failed, using local: ' + assetPath);
-    return assetPath;
-  };
-  
-  // Store current CDN in localStorage
-  localStorage.setItem('activeCdn', window.CDN_CONFIG.primaryCdn);
-})();
-</script>
 </head>
 <body>
 <div class="poster">
@@ -211,21 +153,6 @@ trackEvent('click', 'application', 'apply_now_button_banner');
 document.getElementById('website-link').addEventListener('click', function() {
 trackEvent('click', 'navigation', 'website_link_banner');
 });
-</script>
-<script defer src="../js/cdn-resolver.js"></script>
-
-<script defer src="js/cdn-resolver.js"></script>
-<script defer src="js/asset-loader.js"></script>
-<script defer>
-  // Load CSS and JS from CDN with fallback
-  document.addEventListener('DOMContentLoaded', async function() {
-    const loader = window.assetLoader;
-    if (loader) {
-      // Load main CSS
-      await loader.loadCSS('/css/style-gate7.css');
-      console.log('[CDN] CSS loading complete');
-    }
-  });
 </script>
 </body>
 </html>

@@ -181,64 +181,6 @@ function gtag() { dataLayer.push(arguments); }
 gtag('js', new Date());
 gtag('config', 'G-S72S3FXR6Z');
 </script>
-
-<script id="cdn-loader">
-(function() {
-  // CDN Configuration Loader
-  window.CDN_CONFIG = {
-    "primaryCdn": "local",
-    "cdns": {
-      "local": "",
-      "github": "https://raw.githubusercontent.com/JayEmVey/gate7/master",
-      "jsdelivr": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@latest",
-      "cloudflare": "https://cdn.jsdelivr.net/gh/JayEmVey/gate7@master/dist/"
-    },
-    "fallbackOrder": ["local"],
-    "timeout": 5000,
-    "retryAttempts": 2
-  };
-  
-  // CDN Asset Helper
-  window.getCdnUrl = function(assetPath) {
-    const cdnUrl = window.CDN_CONFIG.cdns[window.CDN_CONFIG.primaryCdn];
-    return cdnUrl + assetPath;
-  };
-  
-  // CDN Fallback Resolver
-  window.resolveCdnAsset = async function(assetPath) {
-    const config = window.CDN_CONFIG;
-    const timeoutMs = config.timeout;
-    
-    for (let cdn of config.fallbackOrder) {
-      const baseUrl = config.cdns[cdn];
-      const url = baseUrl + assetPath;
-      
-      try {
-        const response = await Promise.race([
-          fetch(url, { method: 'HEAD' }),
-          new Promise((_, reject) => 
-            setTimeout(() => reject(new Error('Timeout')), timeoutMs)
-          )
-        ]);
-        
-        if (response.ok) {
-          console.log('[CDN] Using ' + cdn + ' for ' + assetPath);
-          return url;
-        }
-      } catch (error) {
-        console.warn('[CDN] Failed on ' + cdn + ': ' + error.message);
-      }
-    }
-    
-    // Fallback to current domain
-    console.warn('[CDN] All CDNs failed, using local: ' + assetPath);
-    return assetPath;
-  };
-  
-  // Store current CDN in localStorage
-  localStorage.setItem('activeCdn', window.CDN_CONFIG.primaryCdn);
-})();
-</script>
 </head>
 <body>
 <div class="container">
@@ -356,40 +298,6 @@ switchLanguage(lang);
 window.switchLanguage = switchLanguage;
 });
 </script>
-<script src="/js/cdn-resolver.js"></script>
-<script id="load-scripts">
-// Load scripts from CDN with fallback to local
-document.addEventListener('DOMContentLoaded', async () => {
-const scripts = [
-'js/responsive-images.js',
-'js/scroll-animations.js'
-];
-for (const scriptPath of scripts) {
-try {
-const cdnUrl = await window.cdnResolver.resolveAsset(scriptPath);
-const script = document.createElement('script');
-script.src = cdnUrl;
-script.defer = true;
-document.head.appendChild(script);
-} catch (error) {
-console.warn(`[CDN] Failed to load ${scriptPath}:`, error);
-}
-}
-});
-</script>
-
-<script defer src="js/cdn-resolver.js"></script>
-<script defer src="js/asset-loader.js"></script>
-<script defer>
-  // Load CSS and JS from CDN with fallback
-  document.addEventListener('DOMContentLoaded', async function() {
-    const loader = window.assetLoader;
-    if (loader) {
-      // Load main CSS
-      await loader.loadCSS('/css/style-gate7.css');
-      console.log('[CDN] CSS loading complete');
-    }
-  });
-</script>
+<script defer src="/js/scroll-animations.js"></script>
 </body>
 </html>

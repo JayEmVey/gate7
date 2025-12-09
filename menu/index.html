@@ -346,31 +346,8 @@
         });
     </script>
 
-    <!-- CDN Resolver -->
-    <script src="/js/cdn-resolver.js"></script>
-    
-    <!-- Deferred non-critical scripts (loaded via CDN resolver) -->
-    <script id="load-scripts">
-        // Load scripts from CDN with fallback to local
-        document.addEventListener('DOMContentLoaded', async () => {
-            const scripts = [
-                'js/responsive-images.js',
-                'js/scroll-animations.js'
-            ];
-            
-            for (const scriptPath of scripts) {
-                try {
-                    const cdnUrl = await window.cdnResolver.resolveAsset(scriptPath);
-                    const script = document.createElement('script');
-                    script.src = cdnUrl;
-                    script.defer = true;
-                    document.head.appendChild(script);
-                } catch (error) {
-                    console.warn(`[CDN] Failed to load ${scriptPath}:`, error);
-                }
-            }
-        });
-    </script>
+    <!-- Load non-critical scripts from local -->
+    <script defer src="/js/scroll-animations.js"></script>
 
 
 </body>
