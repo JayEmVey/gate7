@@ -11,7 +11,7 @@ body {
     background-color: #201F20;
     color: #ffffff;
     min-height: 100vh;
-    padding: 40px 20px;
+    padding: 0;
     position: relative;
 }
 
@@ -34,53 +34,73 @@ body::before {
     margin: 0 auto;
     position: relative;
     z-index: 1;
+    padding: 80px 20px 40px;
 }
 
 /* Welcome Message */
 .welcome-message {
     color: #FEBC11;
-    padding: 24px 32px;
-    border-radius: 12px;
-    margin-bottom: 40px;
-    box-shadow: 0 4px 12px rgba(254, 188, 17, 0.2);
+    padding: 12px 20px;
+    border-radius: 0;
+    margin-bottom: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background-color: #201F20;
+    border-bottom: 1px solid rgba(254, 188, 17, 0.2);
 }
 
-.welcome-message h2 {
+.welcome-message h1 {
     font-family: 'Averta', sans-serif;
-    font-size: 1.5em;
-    margin-bottom: 8px;
+    font-size: 1.1em;
+    margin-bottom: 0;
     font-weight: 600;
+    flex: 1;
+}
+
+.welcome-message p {
+    display: none;
 }
 
 .welcome-message .datetime {
-    font-size: 0.95em;
-    opacity: 0.95;
-    font-weight: 500;
+    font-size: 0.8em;
+    opacity: 0.85;
+    font-weight: 400;
+    white-space: nowrap;
+    padding-top:20px;
 }
 
 /* Language Switcher */
 .language-switcher {
-    position: absolute;
-    top: 20px;
+    position: fixed;
+    top: 8px;
     right: 20px;
     display: flex;
-    gap: 8px;
-    background: #2a2a2a;
-    padding: 8px;
+    gap: 6px;
+    background: transparent;
+    padding: 0;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    border: 1px solid rgba(254, 188, 17, 0.2);
+    box-shadow: none;
+    border: none;
+    z-index: 101;
 }
 
 .lang-btn {
-    padding: 6px 14px;
-    border: none;
+    padding: 4px 10px;
+    border: 1px solid rgba(254, 188, 17, 0.3);
     background: transparent;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 600;
-    font-size: 0.85em;
+    font-size: 0.75em;
     cursor: pointer;
-    border-radius: 6px;
+    border-radius: 4px;
     transition: all 0.2s ease;
     font-family: 'Averta', sans-serif;
 }
@@ -88,11 +108,13 @@ body::before {
 .lang-btn.active {
     background: #FEBC11;
     color: #201F20;
+    border-color: #FEBC11;
 }
 
 .lang-btn:hover:not(.active) {
-    background: rgba(254, 188, 17, 0.1);
+    background: rgba(254, 188, 17, 0.15);
     color: #FEBC11;
+    border-color: #FEBC11;
 }
 
 /* Header Section */
@@ -105,9 +127,9 @@ body::before {
 }
 
 .logo {
-    width: 120px;
+    width: 60px;
     height: auto;
-    margin: 0 auto 20px;
+    margin: 0;
     display: block;
 }
 
@@ -395,6 +417,24 @@ body::before {
     .section-title {
         font-size: 24px;
     }
+
+    .welcome-message {
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px 15px;
+    }
+
+    .welcome-message h1 {
+        font-size: 0.95em;
+    }
+
+    .welcome-message .datetime {
+        font-size: 0.7em;
+    }
+
+    .container {
+        padding: 70px 15px 40px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -408,5 +448,29 @@ body::before {
 
     .playlist-card h3 {
         font-size: 1.1rem;
+    }
+
+    .welcome-message {
+        padding: 8px 12px;
+        gap: 6px;
+    }
+
+    .welcome-message h1 {
+        font-size: 0.9em;
+    }
+
+    .language-switcher {
+        top: 6px;
+        right: 12px;
+        gap: 4px;
+    }
+
+    .lang-btn {
+        padding: 3px 8px;
+        font-size: 0.7em;
+    }
+
+    .container {
+        padding: 65px 12px 30px;
     }
 }
