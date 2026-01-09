@@ -95,9 +95,9 @@
 </head>
 <body>
     <div class="language-switcher">
-         <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
-         <button class="lang-btn" onclick="switchLanguage('vn')">VN</button>
-     </div>
+        <button class="lang-btn" data-lang="vn">VI</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+    </div>
 
     <div class="welcome-message">
         <img src="/images/logo-color-black-bg1.png" alt="Gate 7 Logo" class="logo" onerror="this.style.display='none'; document.querySelector('.logo-text').style.display='block'">
@@ -109,7 +109,7 @@
     <div class="container">
         <div class="playlist-grid">
             <!-- TET All Days -->
-            <div class="time-slot full-width-slot">
+            <div class="tet-holiday">
                 <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2xXrTeTqpNWkRMqF07oAQO?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                 <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1E8NaAbHdcmc32?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
@@ -251,19 +251,9 @@
     </div>
 
     <script>
-        // Current language (default: English)
-        let currentLang = 'en';
-
         // Playlist data for different languages and time slots
         const playlists = {
             en: {
-                xmas: [
-                    { id: '37i9dQZF1DX0Yxoavh5qJV', name: 'Christmas Hits'},
-                    { id: '37i9dQZF1DX6R7QUWePReA', name: 'Christmas Classics' },
-                    { id: '37i9dQZF1DX0A8zVl7p82B', name: 'Christmas Pop' },
-                    { id: '5OP7itTh52BMfZS1DJrdlv', name: '100 Greatest Christmas Songs Ever' },
-                    { id: '37i9dQZF1DWYOLKtM77Hd7', name: 'Holiday Magic' }
-                ],
                 morning: [
                     { id: '37i9dQZF1DXdwTUxmGKrdN', name: 'Coffee Table Jazz' },
                     { id: '1JJgzNrj8GZhgPkGpKXI2s', name: 'Jazz Cafe Playlist' },
@@ -289,13 +279,6 @@
                 ]
             },
             vn: {
-                xmas: [
-                    { id: '37i9dQZF1DX0Yxoavh5qJV', name: 'Christmas Hits'},
-                    { id: '37i9dQZF1DX6R7QUWePReA', name: 'Christmas Classics' },
-                    { id: '37i9dQZF1DX0A8zVl7p82B', name: 'Christmas Pop' },
-                    { id: '5OP7itTh52BMfZS1DJrdlv', name: '100 Greatest Christmas Songs Ever' },
-                    { id: '37i9dQZF1DWYOLKtM77Hd7', name: 'Holiday Magic' }
-                ],
                 morning: [
                     { id: '37i9dQZF1DX4PP3DA4J0N8', name: 'Chill Hits Việt Nam' },
                     { id: '37i9dQZF1DX0XUfEo1d0IQ', name: 'Nhạc Việt Nam Hay Nhất' },
@@ -322,6 +305,9 @@
             }
         };
 
+        // Current language (default: Vietnamese)
+        let currentLang = 'vn';
+
         // Function to open Spotify desktop app with a playlist
         function openSpotifyPlaylist(playlistId) {
             // Create the Spotify URI
@@ -346,9 +332,9 @@
 
             let dateTimeStr;
             if (currentLang === 'vn') {
-                dateTimeStr = now.toLocaleDateString('vi-VN', options);
+                dateTimeStr = now.toLocaleString('vi-VN', options);
             } else {
-                dateTimeStr = now.toLocaleDateString('en-US', options);
+                dateTimeStr = now.toLocaleString('en-US', options);
             }
 
             document.getElementById('datetime').textContent = dateTimeStr;
@@ -356,7 +342,7 @@
 
         // Function to update playlists based on current language
         function updatePlaylists() {
-            const timeSlots = ['xmas','morning', 'afternoon', 'lunch', 'evening'];
+            const timeSlots = ['morning', 'afternoon', 'lunch', 'evening'];
             const slotSelectors = ['.time-slot:nth-child(1) .playlist-list', '.time-slot:nth-child(2) .playlist-list', '.time-slot:nth-child(3) .playlist-list', '.time-slot:nth-child(4) .playlist-list'];
 
             timeSlots.forEach((slot, index) => {
@@ -378,33 +364,35 @@
             });
         }
 
-        // Function to switch language
-        function switchLanguage(lang) {
-            currentLang = lang;
-
-            // Update active button
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.querySelector(`.lang-btn[onclick*="'${lang}'"]`).classList.add('active');
-
-            // Update all elements with data attributes
-            document.querySelectorAll('[data-en]').forEach(element => {
-                const text = lang === 'en' ? element.getAttribute('data-en') : element.getAttribute('data-vn');
-                element.textContent = text;
-            });
-
-            // Update playlists for the new language
-            updatePlaylists();
-
-            // Update date/time format
-            updateDateTime();
-        }
-
         // Initialize date/time and playlists, update every second
-        updateDateTime();
-        updatePlaylists();
-        setInterval(updateDateTime, 1000);
+         document.addEventListener('DOMContentLoaded', function() {
+             updateDateTime();
+             updatePlaylists();
+             setInterval(updateDateTime, 1000);
+             
+             // Hook into language switcher after it's loaded
+             const originalSwitchLanguage = window.switchLanguage;
+             window.switchLanguage = function(lang) {
+                 // Normalize language code: both 'vi' and 'vn' map to Vietnamese
+                 if (lang === 'vi') {
+                     lang = 'vn';
+                 }
+                 
+                 currentLang = lang;
+                
+                 // Call original switcher if it exists
+                 if (originalSwitchLanguage) {
+                     originalSwitchLanguage(lang);
+                 }
+                 
+                 // Update playlists and datetime
+                 updatePlaylists();
+                 updateDateTime();
+             };
+         });
     </script>
+    
+    <!-- Language switcher (external) -->
+    <script defer src="/js/language-switcher.js"></script>
 </body>
 </html>

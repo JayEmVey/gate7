@@ -189,8 +189,13 @@ gtag('config', 'G-S72S3FXR6Z');
 <img src="/images/logo-color-black-bg1.png" alt="Gate 7 Coffee Roastery Logo" width="320" height="240" loading="lazy">
 </div>
 <div class="welcome-message">
-<h1 data-en="Coffee Menu" data-vn="Thực Đơn Cà Phê">Thực Đơn Cà Phê</h1>
-<p data-en="Explore our premium Vietnamese phin, specialty arabica espresso, matcha, houjicha and traditional tea beverages" data-vn="Khám phá cà phê pha phin cao cấp Việt Nam, espresso Arabica đặc sản, matcha, houjicha và các thức uống truyền thống">Khám phá cà phê pha phin cao cấp Việt Nam, espresso Arabica đặc sản, matcha, houjicha và các thức uống truyền thống</p>
+<h3 data-en="Coffee Menu" data-vn="Thực Đơn Cà Phê">Thực Đơn Cà Phê</h3>
+<p data-en="We open the gates to all your senses — smell, taste, and sight." data-vn="Chúng tôi nâng niu từng giác quan — từ hương thơm tinh tế, dư vị tròn đầy đến vẻ đẹp đầy cảm hứng.">Chúng tôi nâng niu từng giác quan — từ hương thơm tinh tế, dư vị tròn đầy đến vẻ đẹp đầy cảm hứng.</p>
+<p data-en="We take great care in the quality of every dish and drink we serve!" data-vn="Chúng tôi luôn nỗ lực để mang đến cho bạn những sản phẩm chất lượng nhất">Chúng tôi luôn nỗ lực để mang đến cho bạn những sản phẩm chất lượng nhất</p>
+</div> <div class="language-switcher">
+<button class="lang-btn" data-lang="en">EN</button>
+<span>|</span>
+<button class="lang-btn active" data-lang="vn">VN</button>
 </div>
 </header>
 <main class="menu-section">
@@ -234,11 +239,6 @@ rel="noopener noreferrer">
 <div class="footer-bottom">
 <span data-en="© 2025 Gate 7 Coffee Roastery. All rights reserved."
 data-vn="© 2025 Gate 7 Coffee Roastery. Tất cả quyền được bảo lưu.">© 2025 Gate 7 Coffee Roastery. Tất cả quyền được bảo lưu.</span>
-<div class="language-switcher">
-<button class="lang-btn" data-lang="en">EN</button>
-<span>|</span>
-<button class="lang-btn active" data-lang="vn">VN</button>
-</div>
 </div>
 </footer>
 </div>
@@ -263,7 +263,7 @@ const langBtns = document.querySelectorAll('.lang-btn');
 let currentLang = 'vn';
 function switchLanguage(lang) {
 if (!['en', 'vn'].includes(lang)) {
-lang = 'en';
+lang = 'vn';
 }
 langBtns.forEach(btn => {
 if (btn.dataset.lang === lang) {
@@ -286,13 +286,26 @@ currentLang = lang;
 localStorage.setItem('selectedLanguage', lang);
 document.documentElement.lang = lang;
 }
-const savedLang = localStorage.getItem('selectedLanguage') || 'vn';
-switchLanguage(savedLang);
+// Get language from URL parameter, localStorage, or default to Vietnamese
+const urlParams = new URLSearchParams(window.location.search);
+const urlLang = urlParams.get('lang');
+let initialLang = 'vn'; // Default language
+if (urlLang && ['en', 'vi'].includes(urlLang)) {
+// Map 'vi' to 'vn' for consistency
+initialLang = urlLang === 'vi' ? 'vn' : urlLang;
+} else {
+// Fall back to localStorage if no valid URL parameter
+initialLang = localStorage.getItem('selectedLanguage') || 'vn';
+}
+switchLanguage(initialLang);
 langBtns.forEach(btn => {
 btn.addEventListener('click', (e) => {
 e.preventDefault();
 const lang = btn.dataset.lang;
 switchLanguage(lang);
+// Update URL without page reload
+const newUrl = lang === 'vn' ? '?lang=vi' : '?lang=en';
+window.history.replaceState({}, '', newUrl);
 });
 });
 window.switchLanguage = switchLanguage;

@@ -20,6 +20,7 @@ body {
     color: var(--text-color);
     min-height: 100vh;
     line-height: 1.6;
+    padding-top: 120px;
 }
 
 .container {
@@ -30,31 +31,39 @@ body {
 
 /* Header Section */
 .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 40px 0;
+    padding: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .logo {
     flex-shrink: 0;
+    max-width: 110px;
 }
 
 .logo img {
-    height: 80px;
+    height: 77px;
     width: auto;
 }
 
 .welcome-message {
-    text-align: right;
+    text-align: center;
     flex: 1;
     margin-left: 40px;
 }
 
-.welcome-message h1 {
+.welcome-message h3 {
     font-family: 'Averta', sans-serif;
-    font-size: 2.2em;
+    font-size: 2em;
     color: var(--accent-color);
     margin-bottom: 12px;
     font-weight: 600;
@@ -62,7 +71,7 @@ body {
 }
 
 .welcome-message p {
-    font-size: 0.95em;
+    font-size: 0.88em;
     color: var(--text-secondary);
     line-height: 1.6;
     margin: 0;
@@ -270,9 +279,7 @@ picture {
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align: center;
     max-width: 1200px;
     margin: 0 auto;
     padding-left: 20px;
@@ -284,6 +291,7 @@ picture {
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    margin-left: auto;
 }
 
 .lang-btn {
@@ -291,14 +299,14 @@ picture {
     border: none;
     color: var(--text-secondary);
     cursor: pointer;
-    font-size: 0.9rem;
-    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
     transition: color 0.3s ease;
+    font-weight: 600;
 }
 
 .lang-btn.active {
     color: var(--accent-color);
-    font-weight: 600;
 }
 
 .lang-btn:hover {
@@ -334,29 +342,73 @@ noscript ~ .container .menu-section {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    body {
+        padding-top: 100px;
+    }
+
     .container {
         padding: 0 16px;
     }
 
     .header {
-        flex-direction: column;
-        text-align: center;
-        padding: 30px 0;
+        padding: 15px;
     }
 
     .logo img {
-        height: 60px;
+        height: 40px;
     }
 
     .welcome-message {
-        margin-left: 0;
-        margin-top: 20px;
-        text-align: center;
+       text-align: center;
+        flex: 1;
+        margin-left: 20px;
     }
 
-    .welcome-message h1 {
-        font-size: 1.8em;
+    .welcome-message p {
+        font-size: 0.66em;
+        color: var(--text-secondary);
+        line-height: 1.1;
+        margin: 0;
     }
+
+    .welcome-message h3 {
+        font-size: 1.2em;
+    }
+
+    .language-switcher {
+        display: flex;
+        gap: 0.2rem;
+        align-items: center;
+        margin-left: auto;
+    }
+
+    .lang-btn.active {
+        color: var(--accent-color);
+    }
+    .lang-btn.active {
+        color: var(--accent-color);
+        font-weight: 600;
+    }
+    .lang-btn {
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        cursor: pointer;
+        font-size: 0.5rem;
+        padding: 0.4rem 0.6rem;
+        transition: color 0.3s ease;
+        font-weight: 600;
+    }
+    .lang-btn {
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        cursor: pointer;
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+        transition: color 0.3s ease;
+    }
+
 
     .menu-section {
         padding: 30px 0;
@@ -384,9 +436,17 @@ noscript ~ .container .menu-section {
 @media (max-width: 480px) {
     body {
         padding: 0 10px;
+        padding-top: 90px;
     }
 
-    .header,
+    .header {
+        padding: 12px;
+    }
+
+    .logo img {
+        height: 35px;
+    }
+
     .menu-section,
     .footer {
         padding: 20px 0;
