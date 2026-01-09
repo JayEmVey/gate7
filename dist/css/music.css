@@ -32,7 +32,7 @@ body::before {
     margin: 0 auto;
     position: relative;
     z-index: 1;
-    padding: 80px 20px 40px;
+    padding: 100px 20px 40px;
 }
 
 /* Welcome Message */
@@ -57,10 +57,11 @@ body::before {
 
 .welcome-message h1 {
     font-family: 'Averta', sans-serif;
-    font-size: 1.1em;
+    font-size: 1.7em;
     margin-bottom: 0;
     font-weight: 600;
     flex: 1;
+    text-align: center;
 }
 
 .welcome-message p {
@@ -125,7 +126,7 @@ body::before {
 }
 
 .logo {
-    width: 60px;
+    width: 110px;
     height: auto;
     margin: 0;
     display: block;
@@ -142,7 +143,7 @@ body::before {
 
 .header h1 {
     font-family: 'Averta', sans-serif;
-    font-size: 2.2em;
+    font-size: 2em;
     color: #FEBC11;
     margin-bottom: 12px;
     font-weight: 600;
@@ -150,7 +151,7 @@ body::before {
 }
 
 .header p {
-    font-size: 0.95em;
+    font-size: 0.88em;
     color: rgba(255, 255, 255, 0.8);
     line-height: 1.6;
     max-width: 500px;
@@ -163,6 +164,17 @@ body::before {
     column-count: 2;
     column-gap: 28px;
     margin-bottom: 60px;
+}
+
+.tet-holiday {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    break-inside: avoid;
+    margin-bottom: 28px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 22px;
 }
 
 .time-slot {
@@ -445,7 +457,7 @@ body::before {
     }
 
     .container {
-        padding: 70px 15px 40px;
+        padding: 160px 15px 40px;
     }
 
     .header h1 {
@@ -530,7 +542,7 @@ body::before {
     }
 
     .container {
-        padding: 65px 12px 30px;
+        padding: 160px 12px 30px;
     }
 
     .header h1 {

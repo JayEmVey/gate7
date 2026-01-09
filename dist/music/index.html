@@ -95,8 +95,10 @@ gtag('config', 'G-S72S3FXR6Z');
 </div>
 <div class="container">
 <div class="playlist-grid">
+<div class="tet-holiday">
 <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2xXrTeTqpNWkRMqF07oAQO?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1E8NaAbHdcmc32?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+</div>
 <div class="time-slot">
 <div class="time-period">6 AM – 9 AM</div>
 <div class="audience" data-en="Morning Regulars" data-vn="Khách Buổi Sáng">Morning Regulars</div>
@@ -301,9 +303,9 @@ second: '2-digit'
 };
 let dateTimeStr;
 if (currentLang === 'vn') {
-dateTimeStr = now.toLocaleDateString('vi-VN', options);
+dateTimeStr = now.toLocaleString('vi-VN', options);
 } else {
-dateTimeStr = now.toLocaleDateString('en-US', options);
+dateTimeStr = now.toLocaleString('en-US', options);
 }
 document.getElementById('datetime').textContent = dateTimeStr;
 }
@@ -329,7 +331,12 @@ linkSpan.textContent = playlist.name;
 }
 });
 }
-// Hook into language switcher - called when language is changed
+// Initialize date/time and playlists, update every second
+document.addEventListener('DOMContentLoaded', function() {
+updateDateTime();
+updatePlaylists();
+setInterval(updateDateTime, 1000);
+// Hook into language switcher after it's loaded
 const originalSwitchLanguage = window.switchLanguage;
 window.switchLanguage = function(lang) {
 // Normalize language code: both 'vi' and 'vn' map to Vietnamese
@@ -345,11 +352,6 @@ originalSwitchLanguage(lang);
 updatePlaylists();
 updateDateTime();
 };
-// Initialize date/time and playlists, update every second
-document.addEventListener('DOMContentLoaded', function() {
-updateDateTime();
-updatePlaylists();
-setInterval(updateDateTime, 1000);
 });
 </script>
 <script defer src="/js/language-switcher.js"></script>
