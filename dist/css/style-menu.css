@@ -443,8 +443,18 @@ noscript ~ .container .menu-section {
         padding: 12px;
     }
 
+    .logo {
+        max-width: 90px;
+    }
+
     .logo img {
         height: 35px;
+    }
+
+    .welcome-message {
+        text-align: center;
+        flex: 1;
+        margin-left: 0;
     }
 
     .menu-section,
