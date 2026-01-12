@@ -1,5 +1,5 @@
 # Gate 7 Coffee Roastery - robots.txt
-# Allow all search engines to crawl the site
+# Allow search engines to crawl the site; block unwanted bots and AI trainers
 
 User-agent: *
 Allow: /
@@ -7,11 +7,11 @@ Disallow: /private/
 Disallow: /.git/
 Disallow: /.vscode/
 Disallow: /node_modules/
-
 Crawl-delay: 1
 
 Sitemap: https://gate7.vn/sitemap.xml
 
+# Trusted search engines - faster crawl allowed
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 0
@@ -20,13 +20,32 @@ User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
+# Social media crawlers
 User-agent: facebookexternalhit
 Allow: /
 
 User-agent: Twitterbot
 Allow: /
 
+# Block aggressive/unwanted bots
 User-agent: MJ12bot
+Disallow: /
+
 User-agent: AhrefsBot
+Disallow: /
+
 User-agent: SemrushBot
 Disallow: /
+
+# Block AI training bots (optional - uncomment if desired)
+# User-agent: GPTBot
+# Disallow: /
+#
+# User-agent: CCBot
+# Disallow: /
+#
+# User-agent: anthropic-ai
+# Disallow: /
+#
+# User-agent: Claude-Web
+# Disallow: /
