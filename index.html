@@ -50,6 +50,10 @@
     <!-- Performance: Preload critical image resources -->
     <link rel="preload" as="image" href="/images/logo-only-black.webp" fetchpriority="high"/>
     
+    <!-- Performance: Preload critical fonts (avoid chaining critical requests) -->
+    <link rel="preload" as="font" href="/css/Averta/Averta-Regular.otf" type="font/otf" crossorigin/>
+    <link rel="preload" as="font" href="/css/Averta/Averta-Bold.otf" type="font/otf" crossorigin/>
+    
     <!-- Performance: DNS Prefetch & Preconnect for external resources -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com"/>
