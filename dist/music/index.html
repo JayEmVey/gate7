@@ -70,8 +70,8 @@ t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 })(window, document, "clarity", "script", "uc19n8yku0");
 </script>
-<link rel="icon" type="image/webp" href="/images/logo-only-black.webp">
-<link rel="apple-touch-icon" href="/images/logo-only-black.webp">
+<link rel="icon" type="image/webp" href="/images/logo-only-black-favicon.webp">
+<link rel="apple-touch-icon" href="/images/logo-only-black-apple.webp">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/music.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S72S3FXR6Z"></script>
@@ -88,7 +88,11 @@ gtag('config', 'G-S72S3FXR6Z');
 <button class="lang-btn" data-lang="en">EN</button>
 </div>
 <div class="welcome-message">
-<img src="/images/logo-color-black-bg1.webp" alt="Gate 7 Logo" class="logo" fetchpriority="high" onerror="this.style.display='none'; document.querySelector('.logo-text').style.display='block'">
+<picture>
+<source media="(max-width: 480px)" srcset="/images/logo-color-black-bg1-small.webp" type="image/webp" width="240" height="180">
+<source media="(min-width: 481px) and (max-width: 768px)" srcset="/images/logo-color-black-bg1-medium.webp" type="image/webp" width="320" height="240">
+<img src="/images/logo-color-black-bg1-large.webp" alt="Gate 7 Logo" class="logo" fetchpriority="high" onerror="this.style.display='none'; document.querySelector('.logo-text').style.display='block'">
+</picture>
 <h1 data-en="Your Soundtrack" data-vn="Nhạc Của Bạn">Your Soundtrack</h1>
 <p data-en="Curated playlists for every moment of your day at Gate 7" data-vn="Danh sách nhạc được tuyển chọn cho mọi khoảnh khắc trong ngày tại Gate 7.">Curated playlists for every moment of your day at Gate 7.</p>
 <div class="datetime" id="datetime"></div>

@@ -8,7 +8,7 @@
 	<meta name="keywords" content="Tuyển dụng Barista, Gate 7 Coffee, Công việc HCM, Cà phê Việt Nam, Barista hiring, Job HCMC, Coffee shop hiring, Gate 7 Hiring">
 	<meta name="author" content="Gate 7 Coffee Roastery">
 	<meta name="theme-color" content="#201F20">
-	<link rel="icon" type="image/webp" href="/images/logo-only-black.webp">
+	<link rel="icon" type="image/webp" href="/images/logo-only-black-favicon.webp">
 	<link rel="canonical" href="https://gate7.vn/hiring/">
 	<link rel="alternate" hreflang="vi" href="https://gate7.vn/hiring/">
 	<link rel="alternate" hreflang="en" href="https://gate7.vn/hiring?lang=en">
@@ -29,7 +29,7 @@
 	<meta name="twitter:image" content="/images/logo-color-black-bg1.webp">
 	
 	<!-- Performance: Preload critical resources -->
-	<link rel="preload" as="image" href="/images/logo-only-black.webp" fetchpriority="high">
+	<link rel="preload" as="image" href="/images/logo-color-black-bg1-large.webp" fetchpriority="high">
 	<!-- Performance: DNS Prefetch & Preconnect -->
 	<link rel="dns-prefetch" href="https://www.googletagmanager.com">
 	<link rel="preconnect" href="https://www.googletagmanager.com">
@@ -112,7 +112,11 @@
 	<!-- Navigation -->
 	<header class="header">
 		<div class="logo">
-			<img src="/images/logo-color-black-bg1.webp" alt="Gate 7 Coffee Logo" fetchpriority="high">
+			<picture>
+				<source media="(max-width: 480px)" srcset="/images/logo-color-black-bg1-small.webp" type="image/webp" width="240" height="180">
+				<source media="(min-width: 481px) and (max-width: 768px)" srcset="/images/logo-color-black-bg1-medium.webp" type="image/webp" width="320" height="240">
+				<img src="/images/logo-color-black-bg1-large.webp" alt="Gate 7 Coffee Logo" fetchpriority="high" width="400" height="300">
+			</picture>
 		</div>
 		<div class="welcome-message">
 			<h1 data-en="Hello!" data-vn="Chào bạn!">Chào bạn!</h1>

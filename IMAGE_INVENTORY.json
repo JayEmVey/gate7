@@ -1,0 +1,480 @@
+{
+  "generated": "2026-01-12T04:23:44.146Z",
+  "total": 56,
+  "images": {
+    "01122025-menu-sc.jpg": {
+      "name": "01122025-menu-sc",
+      "category": "other",
+      "use": "General use",
+      "size": 327887,
+      "sizeKB": "320.20",
+      "variants": {}
+    },
+    "01122025-menu-sc.webp": {
+      "name": "01122025-menu-sc",
+      "category": "other",
+      "use": "General use",
+      "size": 220706,
+      "sizeKB": "215.53",
+      "variants": {}
+    },
+    "banner.png": {
+      "name": "banner",
+      "category": "other",
+      "use": "General use",
+      "size": 398825,
+      "sizeKB": "389.48",
+      "variants": {}
+    },
+    "banner.webp": {
+      "name": "banner",
+      "category": "other",
+      "use": "General use",
+      "size": 20284,
+      "sizeKB": "19.81",
+      "variants": {}
+    },
+    "coffee-as-u-are.png": {
+      "name": "coffee-as-u-are",
+      "category": "other",
+      "use": "General use",
+      "size": 271078,
+      "sizeKB": "264.72",
+      "variants": {}
+    },
+    "coffee-as-u-are.webp": {
+      "name": "coffee-as-u-are",
+      "category": "other",
+      "use": "General use",
+      "size": 46988,
+      "sizeKB": "45.89",
+      "variants": {}
+    },
+    "coffee-as-you-are-h.png": {
+      "name": "coffee-as-you-are-h",
+      "category": "other",
+      "use": "General use",
+      "size": 357473,
+      "sizeKB": "349.09",
+      "variants": {}
+    },
+    "coffee-as-you-are-h.webp": {
+      "name": "coffee-as-you-are-h",
+      "category": "other",
+      "use": "General use",
+      "size": 24176,
+      "sizeKB": "23.61",
+      "variants": {}
+    },
+    "coffee-as-you-are-light-gold.png": {
+      "name": "coffee-as-you-are-light-gold",
+      "category": "other",
+      "use": "General use",
+      "size": 271792,
+      "sizeKB": "265.42",
+      "variants": {}
+    },
+    "coffee-as-you-are-light-gold.webp": {
+      "name": "coffee-as-you-are-light-gold",
+      "category": "other",
+      "use": "General use",
+      "size": 26742,
+      "sizeKB": "26.12",
+      "variants": {}
+    },
+    "coffee-as-you-are.png": {
+      "name": "coffee-as-you-are",
+      "category": "other",
+      "use": "General use",
+      "size": 267934,
+      "sizeKB": "261.65",
+      "variants": {}
+    },
+    "coffee-as-you-are.webp": {
+      "name": "Phin Filter Art",
+      "category": "product",
+      "use": "Homepage phin coffee display",
+      "size": 19026,
+      "sizeKB": "18.58",
+      "variants": {
+        "small": {
+          "width": 180,
+          "height": 135
+        },
+        "medium": {
+          "width": 237,
+          "height": 178
+        },
+        "large": {
+          "width": 237,
+          "height": 178
+        }
+      }
+    },
+    "front1.png": {
+      "name": "front1",
+      "category": "other",
+      "use": "General use",
+      "size": 815539,
+      "sizeKB": "796.42",
+      "variants": {}
+    },
+    "front1.webp": {
+      "name": "front1",
+      "category": "other",
+      "use": "General use",
+      "size": 33028,
+      "sizeKB": "32.25",
+      "variants": {}
+    },
+    "header-mockup.png": {
+      "name": "header-mockup",
+      "category": "other",
+      "use": "General use",
+      "size": 14087,
+      "sizeKB": "13.76",
+      "variants": {}
+    },
+    "header-mockup.webp": {
+      "name": "header-mockup",
+      "category": "other",
+      "use": "General use",
+      "size": 3106,
+      "sizeKB": "3.03",
+      "variants": {}
+    },
+    "header.png": {
+      "name": "header",
+      "category": "other",
+      "use": "General use",
+      "size": 96699,
+      "sizeKB": "94.43",
+      "variants": {}
+    },
+    "header.webp": {
+      "name": "header",
+      "category": "other",
+      "use": "General use",
+      "size": 28186,
+      "sizeKB": "27.53",
+      "variants": {}
+    },
+    "hiring-banner.png": {
+      "name": "hiring-banner",
+      "category": "other",
+      "use": "General use",
+      "size": 993894,
+      "sizeKB": "970.60",
+      "variants": {}
+    },
+    "hiring-banner.webp": {
+      "name": "hiring-banner",
+      "category": "other",
+      "use": "General use",
+      "size": 38732,
+      "sizeKB": "37.82",
+      "variants": {}
+    },
+    "icon-befood.png": {
+      "name": "icon-befood",
+      "category": "other",
+      "use": "General use",
+      "size": 13768,
+      "sizeKB": "13.45",
+      "variants": {}
+    },
+    "icon-befood.webp": {
+      "name": "icon-befood",
+      "category": "other",
+      "use": "General use",
+      "size": 9192,
+      "sizeKB": "8.98",
+      "variants": {}
+    },
+    "logo-black-bg.png": {
+      "name": "logo-black-bg",
+      "category": "other",
+      "use": "General use",
+      "size": 44997,
+      "sizeKB": "43.94",
+      "variants": {}
+    },
+    "logo-black-bg.webp": {
+      "name": "logo-black-bg",
+      "category": "other",
+      "use": "General use",
+      "size": 16398,
+      "sizeKB": "16.01",
+      "variants": {}
+    },
+    "logo-color-black-bg.png": {
+      "name": "logo-color-black-bg",
+      "category": "other",
+      "use": "General use",
+      "size": 32566,
+      "sizeKB": "31.80",
+      "variants": {}
+    },
+    "logo-color-black-bg.webp": {
+      "name": "logo-color-black-bg",
+      "category": "other",
+      "use": "General use",
+      "size": 6186,
+      "sizeKB": "6.04",
+      "variants": {}
+    },
+    "logo-color-black-bg1.png": {
+      "name": "logo-color-black-bg1",
+      "category": "other",
+      "use": "General use",
+      "size": 44677,
+      "sizeKB": "43.63",
+      "variants": {}
+    },
+    "logo-color-black-bg1.webp": {
+      "name": "Gate 7 Logo",
+      "category": "branding",
+      "use": "Homepage hero logo",
+      "size": 27614,
+      "sizeKB": "26.97",
+      "variants": {
+        "small": {
+          "width": 240,
+          "height": 180
+        },
+        "medium": {
+          "width": 320,
+          "height": 240
+        },
+        "large": {
+          "width": 400,
+          "height": 300
+        }
+      }
+    },
+    "logo-color-white-bg.png": {
+      "name": "logo-color-white-bg",
+      "category": "other",
+      "use": "General use",
+      "size": 31414,
+      "sizeKB": "30.68",
+      "variants": {}
+    },
+    "logo-color-white-bg.webp": {
+      "name": "logo-color-white-bg",
+      "category": "other",
+      "use": "General use",
+      "size": 5876,
+      "sizeKB": "5.74",
+      "variants": {}
+    },
+    "logo-color-white-bg1.png": {
+      "name": "logo-color-white-bg1",
+      "category": "other",
+      "use": "General use",
+      "size": 45866,
+      "sizeKB": "44.79",
+      "variants": {}
+    },
+    "logo-color-white-bg1.webp": {
+      "name": "logo-color-white-bg1",
+      "category": "other",
+      "use": "General use",
+      "size": 16526,
+      "sizeKB": "16.14",
+      "variants": {}
+    },
+    "logo-only-black.png": {
+      "name": "logo-only-black",
+      "category": "other",
+      "use": "General use",
+      "size": 47685,
+      "sizeKB": "46.57",
+      "variants": {}
+    },
+    "logo-only-black.webp": {
+      "name": "logo-only-black",
+      "category": "other",
+      "use": "General use",
+      "size": 19818,
+      "sizeKB": "19.35",
+      "variants": {}
+    },
+    "logo-only-white.png": {
+      "name": "Gate 7 Logo (White)",
+      "category": "branding",
+      "use": "Favicon and apple touch icon",
+      "size": 34070,
+      "sizeKB": "33.27",
+      "variants": {}
+    },
+    "logo-only-white.webp": {
+      "name": "logo-only-white",
+      "category": "other",
+      "use": "General use",
+      "size": 15510,
+      "sizeKB": "15.15",
+      "variants": {}
+    },
+    "logo.png": {
+      "name": "logo",
+      "category": "other",
+      "use": "General use",
+      "size": 20136,
+      "sizeKB": "19.66",
+      "variants": {}
+    },
+    "logo.webp": {
+      "name": "logo",
+      "category": "other",
+      "use": "General use",
+      "size": 3462,
+      "sizeKB": "3.38",
+      "variants": {}
+    },
+    "menu-25-nov.jpg": {
+      "name": "menu-25-nov",
+      "category": "other",
+      "use": "General use",
+      "size": 209017,
+      "sizeKB": "204.12",
+      "variants": {}
+    },
+    "menu-25-nov.webp": {
+      "name": "menu-25-nov",
+      "category": "other",
+      "use": "General use",
+      "size": 118744,
+      "sizeKB": "115.96",
+      "variants": {}
+    },
+    "phin-cafe-drip.jpg": {
+      "name": "phin-cafe-drip",
+      "category": "other",
+      "use": "General use",
+      "size": 62953,
+      "sizeKB": "61.48",
+      "variants": {}
+    },
+    "phin-cafe-drip.webp": {
+      "name": "phin-cafe-drip",
+      "category": "other",
+      "use": "General use",
+      "size": 32676,
+      "sizeKB": "31.91",
+      "variants": {}
+    },
+    "phin-cafe-transp-bg.png": {
+      "name": "phin-cafe-transp-bg",
+      "category": "other",
+      "use": "General use",
+      "size": 186269,
+      "sizeKB": "181.90",
+      "variants": {}
+    },
+    "phin-cafe-transp-bg.webp": {
+      "name": "phin-cafe-transp-bg",
+      "category": "other",
+      "use": "General use",
+      "size": 53306,
+      "sizeKB": "52.06",
+      "variants": {}
+    },
+    "signage1.png": {
+      "name": "signage1",
+      "category": "other",
+      "use": "General use",
+      "size": 452748,
+      "sizeKB": "442.14",
+      "variants": {}
+    },
+    "signage1.webp": {
+      "name": "signage1",
+      "category": "other",
+      "use": "General use",
+      "size": 17170,
+      "sizeKB": "16.77",
+      "variants": {}
+    },
+    "signage2.png": {
+      "name": "signage2",
+      "category": "other",
+      "use": "General use",
+      "size": 431347,
+      "sizeKB": "421.24",
+      "variants": {}
+    },
+    "signage2.webp": {
+      "name": "signage2",
+      "category": "other",
+      "use": "General use",
+      "size": 10346,
+      "sizeKB": "10.10",
+      "variants": {}
+    },
+    "social-icon-facebook.png": {
+      "name": "Facebook Icon",
+      "category": "social",
+      "use": "Footer social media link",
+      "size": 904,
+      "sizeKB": "0.88",
+      "variants": {}
+    },
+    "social-icon-facebook.webp": {
+      "name": "social-icon-facebook",
+      "category": "other",
+      "use": "General use",
+      "size": 576,
+      "sizeKB": "0.56",
+      "variants": {}
+    },
+    "social-icon-instagram.png": {
+      "name": "Instagram Icon",
+      "category": "social",
+      "use": "Footer social media link",
+      "size": 2459,
+      "sizeKB": "2.40",
+      "variants": {}
+    },
+    "social-icon-instagram.webp": {
+      "name": "social-icon-instagram",
+      "category": "other",
+      "use": "General use",
+      "size": 588,
+      "sizeKB": "0.57",
+      "variants": {}
+    },
+    "social-icon-zalo.png": {
+      "name": "Zalo Icon",
+      "category": "social",
+      "use": "Footer social media link",
+      "size": 1762,
+      "sizeKB": "1.72",
+      "variants": {}
+    },
+    "social-icon-zalo.webp": {
+      "name": "social-icon-zalo",
+      "category": "other",
+      "use": "General use",
+      "size": 798,
+      "sizeKB": "0.78",
+      "variants": {}
+    },
+    "vietnamese-phin-filter.png": {
+      "name": "vietnamese-phin-filter",
+      "category": "other",
+      "use": "General use",
+      "size": 486520,
+      "sizeKB": "475.12",
+      "variants": {}
+    },
+    "vietnamese-phin-filter.webp": {
+      "name": "vietnamese-phin-filter",
+      "category": "other",
+      "use": "General use",
+      "size": 12430,
+      "sizeKB": "12.14",
+      "variants": {}
+    }
+  }
+}
