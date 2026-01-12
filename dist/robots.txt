@@ -13,9 +13,6 @@ Disallow: /node_modules/
 # Crawl delay to avoid overloading servers (in seconds)
 Crawl-delay: 1
 
-# Request rate (pages per second)
-Request-rate: 10/1s
-
 # Sitemap location
 Sitemap: https://gate7.vn/sitemap.xml
 
@@ -49,6 +46,6 @@ Allow: /*.jpg$
 Allow: /*.jpeg$
 Allow: /*.png$
 Allow: /*.gif$
-Allow: /*.png$
+Allow: /*.webp$
 Allow: /*.css$
 Allow: /*.js$

@@ -14,8 +14,8 @@ async function resizeImages() {
     console.log('📏 Resizing images for single-page display...\n');
 
     // Resize logo - reduce to 600px width
-    const logoPath = path.join(__dirname, '..', 'images', 'logo-color-black-bg1.png');
-    console.log('🔄 Resizing logo-color-black-bg1.png...');
+    const logoPath = path.join(__dirname, '..', 'images', 'logo-color-black-bg1.webp');
+    console.log('🔄 Resizing logo-color-black-bg1.webp...');
     
     const logoInfo = await sharp(logoPath).metadata();
     console.log(`  Original: ${logoInfo.width}x${logoInfo.height}px`);
@@ -33,8 +33,8 @@ async function resizeImages() {
     console.log(`  Resized: ${logoResized.width}x${logoResized.height}px ✓\n`);
 
     // Resize coffee filter - reduce to 450px width
-    const coffeePath = path.join(__dirname, '..', 'images', 'coffee-as-you-are.png');
-    console.log('🔄 Resizing coffee-as-you-are.png...');
+    const coffeePath = path.join(__dirname, '..', 'images', 'coffee-as-you-are.webp');
+    console.log('🔄 Resizing coffee-as-you-are.webp...');
     
     const coffeeInfo = await sharp(coffeePath).metadata();
     console.log(`  Original: ${coffeeInfo.width}x${coffeeInfo.height}px`);

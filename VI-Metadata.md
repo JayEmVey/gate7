@@ -145,7 +145,7 @@
 
 ## Hình Ảnh & Tài Sản
 - **Logo**: images/logo-only-black.png
-- **Hình Ảnh Chính**: images/coffee-as-you-are.png
+- **Hình Ảnh Chính**: images/coffee-as-you-are.webp
 - **Biểu Tượng Mạng Xã Hội**: 
   - images/social-icon-instagram.png
   - images/social-icon-facebook.png

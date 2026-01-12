@@ -15,7 +15,7 @@
       <image:title>Gate 7 Coffee Roastery Logo</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://gate7.vn/images/coffee-as-you-are.png</image:loc>
+      <image:loc>https://gate7.vn/images/coffee-as-you-are.webp</image:loc>
       <image:title>Vietnamese Phin Filter Coffee</image:title>
     </image:image>
   </url>
@@ -35,7 +35,7 @@
 
   <!-- Music/Playlist Page -->
   <url>
-    <loc>https://gate7.vn/music/index.html</loc>
+    <loc>https://gate7.vn/music</loc>
     <lastmod>2025-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -61,7 +61,7 @@
 
   <!-- Hiring Banner Page -->
   <url>
-    <loc>https://gate7.vn/hiring/banner.html</loc>
+    <loc>https://gate7.vn/hiring/banner</loc>
     <lastmod>2025-01-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

@@ -26,7 +26,7 @@ try {
     
     const images = [
         {
-            source: 'images/logo-color-black-bg1.png',
+            source: 'images/logo-color-black-bg1.webp',
             variants: [
                 { size: { width: 240, height: 180 }, suffix: '-small', quality: 100 },
                 { size: { width: 320, height: 240 }, suffix: '-medium', quality: 100 },
@@ -34,7 +34,7 @@ try {
             ]
         },
         {
-            source: 'images/coffee-as-you-are.png',
+            source: 'images/coffee-as-you-are.webp',
             variants: [
                 { size: { width: 180, height: 135 }, suffix: '-small', quality: 100 },
                 { size: { width: 237, height: 178 }, suffix: '-medium', quality: 100 },

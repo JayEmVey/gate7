@@ -21,7 +21,7 @@ body::before {
     transform: translate(-50%, -50%);
     width: 600px;
     height: 600px;
-    background: url('/images/coffee-as-you-are.png') center/contain no-repeat;
+    background: url('/images/coffee-as-you-are.webp') center/contain no-repeat;
     opacity: 0.35;
     z-index: 0;
     pointer-events: none;

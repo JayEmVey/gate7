@@ -147,7 +147,7 @@
 
 ## Images & Assets
 - **Logo**: images/logo-only-black.png
-- **Main Visual**: images/coffee-as-you-are.png
+- **Main Visual**: images/coffee-as-you-are.webp
 - **Social Icons**: 
   - images/social-icon-instagram.png
   - images/social-icon-facebook.png

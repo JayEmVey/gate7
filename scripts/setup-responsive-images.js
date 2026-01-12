@@ -24,7 +24,7 @@ const BREAKPOINTS = {
 
 // Image optimization presets
 const IMAGE_CONFIGS = {
-  'logo-color-black-bg1.png': {
+  'logo-color-black-bg1.webp': {
     name: 'Gate 7 Logo',
     category: 'branding',
     use: 'Homepage hero logo',
@@ -40,7 +40,7 @@ const IMAGE_CONFIGS = {
     use: 'Favicon and apple touch icon',
     variants: null // Favicon - no variants needed
   },
-  'coffee-as-you-are.png': {
+  'coffee-as-you-are.webp': {
     name: 'Phin Filter Art',
     category: 'product',
     use: 'Homepage phin coffee display',
