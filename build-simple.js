@@ -21,7 +21,8 @@ const STATIC_FILES = [
   'CNAME',
   'robots.txt',
   'sitemap.xml',
-  'wrangler.jsonc'
+  'wrangler.jsonc',
+  '_headers'
 ];
 
 const DIRS_TO_COPY = [
