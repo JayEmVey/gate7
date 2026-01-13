@@ -251,7 +251,24 @@
 
 </head>
 <body>
-    <!-- Main: Ensure the main display fit to all the screen size of the device: pc, tablet, mobile -->
+    <!-- Header: Display only when scrollY > 50 -->
+    <header class="header">
+        <div class="logo-header">
+            <picture>
+                <source media="(max-width: 480px)" srcset="/images/logo-color-black-bg1-small.webp" type="image/webp" width="240" height="180">
+                <source media="(min-width: 481px) and (max-width: 768px)" srcset="/images/logo-color-black-bg1-medium.webp" type="image/webp" width="320" height="240">
+                <img src="/images/logo-color-black-bg1-large.webp" alt="Gate 7 Coffee Roastery Logo" width="400" height="300" fetchpriority="high">
+            </picture>
+        </div>
+                    
+        <div class="language-switcher-header">
+            <button class="lang-btn" data-lang="en">EN</button>
+            <span>|</span>
+            <button class="lang-btn active" data-lang="vn">VN</button>
+        </div>
+    </header>
+
+    <!-- Main: Display only when scrollY < 50. Ensure the main display fit to all the screen size of the device: pc, tablet, mobile -->
     <main>
         <div class="logo-container">
             <picture>

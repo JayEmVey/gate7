@@ -1,15 +1,48 @@
 // Scroll animations - Can be deferred
 document.addEventListener('DOMContentLoaded', function() {
-    // Scroll indicator fade out
+    const mainEl = document.querySelector('main');
+    const indicator = document.querySelector('.scroll-indicator');
+    let isCompacted = false;
+
+    // Check if portrait mode
+    function isPortraitMode() {
+        return window.innerHeight > window.innerWidth;
+    }
+
+    // Scroll indicator fade out + main section compact and pin
+    let transitioning = false;
+    
     window.addEventListener('scroll', function() {
-        const indicator = document.querySelector('.scroll-indicator');
-        if (indicator) indicator.style.opacity = '0';
+        const scrollY = window.scrollY;
+        const threshold = 87; // Scroll distance before compact
+
+        // Fade out indicator
+        if (indicator) {
+            indicator.style.opacity = scrollY > threshold ? '0' : '1';
+        }
+
+        // Display Header and Hide the Main only in the portrait mode
+        if (isPortraitMode() && !transitioning) {
+            const shouldCompact = scrollY > threshold;
+            
+            if (shouldCompact !== isCompacted) {
+                transitioning = true;
+                isCompacted = shouldCompact;
+                
+                document.querySelector('.header').style.display = shouldCompact ? 'flex' : 'none';
+                document.querySelector('main').style.display = shouldCompact ? 'none' : 'flex';
+                
+                requestAnimationFrame(() => {
+                    transitioning = false;
+                });
+            }
+        }
     });
 
     // Intersection Observer for scroll animations
     const observerOptions = {
         threshold: 0,
-        rootMargin: '0px'
+        rootMargin: '7px'
     };
 
     const observer = new IntersectionObserver(function(entries) {
