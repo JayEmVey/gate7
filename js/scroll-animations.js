@@ -59,4 +59,10 @@ document.addEventListener('DOMContentLoaded', function() {
     animateElements.forEach(el => {
         observer.observe(el);
     });
+
+    // Recalculate scroll animations on window resize
+    window.addEventListener('resize', function() {
+        // Trigger scroll event to recalculate animations based on new viewport dimensions
+        window.dispatchEvent(new Event('scroll'));
+    });
 });
