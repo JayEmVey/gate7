@@ -99,11 +99,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 return thumbnailUrl;
             } else {
                 console.warn('No image found in markdown');
-                return null;  // Return null instead of fallback image
+                return '/images/01122025-menu-sc.webp';
             }
         } catch (error) {
             console.error('Error extracting thumbnail:', error);
-            return null;  // Return null instead of fallback image
+            return '/images/01122025-menu-sc.webp';
         }
     }
     
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const slug = createSlug(title);
                 
                 // Extract thumbnail from markdown (same mechanism as blog.js)
-                let image = null;
+                let image = '/images/01122025-menu-sc.webp';
                 if (mdFile?.raw_url) {
                     image = await extractThumbnail(mdFile.raw_url);
                 }
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     slug: slug,
                     title: title,
                     description: description,
-                    image: image,  // null if no image found (will show yellow placeholder)
+                    image: image,
                     author: author,
                     date: date
                 };
@@ -179,13 +179,8 @@ document.addEventListener('DOMContentLoaded', function() {
             card.className = 'blog-card';
             card.style.animationDelay = `${index * 0.1}s`;
             
-            // Create image HTML (or solid color placeholder if no image)
-            const imageHtml = blog.image 
-                ? `<img src="${blog.image}" alt="${blog.title}" class="blog-image">`
-                : `<div class="blog-image-placeholder"></div>`;
-            
             card.innerHTML = `
-                ${imageHtml}
+                <img src="${blog.image}" alt="${blog.title}" class="blog-image" onerror="this.src='/images/01122025-menu-sc.webp'">
                 <div class="blog-content">
                     <div class="blog-meta">
                         <span class="blog-author">${blog.author}</span>

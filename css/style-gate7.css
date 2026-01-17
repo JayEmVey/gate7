@@ -850,6 +850,7 @@ h1 {
 }
 
 .blog-content {
+    text-align: left;
     padding: 20px;
     flex-grow: 1;
     display: flex;
@@ -1029,6 +1030,7 @@ h1 {
     }
 
     .blog-content {
+        text-align: left;
         padding: 16px;
     }
 

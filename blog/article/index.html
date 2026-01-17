@@ -102,7 +102,11 @@
             <!-- Article View Page -->
             <div class="article-view active" id="articlePage">
                 <div class="article-header">
-                    <a href="/blog/" class="back-btn">← Back</a>
+                    <button class="back-btn" onclick="history.back()" aria-label="Go back">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
                     <div style="flex: 1;">
                         <h1 class="article-title" id="viewTitle"></h1>
                         <p class="article-meta" id="viewDate"></p>
