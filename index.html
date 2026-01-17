@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no"/>
     <title>Gate 7 Coffee Roastery - High Quality Coffee in Ho Chi Minh City</title>
     <meta name="description" content="Quán cà phê chất lượng cao Việt Nam nguyên chất tại TPHCM. Gate có: Cà phê pha phin (100% Robusta), espresso (100% Arabica), và đồ uống matcha, houjicha. Cà phê Arabica & Robusta cao cấp. Gate 7 Coffee Roastery tại 162A Nguyễn Trường Tộ."/>
     <meta name="keywords" content="Gate 7 Coffee Roastery, Gate 7, The Gate, Gate 7 Coffee, cà phê gần đây, cà phê Tân Phú, cà phê chất lượng cao Việt Nam, cà phê cao cấp TPHCM, cà phê pha phin Việt Nam, espresso đặc sản, quán cà phê roastery Hồ Chí Minh, Arabica Robusta, quán cà phê Việt Nam, 100% Robusta, 100% Arabica"/>
@@ -582,6 +582,27 @@
     <script>
         // Smooth scroll behavior (critical for UX)
         document.documentElement.style.scrollBehavior = 'smooth';
+        
+        // Disable pinch-to-zoom on touch devices
+        document.addEventListener('touchmove', function(e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        // Disable zoom with keyboard shortcuts (Ctrl/Cmd +, Ctrl/Cmd -, Ctrl/Cmd 0)
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '0' || e.key === '=')) {
+                e.preventDefault();
+            }
+        });
+        
+        // Disable mouse wheel zoom (Ctrl/Cmd + scroll)
+        document.addEventListener('wheel', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                e.preventDefault();
+            }
+        }, { passive: false });
     </script>
 
     <!-- Load deferred scripts -->
