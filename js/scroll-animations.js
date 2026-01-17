@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Observe elements that should animate on scroll
-    const animateElements = document.querySelectorAll('.menu, .footer');
+    const animateElements = document.querySelectorAll('.menu, .latest-blogs, .footer');
     animateElements.forEach(el => {
         observer.observe(el);
     });

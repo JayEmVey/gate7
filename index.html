@@ -536,6 +536,24 @@
         </div>
     </section>
 
+    <!-- Latest From Our Blogs Section -->
+    <section class="latest-blogs">
+        <h2 class="blogs-title" data-en="Latest From Our Blogs" data-vn="Bài Viết Mới">Bài Viết Mới</h2>
+        <div class="blogs-carousel">
+            <div class="blogs-container" id="blogsContainer">
+                <div class="loading" id="loadingBlogsIndicator">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+            <button class="carousel-btn carousel-btn-prev" id="prevBtn" aria-label="Previous articles">
+                <span>&#10094;</span>
+            </button>
+            <button class="carousel-btn carousel-btn-next" id="nextBtn" aria-label="Next articles">
+                <span>&#10095;</span>
+            </button>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
@@ -607,7 +625,9 @@
 
     <!-- Load deferred scripts -->
     
+    <script src="/lib/marked.js"></script>
     <script defer src="/js/scroll-animations.js"></script>
     <script defer src="/js/language-switcher.js"></script>
+    <script defer src="/js/blogs-carousel.js"></script>
 </body>
 </html>
