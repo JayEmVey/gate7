@@ -252,8 +252,8 @@
 
         // Load article when page loads
         document.addEventListener('DOMContentLoaded', async function() {
-            // Get gist ID from sessionStorage (set by blog.js)
-            const gistId = sessionStorage.getItem('gistId');
+            // Get gist ID from sessionStorage (set by blog.js when navigating from listing)
+            let gistId = sessionStorage.getItem('gistId');
             
             if (gistId) {
                 // Clear sessionStorage after retrieving
@@ -261,8 +261,25 @@
                 // Load the article
                 await loadArticleFromGist(gistId);
             } else {
-                // Redirect to blog listing if no gist ID found
-                window.location.href = '/blog/';
+                // Check if slug is in URL (direct visit)
+                const urlParams = new URLSearchParams(window.location.search);
+                const slug = urlParams.get('slug');
+                
+                if (slug) {
+                    // Find gist by slug
+                    const foundGistId = await findGistBySlug(slug);
+                    if (foundGistId) {
+                        // Update URL to use the slug path for SEO
+                        window.history.replaceState(null, '', `/blog/article/?slug=${slug}`);
+                        await loadArticleFromGist(foundGistId);
+                    } else {
+                        // No article found for this slug
+                        document.getElementById('articleContent').innerHTML = '<p>Article not found.</p>';
+                    }
+                } else {
+                    // No gist ID or slug found, redirect to blog listing
+                    window.location.href = '/blog/';
+                }
             }
         });
 

@@ -93,6 +93,27 @@ function createSlug(title) {
         .replace(/-+/g, '-'); // Replace multiple hyphens with single hyphen
 }
 
+// Find gist ID by slug
+async function findGistBySlug(slug) {
+    try {
+        const gists = await fetchGists();
+        for (const gist of gists) {
+            const mdFile = Object.values(gist.files).find(file => file.language === 'Markdown');
+            if (mdFile) {
+                const title = mdFile.filename.replace('.md', '');
+                const gistSlug = createSlug(title);
+                if (gistSlug === slug) {
+                    return gist.id;
+                }
+            }
+        }
+        return null;
+    } catch (error) {
+        console.error('Error finding gist by slug:', error);
+        return null;
+    }
+}
+
 // Navigate to article page
 function navigateToArticle(gistId, title) {
     const slug = createSlug(title);
