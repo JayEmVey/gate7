@@ -2,41 +2,6 @@
 const GIST_USER = 'JayEmVey';
 const GIST_API_URL = `https://api.github.com/users/${GIST_USER}/gists`;
 
-// Markdown to HTML converter (basic implementation)
-function markdownToHtml(markdown) {
-    if (!markdown) return '';
-    
-    let html = markdown
-        // Code blocks
-        .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
-        // Inline code
-        .replace(/`([^`]+)`/g, '<code>$1</code>')
-        // Headers
-        .replace(/^### (.*?)$/gm, '<h3>$1</h3>')
-        .replace(/^## (.*?)$/gm, '<h2>$1</h2>')
-        .replace(/^# (.*?)$/gm, '<h1>$1</h1>')
-        // Bold
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/__(.+?)__/g, '<strong>$1</strong>')
-        // Italic
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        .replace(/_(.+?)_/g, '<em>$1</em>')
-        // Links
-        .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
-        // Line breaks
-        .replace(/\n\n/g, '</p><p>')
-        .replace(/\n/g, '<br>')
-        // Wrap in paragraph
-        .replace(/^(.+)$/gm, (match) => {
-            if (match.startsWith('<h') || match.startsWith('<pre') || match.startsWith('<ul') || match.startsWith('<ol')) {
-                return match;
-            }
-            return `<p>${match}</p>`;
-        });
-    
-    return html;
-}
-
 // Fetch all gists from JayEmVey
 async function fetchGists() {
     try {
@@ -160,39 +125,18 @@ async function loadArticleFromGist(gistId) {
     }
 }
 
-// Markdown to HTML converter (basic implementation)
+// Markdown to HTML converter using marked.js
 function markdownToHtml(markdown) {
     if (!markdown) return '';
     
-    let html = markdown
-        // Code blocks
-        .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
-        // Inline code
-        .replace(/`([^`]+)`/g, '<code>$1</code>')
-        // Headers
-        .replace(/^### (.*?)$/gm, '<h3>$1</h3>')
-        .replace(/^## (.*?)$/gm, '<h2>$1</h2>')
-        .replace(/^# (.*?)$/gm, '<h1>$1</h1>')
-        // Bold
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/__(.+?)__/g, '<strong>$1</strong>')
-        // Italic
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        .replace(/_(.+?)_/g, '<em>$1</em>')
-        // Links
-        .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
-        // Line breaks
-        .replace(/\n\n/g, '</p><p>')
-        .replace(/\n/g, '<br>')
-        // Wrap in paragraph
-        .replace(/^(.+)$/gm, (match) => {
-            if (match.startsWith('<h') || match.startsWith('<pre') || match.startsWith('<ul') || match.startsWith('<ol')) {
-                return match;
-            }
-            return `<p>${match}</p>`;
-        });
+    // marked is loaded from /lib/marked.js
+    if (typeof marked !== 'undefined') {
+        return marked.parse(markdown);
+    }
     
-    return html;
+    // Fallback if marked is not loaded
+    console.warn('marked.js not loaded, using basic converter');
+    return markdown;
 }
 
 // Initialize blog on page load

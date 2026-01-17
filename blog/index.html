@@ -104,7 +104,7 @@
     <!-- Header: Display only when scrollY > 50 -->
     <header class="header">
         <div class="logo-header">
-            <img src="/images/logo-color-black-bg1-large.webp" alt="Gate 7 Coffee Roastery Logo" width="400" height="300" fetchpriority="high"/>
+            <img src="/images/logo-color-black-bg1.webp" alt="Gate 7 Coffee Roastery Logo" width="400" height="300" fetchpriority="high"/>
         </div>
                     
         <div class="language-switcher-header">
@@ -113,15 +113,6 @@
             <button class="lang-btn active" data-lang="vn">VN</button>
         </div>
     </header>
-
-    <!-- Main: Display only when scrollY < 50. Ensure the main display fit to all the screen size of the device: pc, tablet, mobile -->
-    <main>
-        
-            <h1>📝 Gist Blog</h1>
-            <p>Articles from JayEmVey's Gists</p>
-        
-    </main>
-
 
     <div class="container">
         <div class="content">
@@ -209,8 +200,6 @@
 
         // Scroll animations - Can be deferred
         document.addEventListener('DOMContentLoaded', function() {
-            const mainEl = document.querySelector('main');
-            const indicator = document.querySelector('.scroll-indicator');
             let isCompacted = false;
 
             // Check if portrait mode
@@ -238,9 +227,7 @@
                         transitioning = true;
                         isCompacted = shouldCompact;
                         
-                        document.querySelector('.header').style.display = shouldCompact ? 'flex' : 'none';
-                        document.querySelector('main').style.display = shouldCompact ? 'none' : 'flex';
-                        
+                        document.querySelector('.header').style.display = shouldCompact ? 'flex' : 'none';                        
                         requestAnimationFrame(() => {
                             transitioning = false;
                         });
@@ -264,7 +251,7 @@
             }, observerOptions);
 
             // Observe elements that should animate on scroll
-            const animateElements = document.querySelectorAll('.menu, .footer');
+            const animateElements = document.querySelectorAll('.container, .footer');
             animateElements.forEach(el => {
                 observer.observe(el);
             });
