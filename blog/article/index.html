@@ -89,7 +89,7 @@
         <div class="logo-header">
             <img src="/images/logo-color-black-bg1.webp" alt="Gate 7 Coffee Roastery Logo" width="400" height="300" fetchpriority="high"/>
         </div>
-                    
+    
         <div class="language-switcher-header">
             <button class="lang-btn" data-lang="en">EN</button>
             <span>|</span>
@@ -104,7 +104,7 @@
                 <div class="article-header">
                     <a href="/blog/" class="back-btn">← Back</a>
                     <div style="flex: 1;">
-                        <h2 class="article-title" id="viewTitle"></h2>
+                        <h1 class="article-title" id="viewTitle"></h1>
                         <p class="article-meta" id="viewDate"></p>
                     </div>
                 </div>
@@ -183,7 +183,6 @@
 
         // Scroll animations - Can be deferred
         document.addEventListener('DOMContentLoaded', function() {
-            const mainEl = document.querySelector('main');
             let isCompacted = false;
 
             // Check if portrait mode
@@ -196,12 +195,7 @@
             
             window.addEventListener('scroll', function() {
                 const scrollY = window.scrollY;
-                const threshold = 87; // Scroll distance before compact
-
-                // Fade out indicator
-                if (indicator) {
-                    indicator.style.opacity = scrollY > threshold ? '0' : '1';
-                }
+                const threshold = 27; // Scroll distance before compact
 
                 // Display Header and Hide the Main only in the portrait mode
                 if (isPortraitMode() && !transitioning) {
@@ -210,10 +204,7 @@
                     if (shouldCompact !== isCompacted) {
                         transitioning = true;
                         isCompacted = shouldCompact;
-                        
-                        document.querySelector('.header').style.display = shouldCompact ? 'flex' : 'none';
-                        document.querySelector('main').style.display = shouldCompact ? 'none' : 'flex';
-                        
+                        document.querySelector('.header').style.display = shouldCompact ? 'flex' : 'none';                        
                         requestAnimationFrame(() => {
                             transitioning = false;
                         });
@@ -224,7 +215,7 @@
             // Intersection Observer for scroll animations
             const observerOptions = {
                 threshold: 0,
-                rootMargin: '7px'
+                rootMargin: '3px'
             };
 
             const observer = new IntersectionObserver(function(entries) {
@@ -237,7 +228,7 @@
             }, observerOptions);
 
             // Observe elements that should animate on scroll
-            const animateElements = document.querySelectorAll('.menu, .footer');
+            const animateElements = document.querySelectorAll('.container, .footer');
             animateElements.forEach(el => {
                 observer.observe(el);
             });

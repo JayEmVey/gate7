@@ -20,7 +20,7 @@ async function fetchGists() {
 }
 
 // Render article grid
-function renderArticleGrid(gists) {
+async function renderArticleGrid(gists) {
     const grid = document.getElementById('articleGrid');
     const loading = document.getElementById('loadingIndicator');
     
@@ -30,29 +30,68 @@ function renderArticleGrid(gists) {
         return;
     }
     
-    grid.innerHTML = gists.map(gist => {
+    // Sort gists by created_at date (newest first)
+    gists.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    
+    const articles = await Promise.all(gists.map(async (gist) => {
         const mdFile = Object.values(gist.files).find(file => file.language === 'Markdown');
         const title = mdFile?.filename?.replace('.md', '') || gist.description || 'Untitled';
+        const author = gist.owner.login;
         const description = gist.description || mdFile?.filename || 'No description';
         const date = new Date(gist.created_at).toLocaleDateString();
         
+        let thumbnailUrl = '';
+        
+        // Fetch raw content to extract thumbnail URL
+        if (mdFile?.raw_url) {
+            try {
+                const contentResponse = await fetch(mdFile.raw_url);
+                const content = await contentResponse.text();
+                
+                // Convert markdown to HTML
+                const html = markdownToHtml(content);
+                
+                // Find first img tag and extract src
+                const imgMatch = html.match(/<img[^>]+src=["']([^"']+)["']/);
+                if (imgMatch) {
+                    thumbnailUrl = imgMatch[1].trim();
+                    console.log('Found thumbnail:', thumbnailUrl);
+                } else {
+                    console.warn('No image found in markdown:', mdFile.filename);
+                }
+            } catch (error) {
+                console.error('Error fetching raw content for thumbnail:', error);
+            }
+        }
+        
         return `
             <div class="article-card" onclick="navigateToArticle('${gist.id}', '${title.replace(/'/g, "\\'")}')">
-                <h3>${title}</h3>
-                <p class="article-desc">${description}</p>
-                <p class="article-date">${date}</p>
+                <div class="article-card-inner">
+                    <h3 class="article-title">${title}</h3>
+                    ${thumbnailUrl ? `<div class="article-image-wrapper"><img src="${thumbnailUrl}" alt="${title}" class="article-thumbnail"></div>` : ''}
+                    <div class="article-content-wrapper">
+                        <div class="article-meta-info">
+                            <span class="article-source">${author}</span>
+                            <span class="article-date">${date}</span>
+                        </div>
+                        <p class="article-desc">${description}</p>
+                    </div>
+                </div>
             </div>
         `;
-    }).join('');
+    }));
     
+    grid.innerHTML = articles.join('');
     loading.style.display = 'none';
 }
 
-// Create URL-friendly slug from title
+// Create URL-friendly slug from title (supports Vietnamese)
 function createSlug(title) {
     return title
         .toLowerCase()
         .trim()
+        .normalize('NFD') // Decompose Vietnamese diacritics
+        .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
         .replace(/[^\w\s-]/g, '') // Remove special characters
         .replace(/\s+/g, '-') // Replace spaces with hyphens
         .replace(/-+/g, '-'); // Replace multiple hyphens with single hyphen
@@ -131,7 +170,12 @@ function markdownToHtml(markdown) {
     
     // marked is loaded from /lib/marked.js
     if (typeof marked !== 'undefined') {
-        return marked.parse(markdown);
+        let html = marked.parse(markdown);
+        
+        // Wrap images with centered container
+        html = html.replace(/<img([^>]*?)>/g, '<div class="centered-image"><img$1></div>');
+        
+        return html;
     }
     
     // Fallback if marked is not loaded

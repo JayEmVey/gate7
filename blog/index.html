@@ -117,7 +117,7 @@
     <div class="container">
         <div class="content">
             <!-- Listing Page -->
-            <h2 class="section-title" data-en="Our Blogs" data-vn="Bài viết">Bài viết</h2>
+            <h1 class="section-title" data-en="Our Blogs" data-vn="Bài viết">Bài viết</h1>
             <div class="article-list active" id="listingPage">
                 <div class="loading" id="loadingIndicator">
                     <div class="spinner"></div>
@@ -212,12 +212,7 @@
             
             window.addEventListener('scroll', function() {
                 const scrollY = window.scrollY;
-                const threshold = 87; // Scroll distance before compact
-
-                // Fade out indicator
-                if (indicator) {
-                    indicator.style.opacity = scrollY > threshold ? '0' : '1';
-                }
+                const threshold = 47; // Scroll distance before compact
 
                 // Display Header and Hide the Main only in the portrait mode
                 if (isPortraitMode() && !transitioning) {
@@ -265,6 +260,7 @@
     </script>
 
     <!-- Load deferred scripts -->
+    <script src="/lib/marked.js"></script>
     <script defer src="/js/blog.js"></script>
     <script defer src="/js/language-switcher.js"></script>
 </body>
