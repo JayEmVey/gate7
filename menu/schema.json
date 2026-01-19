@@ -1,0 +1,483 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://gate7.vn/menu#webpage",
+      "url": "https://gate7.vn/menu",
+      "name": "Thực Đơn - Gate 7 Coffee Roastery",
+      "alternateName": "Menu - Gate 7 Coffee Roastery",
+      "description": "Thực đơn cà phê tại Gate 7 Coffee Roastery - Phin 100% Robusta, Espresso Arabica, Matcha, Houjicha và các đồ uống handcraft cao cấp",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://gate7.vn/images/menu-hero.webp",
+        "width": 1200,
+        "height": 630,
+        "name": "Gate 7 Coffee Menu"
+      },
+      "isPartOf": {
+        "@id": "https://gate7.vn/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://gate7.vn/menu#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://gate7.vn/menu#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Trang Chủ",
+          "item": "https://gate7.vn/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Thực Đơn",
+          "item": "https://gate7.vn/menu"
+        }
+      ]
+    },
+    {
+      "@type": "Restaurant",
+      "@id": "https://gate7.vn/menu#restaurant",
+      "name": "Gate 7 Coffee Roastery",
+      "url": "https://gate7.vn/",
+      "image": "https://gate7.vn/images/logo-only-black.webp",
+      "description": "Gate 7 Coffee Roastery – cà phê Phin đậm chất Sài Gòn tại TP.HCM, chuyên phin 100% Robusta, espresso Arabica, matcha & houjicha thủ công",
+      "menu": "https://gate7.vn/menu",
+      "hasMenu": [
+        {
+          "@type": "Menu",
+          "@id": "https://gate7.vn/menu#phin-robusta",
+          "name": "Cà Phê Phin 100% Robusta",
+          "description": "Thực đơn các loại cà phê Phin truyền thống Việt Nam từ hạt Robusta nguyên chất",
+          "hasMenuSection": [
+            {
+              "@type": "MenuSection",
+              "name": "Cà phê đen pha phin (nóng/ đá)",
+              "description": "Cà phê Phin 100% Robusta dùng nóng hoặc với đá, vị đậm đà và mạnh mẽ",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "Cà phê đen pha phin (nóng/ đá)",
+                  "description": "Cà phê Phin 100% Robusta dùng nóng hoặc với đá, vị đậm đà và mạnh mẽ",
+                  "image": "https://gate7.vn/images/menu/phin-den-da.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "30000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Cà phê sữa pha phin (nóng/ đá)",
+                  "description": "100% hạt Robusta với sữa đặc, truyền thống Việt Nam, hoàn hảo",
+                  "image": "https://gate7.vn/images/menu/phin-sua-da.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "32000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Bạc Xỉu (nóng/đá)",
+                  "description": "100% hạt Robusta với sữa tươi, nhẹ, kem, Bạc 'ngon' Xỉu",
+                  "image": "https://gate7.vn/images/menu/bac-xiu.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "35000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Nâu Macchiato",
+                  "description": "Bọt muối mềm mượt gặp cà phê Phin đậm đà, tối giản, nhưng đáng nhớ",
+                  "image": "https://gate7.vn/images/menu/nau-machhiato.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "35000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@type": "Menu",
+          "@id": "https://gate7.vn/menu#espresso-arabica",
+          "name": "Cà phê pha máy (100% Arabica)",
+          "description": "Thực đơn các loại Espresso từ 100% hạt Arabica cao cấp",
+          "hasMenuSection": [
+            {
+              "@type": "MenuSection",
+              "name": "Cà phê pha máy (100% Arabica)",
+              "description": "Thực đơn các loại Espresso từ 100% hạt Arabica cao cấp",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "Espresso (Nóng/Đá)",
+                  "description": "Espresso được chế tác từ 100% Arabica Việt Nam",
+                  "image": "https://gate7.vn/images/menu/espresso.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "35000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Espresso Sữa (Nóng/Đá)",
+                  "description": "Cà phê espresso đậm đà hòa quyện cùng sữa, tạo vị béo ngậy, cân bằng và thơm mịn",
+                  "image": "https://gate7.vn/images/menu/espresso-sua.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "37000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Americano (Nóng/Đá)",
+                  "description": "Americano được chế tác từ 100% Arabica Việt Nam",
+                  "image": "https://gate7.vn/images/menu/americano.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "35000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Cappuccino (Nóng/Đá)",
+                  "description": "Arabica Việt Nam nguyên chất gặp sữa tươi lành mạnh, Cappuccino hoàn hảo",
+                  "image": "https://gate7.vn/images/menu/americano.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "49000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Latte (Nóng/Đá)",
+                  "description": "Espresso đậm được làm mềm bằng sữa tươi lành mạnh, Latte tinh khiết",
+                  "image": "https://gate7.vn/images/menu/latte.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "49000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Mocha (Nóng/Đá)",
+                  "description": "Espresso và sô cô la, được làm mềm bằng sữa kem, đơn giản là Mocha",
+                  "image": "https://gate7.vn/images/menu/latte.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "57000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Macchiato sốt caramel muối",
+                  "description": "Espresso mịn kết hợp sữa kem và một chút caramel muối",
+                  "image": "https://gate7.vn/images/menu/macchiato-sot-caramel-muoi.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "57000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@type": "Menu",
+          "@id": "https://gate7.vn/menu#matcha-houjicha-socola",
+          "name": "Matcha & Houjicha & Sô Cô La",
+          "description": "Thực đơn matcha cao cấp được chế biến thủ công tinh tế",
+          "hasMenuSection": [
+            {
+              "@type": "MenuSection",
+              "name": "Matcha & Houjicha & Sô Cô La",
+              "description": "Thực đơn matcha cao cấp được chế biến thủ công tinh tế",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "Matcha Latte",
+                  "description": "Matcha mịn, kết hợp sữa tươi, vị tinh khiết và cân bằng",
+                  "image": "https://gate7.vn/images/menu/matcha-latte.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "45000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Matcha Macchiato",
+                  "description": "Matcha đậm vị kết hợp sữa, vị đơn giản cân bằng",
+                  "image": "https://gate7.vn/images/menu/matcha-macchiato.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "45000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Houjicha Latte",
+                  "description": "Houjicha kết hợp sữa mịn, mượt như nhung",
+                  "image": "https://gate7.vn/images/menu/houjicha-latte.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "45000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Houjicha Macchiato",
+                  "description": "Houjicha đậm vị kết hợp với lớp sữa mịn, vị đơn giản cân bằng",
+                  "image": "https://gate7.vn/images/menu/houjicha-macchiato.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "45000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Sô Cô La (Nóng/Đá)",
+                  "description": "Sô cô la: tinh khiết, thoải mái, và cân bằng hoàn hảo",
+                  "image": "https://gate7.vn/images/menu/socola-macchiato.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "45000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@type": "Menu",
+          "@id": "https://gate7.vn/menu#tea-milk-tea",
+          "name": "Trà & Trà Sữa",
+          "description": "Thực đơn trà & trà sữa được chế biến thủ công",
+          "hasMenuSection": [
+            {
+              "@type": "MenuSection",
+              "name": "Trà & Trà Sữa",
+              "description": "Thực đơn trà & trà sữa được chế biến thủ công",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "Trà Oolong Lài Macchiato",
+                  "description": "Bọt kem mịn trên trà oolong lài thơm, vị cân bằng và thanh",
+                  "image": "https://gate7.vn/images/menu/oloong-lai-macchiato.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "35000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Trà Chanh Dây",
+                  "description": "Trà tươi mát với chanh dây, vị thanh",
+                  "image": "https://gate7.vn/images/menu/trachanhday.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "40000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Trà Xí Muôi",
+                  "description": "Trà với vị chua nhẹ của xí muội, đơn giản cân bằng",
+                  "image": "https://gate7.vn/images/menu/traximuoi.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "40000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Trà Sữa Oolong Lài",
+                  "description": "Sữa nhung gặp oolong lài tinh tế, đơn giản cân bằng",
+                  "image": "https://gate7.vn/images/menu/trasuaoloonglai.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "40000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Trà Cam Đào",
+                  "description": "Trà trái cây tươi mát kết hợp vị ngọt của đào và chua nhẹ của cam, sảng khoái và thơm dịu",
+                  "image": "https://gate7.vn/images/menu/trasuaoloonglai.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "45000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Trà Vải",
+                  "description": "Trà thanh mát hòa quyện hương trái vải ngọt dịu, thơm nhẹ và sảng khoái",
+                  "image": "https://gate7.vn/images/menu/travai.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "45000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "@type": "Menu",
+          "@id": "https://gate7.vn/menu#tea-milk-tea",
+          "name": "Smoothies",
+          "description": "Smoothies mát lạnh dễ chịu",
+          "hasMenuSection": [
+            {
+              "@type": "MenuSection",
+              "name": "Smoothies",
+              "description": "Smoothies mát lạnh dễ chịu",
+              "hasMenuItem": [
+                {
+                  "@type": "MenuItem",
+                  "name": "Smoothie Xoài Chanh Dây",
+                  "description": "Sinh tố mát lạnh hòa quyện vị ngọt của xoài chín và chua nhẹ của chanh dây, tươi mát và sảng khoái",
+                  "image": "https://gate7.vn/images/menu/smoothie-xoai-chanhday.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "45000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "MenuItem",
+                  "name": "Smoothie Cam Xoài Đào",
+                  "description": "Sinh tố mát lạnh kết hợp vị cam tươi, xoài ngọt và đào thơm, hài hòa, sảng khoái và giàu hương trái cây",
+                  "image": "https://gate7.vn/images/menu/smoothie-cam-xoai-dao.webp",
+                  "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "VND",
+                    "price": "40000",
+                    "availability": "https://schema.org/InStock"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://gate7.vn/menu#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Thực đơn của Gate 7 có những gì?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gate 7 cung cấp 5 loại thực đơn chính: Cà Phê Phin 100% Robusta, Espresso Arabica Đặc Sản, Matcha và Houjicha, Trà Sữa Thủ Công, và Smoothies. Mỗi loại có các biến thể nóng và lạnh để bạn lựa chọn."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Phin Robusta của Gate 7 khác loại cà phê khác như thế nào?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cà phê Phin 100% Robusta của Gate 7 được pha theo cách truyền thống Việt Nam, có vị đậm đà, mạnh mẽ và đặc trưng với lớp crema dày. Khác với Arabica nhẹ nhàng, Robusta mang đến trải nghiệm cà phê đột phá mà rất bản địa"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Gate 7 có những loại Espresso nào?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gate 7 cung cấp Espresso từ hạt Arabica cao cấp dưới nhiều hình thức: Espresso shot đơn, Americano, Cappuccino, Latte. Tất cả đều được tạo từ các hạt Arabica đơn gốc từ các vùng cao nguyên Việt Nam."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Matcha và Houjicha của Gate 7 có được chế biến thủ công không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Có, Matcha và Houjicha tại Gate 7 được chế biến thủ công từ các nguyên liệu cao cấp từ Nhật Bản. Chúng tôi đảm bảo chất lượng và hương vị tươi mới trong mỗi ly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the main menu categories at Gate 7?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gate 7's menu features 5 main categories: 100% Robusta Phin coffee, specialty Arabica espresso, handcrafted matcha and houjicha, tea and milktea, and smoothies. Each category offers both hot and cold options."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the matcha and houjicha handcrafted?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, both matcha and houjicha at Gate 7 are handcrafted from premium Japanese ingredients. We ensure freshness and quality flavor in every cup."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://gate7.vn/menu#collection",
+      "name": "Thực Đơn Gate 7 Coffee Roastery",
+      "description": "Bộ sưu tập thực đơn đầy đủ tất cả đồ uống tại Gate 7 Coffee Roastery",
+      "url": "https://gate7.vn/menu",
+      "image": "https://gate7.vn/images/menu-hero.webp",
+      "isPartOf": {
+        "@id": "https://gate7.vn/#website"
+      }
+    }
+  ]
+}
