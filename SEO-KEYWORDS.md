@@ -113,13 +113,16 @@ Central location for all SEO keywords, organized by page and keyword type.
 
 ### Recent Keyword Updates
 
-- **Last Updated:** December 9, 2025
-- **Pages Updated:** index.html, VI-Metadata.md, EN-Metadata.md
-- **Title Updated:** "Gate 7 Coffee Roastery - High Quality Coffee in Ho Chi Minh City"
+- **Last Updated:** January 19, 2026
+- **Pages Updated:** index.html, VI-Metadata.md, schema.json
+- **Menu Additions:** Smoothies section (Mango Passion Fruit, Orange Mango Peach), New teas (Peach Orange Tea, Lychee Tea)
+- **Meta Tags:** Vietnamese-first title "Gate 7 Coffee Roastery - Cà Phê Phin Đậm Chất Sài Gòn"
+- **Meta Description Enhanced:** Focus on Phin drip coffee, 100% Robusta espresso, matcha & houjicha
+- **Price Range:** VND 5,000 - VND 57,000 (Schema.org verified)
+- **Opening Hours:** Mon-Fri 7:00 AM - 9:00 PM, Sat-Sun 7:00 AM - 10:00 PM
 - **Keywords Focus:** Vietnamese-first keywords (cà phê chất lượng cao Việt Nam)
-- **Meta Tags Enhanced:** Vietnamese/English bilingual support
-- **Analytics Added:** Google Analytics (G-S72S3FXR6Z) and Clarity (uc19n8yku0)
-- **CDN Removed:** All assets now self-hosted on GitHub Pages
+- **Analytics:** Google Analytics (G-S72S3FXR6Z) and Clarity (uc19n8yku0)
+- **Assets:** All self-hosted on GitHub Pages
 
 ## Performance Tracking
 

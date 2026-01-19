@@ -49,8 +49,8 @@
 - **Quốc Gia**: VN
 
 ### Giờ Mở Cửa
-- **Thứ Hai – Thứ Sáu**: 6:00 sáng – 9:00 tối (06:00 – 21:00)
-- **Thứ Bảy – Chủ Nhật**: 6:00 sáng – 9:00 tối (06:00 – 21:00)
+- **Thứ Hai – Thứ Sáu**: 7:00 sáng – 9:00 tối (07:00 – 21:00)
+- **Thứ Bảy – Chủ Nhật**: 7:00 sáng – 10:00 tối (07:00 – 22:00)
 
 ### Liên Kết Mạng Xã Hội
 - Instagram: https://instagram.com/gate7.coffee
@@ -82,52 +82,68 @@
    - Bọt muối mềm mượt gặp cà phê Phin đậm đà, tối giản, nhưng đáng nhớ
 
 ### Cà Phê Pha Máy (100% Arabica)
-1. **Espresso (Nóng/Đá)** - 40.000₫
-   - Espresso được chế tác từ 100% Arabica Việt Nam
+1. **Espresso (Nóng/Đá)** - 35.000₫
+    - Espresso được chế tác từ 100% Arabica Việt Nam
 
-2. **Americano (Nóng/Đá)** - 42.000₫
-   - Americano được chế tác từ 100% Arabica Việt Nam
+2. **Espresso Sữa (Nóng/Đá)** - 37.000₫
+    - Cà phê espresso đậm đà hòa quyện cùng sữa, tạo vị béo ngậy, cân bằng và thơm mịn
 
-3. **Cappuccino (Nóng/Đá)** - 42.000₫
-   - Arabica Việt Nam nguyên chất gặp sữa tươi lành mạnh, Cappuccino hoàn hảo
+3. **Americano (Nóng/Đá)** - 40.000₫
+    - Americano được chế tác từ 100% Arabica Việt Nam
 
-4. **Latte (Nóng/Đá)** - 55.000₫
-   - Espresso đậm được làm mềm bằng sữa tươi lành mạnh, Latte tinh khiết
+4. **Cappuccino (Nóng/Đá)** - 49.000₫
+    - Arabica Việt Nam nguyên chất gặp sữa tươi lành mạnh, Cappuccino hoàn hảo
 
-5. **Mocha (Nóng/Đá)** - 60.000₫
-   - Espresso và sô cô la, được làm mềm bằng sữa kem, đơn giản là Mocha
+5. **Latte (Nóng/Đá)** - 50.000₫
+    - Espresso đậm được làm mềm bằng sữa tươi lành mạnh, Latte tinh khiết
 
-6. **Macchiato Sốt Caramel Muối (Đá)** - 60.000₫
-   - Espresso mịn kết hợp sữa kem và một chút caramel muối
+6. **Mocha (Nóng/Đá)** - 57.000₫
+    - Espresso và sô cô la, được làm mềm bằng sữa kem, đơn giản là Mocha
+
+7. **Macchiato Sốt Caramel Muối (Đá)** - 57.000₫
+    - Espresso mịn kết hợp sữa kem và một chút caramel muối
 
 ### Matcha & Houjicha & Sô Cô La
-1. **Latte Matcha** - 52.000₫
-   - Matcha mịn, kết hợp sữa tươi, vị tinh khiết và cân bằng
+1. **Latte Matcha** - 45.000₫
+    - Matcha mịn, kết hợp sữa tươi, vị tinh khiết và cân bằng
 
-2. **Matcha Macchiato** - 52.000₫
-   - Matcha đậm vị kết hợp sữa, vị đơn giản cân bằng
+2. **Matcha Macchiato** - 45.000₫
+    - Matcha đậm vị kết hợp sữa, vị đơn giản cân bằng
 
-3. **Houjicha Latte** - 52.000₫
-   - Houjicha kết hợp sữa mịn, mượt như nhung
+3. **Houjicha Latte** - 45.000₫
+    - Houjicha kết hợp sữa mịn, mượt như nhung
 
-4. **Houjicha Macchiato** - 52.000₫
-   - Houjicha đậm vị kết hợp với lớp sữa mịn, vị đơn giản cân bằng
+4. **Houjicha Macchiato** - 45.000₫
+    - Houjicha đậm vị kết hợp với lớp sữa mịn, vị đơn giản cân bằng
 
-5. **Sô Cô La (Nóng/Đá)** - 52.000₫
-   - Sô cô la: tinh khiết, thoải mái, và cân bằng hoàn hảo
+5. **Sô Cô La (Nóng/Đá)** - 45.000₫
+    - Sô cô la: tinh khiết, thoải mái, và cân bằng hoàn hảo
 
 ### Trà & Trà Sữa
 1. **Trà Oolong Lài Macchiato** - 35.000₫
-   - Bọt kem mịn trên trà oolong lài thơm, vị cân bằng và thanh
+    - Bọt kem mịn trên trà oolong lài thơm, vị cân bằng và thanh
 
 2. **Trà Chanh Dây** - 40.000₫
-   - Trà tươi mát với chanh dây, vị thanh
+    - Trà tươi mát với chanh dây, vị thanh
 
-3. **Trà Xí Muôi** - 35.000₫
-   - Trà với vị chua nhẹ của xí muội, đơn giản cân bằng
+3. **Trà Xí Muôi** - 40.000₫
+    - Trà với vị chua nhẹ của xí muội, đơn giản cân bằng
 
 4. **Trà Sữa Oolong Lài** - 40.000₫
-   - Sữa nhung gặp oolong lài tinh tế, đơn giản cân bằng
+    - Sữa nhung gặp oolong lài tinh tế, đơn giản cân bằng
+
+5. **Trà Cam Đào** - 45.000₫
+    - Trà trái cây tươi mát kết hợp vị ngọt của đào và chua nhẹ của cam, sảng khoái và thơm dịu
+
+6. **Trà Vải** - 45.000₫
+    - Trà thanh mát hòa quyện hương trái vải ngọt dịu, thơm nhẹ và sảng khoái
+
+### Smoothies
+1. **Smoothie Xoài Chanh Dây** - 45.000₫
+    - Sinh tố mát lạnh hòa quyện vị ngọt của xoài chín và chua nhẹ của chanh dây, tươi mát và sảng khoái
+
+2. **Smoothie Cam Xoài Đào** - 45.000₫
+    - Sinh tố mát lạnh kết hợp vị cam tươi, xoài ngọt và đào thơm, hài hòa, sảng khoái và giàu hương trái cây
 
 ### Kèm Thức Uống
 1. **Kem Muối** - 12.000₫
