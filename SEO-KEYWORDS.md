@@ -43,7 +43,7 @@ Central location for all SEO keywords, organized by page and keyword type.
 - Matcha latte coffee shop
 - Houjicha tea drinks
 
-## Music/Spotify Page (`music/index.html`)
+## Music Page (`music/index.html`)
 
 ### Primary Keywords
 - Coffee shop music

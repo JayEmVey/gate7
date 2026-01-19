@@ -38,7 +38,7 @@ function log(level, message) {
 
 // Route aliases (map old URLs to new locations)
 const routeAliases = {
-    '/music/spotify': '/music/index.html'
+    '/music': '/music/index.html'
 };
 
 // MIME types
