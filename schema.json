@@ -74,6 +74,14 @@
       "url": "https://gate7.vn/",
       "image": "https://gate7.vn/images/logo-only-black.webp",
       "description": "Gate 7 Coffee Roastery – cà phê Phin đậm chất Sài Gòn tại TP.HCM, chuyên phin 100% Robusta, espresso Arabica, matcha & houjicha thủ công",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "162A Nguyễn Trường Tộ",
+        "addressLocality": "Thành phố Hồ Chí Minh",
+        "addressRegion": "Tân Phú",
+        "postalCode": "70000",
+        "addressCountry": "VN"
+      },
       "offers": [
         {
           "@type": "Offer",
