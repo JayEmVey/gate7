@@ -1,276 +1,336 @@
 {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "LocalBusiness",
-      "@id": "https://gate7.vn/#business",
-      "name": "Gate 7 Coffee Roastery",
-      "alternateName": ["Gate 7", "The Gate", "Gate 7 Coffee"],
-      "description": "Gate 7 Coffee Roastery – cà phê Phin đậm chất Sài Gòn tại TP.HCM, chuyên phin 100% Robusta, espresso Arabica, matcha & houjicha thủ công",
-      "url": "https://gate7.vn/",
-      "image": {
-        "@type": "ImageObject",
-        "url": "https://gate7.vn/images/logo-only-black.webp",
-        "width": 1200,
-        "height": 630,
-        "name": "Gate 7 Coffee Roastery Logo"
-      },
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://gate7.vn/images/logo-only-black.webp",
-        "width": 512,
-        "height": 512
-      },
-      "telephone": "(+84)0971091120",
-      "email": "hello@gate7.vn",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "162A Nguyễn Trường Tộ",
-        "addressLocality": "Thành phố Hồ Chí Minh",
-        "addressRegion": "Tân Phú",
-        "postalCode": "70000",
-        "addressCountry": "VN"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "10.7930749",
-        "longitude": "106.6330289"
-      },
-      "areaServed": {
-        "@type": "City",
-        "name": "Thành phố Hồ Chí Minh"
-      },
-      "priceRange": "VND 5000 - VND 57000",
-      "servesCuisine": "Cà phê",
-      "sameAs": [
-        "https://instagram.com/gate7.coffee",
-        "https://www.facebook.com/share/1CnRHZ9QSz/",
-        "https://zalo.me/2485475799709134069"
-      ],
-      "openingHoursSpecification": [
+    "@context": "https://schema.org",
+    "@graph": [
         {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "07:00",
-          "closes": "21:00"
+            "@type": "LocalBusiness",
+            "@id": "https://gate7.vn/#business",
+            "name": "Gate 7 Coffee Roastery",
+            "alternateName": [
+                "Gate 7",
+                "The Gate",
+                "Gate 7 Coffee"
+            ],
+            "description": "Gate 7 Coffee Roastery – cà phê Phin đậm chất Sài Gòn tại TP.HCM, chuyên phin 100% Robusta, espresso Arabica, matcha & houjicha thủ công",
+            "url": "https://gate7.vn/",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://gate7.vn/images/logo-only-black.webp",
+                "width": 1200,
+                "height": 630,
+                "name": "Gate 7 Coffee Roastery Logo"
+            },
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://gate7.vn/images/logo-only-black.webp",
+                "width": 512,
+                "height": 512
+            },
+            "telephone": "(+84)0971091120",
+            "email": "hello@gate7.vn",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "162A Nguyễn Trường Tộ",
+                "addressLocality": "Thành phố Hồ Chí Minh",
+                "addressRegion": "Tân Phú",
+                "postalCode": "70000",
+                "addressCountry": "VN"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "10.7930749",
+                "longitude": "106.6330289"
+            },
+            "areaServed": {
+                "@type": "City",
+                "name": "Thành phố Hồ Chí Minh"
+            },
+            "priceRange": "VND 5000 - VND 57000",
+            "servesCuisine": "Cà phê",
+            "sameAs": [
+                "https://instagram.com/gate7.coffee",
+                "https://www.facebook.com/share/1CnRHZ9QSz/",
+                "https://zalo.me/2485475799709134069"
+            ],
+            "openingHoursSpecification": [
+                {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday"
+                    ],
+                    "opens": "07:00",
+                    "closes": "21:00"
+                },
+                {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": [
+                        "Saturday",
+                        "Sunday"
+                    ],
+                    "opens": "07:00",
+                    "closes": "22:00"
+                }
+            ],
+            "foundingDate": "2025-09-11",
+            "founder": {
+                "@type": "Person",
+                "name": "Giang Nguyen"
+            }
         },
         {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Saturday", "Sunday"],
-          "opens": "07:00",
-          "closes": "22:00"
+            "@type": "CafeOrCoffeeShop",
+            "@id": "https://gate7.vn/#cafe",
+            "name": "Gate 7 Coffee Roastery",
+            "url": "https://gate7.vn/",
+            "image": "https://gate7.vn/images/logo-only-black.webp",
+            "description": "Gate 7 Coffee Roastery – cà phê Phin đậm chất Sài Gòn tại TP.HCM, chuyên phin 100% Robusta, espresso Arabica, matcha & houjicha thủ công",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "162A Nguyễn Trường Tộ",
+                "addressLocality": "Thành phố Hồ Chí Minh",
+                "addressRegion": "Tân Phú",
+                "postalCode": "70000",
+                "addressCountry": "VN"
+            },
+            "offers": [
+                {
+                    "@type": "Offer",
+                    "name": "Cà phê đen pha phin",
+                    "description": "100% hạt Robusta",
+                    "priceCurrency": "VND",
+                    "price": "30000"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Cà phê sữa pha phin",
+                    "description": "100% hạt Robusta với sữa đặc, truyền thống Việt Nam, hoàn hảo",
+                    "priceCurrency": "VND",
+                    "price": "32000"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Espresso",
+                    "description": "Espresso được chế tác từ 100% Arabica Việt Nam",
+                    "priceCurrency": "VND",
+                    "price": "35000"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Cappuccino ",
+                    "description": "Arabica Việt Nam nguyên chất gặp sữa tươi lành mạnh, Cappuccino hoàn hảo",
+                    "priceCurrency": "VND",
+                    "price": "49000"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Mocha",
+                    "description": "Espresso và sô cô la, được làm mềm bằng sữa kem, đơn giản là Mocha",
+                    "priceCurrency": "VND",
+                    "price": "57000"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Matcha Latte",
+                    "description": "Matcha mịn, kết hợp sữa tươi, vị tinh khiết và cân bằng",
+                    "priceCurrency": "VND",
+                    "price": "45000"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Matcha Macchiato",
+                    "description": "Matcha đậm vị kết hợp sữa, vị đơn giản cân bằng",
+                    "priceCurrency": "VND",
+                    "price": "45000"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Houjicha Latte",
+                    "description": "Houjicha kết hợp sữa mịn, mượt như nhung",
+                    "priceCurrency": "VND",
+                    "price": "45000"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Houjicha Macchiato",
+                    "description": "Houjicha đậm vị kết hợp với lớp sữa mịn, vị đơn giản cân bằng",
+                    "priceCurrency": "VND",
+                    "price": "45000"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Trà Oolong Lài Macchiato",
+                    "description": "Bọt kem mịn trên trà oolong lài thơm, vị cân bằng và thanh",
+                    "priceCurrency": "VND",
+                    "price": "35000"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Trà Sữa Oolong Lài",
+                    "description": "Sữa nhung gặp oolong lài tinh tế, đơn giản cân bằng",
+                    "priceCurrency": "VND",
+                    "price": "40000"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Smoothie Cam Xoài Đào",
+                    "description": "Sinh tố mát lạnh kết hợp vị cam tươi, xoài ngọt và đào thơm, hài hòa, sảng khoái và giàu hương trái cây",
+                    "priceCurrency": "VND",
+                    "price": "45000"
+                }
+            ]
+        },
+        {
+            "@type": "Organization",
+            "@id": "https://gate7.vn/#organization",
+            "name": "Gate 7 Coffee Roastery",
+            "url": "https://gate7.vn/",
+            "logo": "https://gate7.vn/images/logo-only-black.webp",
+            "description": "Gate 7 Coffee Roastery – cà phê Phin đậm chất Sài Gòn tại TP.HCM, chuyên phin 100% Robusta, espresso Arabica, matcha & houjicha thủ công",
+            "sameAs": [
+                "https://instagram.com/gate7.coffee",
+                "https://www.facebook.com/share/1CnRHZ9QSz/",
+                "https://zalo.me/2485475799709134069"
+            ],
+            "contact": {
+                "@type": "ContactPoint",
+                "contactType": "Dịch Vụ Khách Hàng",
+                "telephone": "(+84)0971091120",
+                "email": "hello@gate7.vn",
+                "areaServed": "VN",
+                "availableLanguage": [
+                    "vi",
+                    "en"
+                ]
+            }
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://gate7.vn/#breadcrumb",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Trang Chủ",
+                    "item": "https://gate7.vn/"
+                }
+            ]
+        },
+        {
+            "@type": "FAQPage",
+            "@id": "https://gate7.vn/#faq",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Gate 7 Coffee Roastery chuyên về loại cà phê nào?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Gate 7 Coffee Roastery chuyên cung cấp cà phê Phin truyền thống Việt Nam pha từ hạt Robusta 100%, cà phê espresso Arabica đặc sản, cùng các thức uống handcraft matcha và houjicha cao cấp"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Gate 7 Coffee Roastery ở đâu?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Gate 7 Coffee Roastery nằm tại quận Tân Phú, Thành phố Hồ Chí Minh, Việt Nam."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Gate 7 có bán hạt cà phê để về nhà pha không?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Có, chúng tôi cung cấp hạt cà phê Arabica và Robusta cao cấp cho bán lẻ và bán sỉ."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What type of coffee does Gate 7 specialize in?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Gate 7 Coffee Roastery specializes in authentic Vietnamese Phin drip coffee made with 100% Robusta beans, alongside specialty Arabica espresso and handcrafted matcha and houjicha drinks."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Where is Gate 7 Coffee Roastery located?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Gate 7 Coffee Roastery is located in Tan Phu district, Ho Chi Minh City, Vietnam."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Do you offer specialty coffee beans for sale?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes, we offer premium Arabica and Robusta coffee beans for retail and wholesale purposes."
+                    }
+                }
+            ]
+        },
+        {
+            "@type": "WebSite",
+            "@id": "https://gate7.vn/#website",
+            "url": "https://gate7.vn/",
+            "name": "Gate 7 Coffee Roastery",
+            "alternateName": "Gate 7 Coffee Roastery - Cà Phê Phin Đậm Chất Sài Gòn",
+            "description": "Gate 7 Coffee Roastery – cà phê Phin đậm chất Sài Gòn tại TP.HCM, chuyên phin 100% Robusta, espresso Arabica, matcha & houjicha thủ công",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                    "@type": "EntryPoint",
+                    "urlTemplate": "https://gate7.vn/?s={search_term_string}"
+                }
+            },
+            "inLanguage": [
+                "vi",
+                "en"
+            ]
+        },
+        {
+            "@type": "WebPage",
+            "@id": "https://gate7.vn/menu#webpage",
+            "name": "Thực Đơn - Gate 7 Coffee Roastery",
+            "url": "https://gate7.vn/menu/",
+            "description": "Thực đơn cà phê tại Gate 7 Coffee Roastery - Phin 100% Robusta, Espresso Arabica, Matcha, Houjicha và các đồ uống handcraft cao cấp"
+        },
+        {
+            "@type": "LocalBusiness",
+            "@id": "https://gate7.vn/#store-location",
+            "name": "Địa Chỉ",
+            "url": "https://gate7.vn/",
+            "description": "Gate 7 Coffee Roastery – 162A Nguyễn Trường Tộ. Góc cà phê làm việc tập trung – thư giãn nhẹ – chill đúng mood giữa lòng Tân Phú.",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "162A Nguyễn Trường Tộ",
+                "addressLocality": "Thành phố Hồ Chí Minh",
+                "addressRegion": "Tân Phú",
+                "postalCode": "70000",
+                "addressCountry": "VN"
+            }
+        },
+        {
+            "@type": "JobPosting",
+            "@id": "https://gate7.vn/#hiring",
+            "title": "Hiring At Gate 7 Coffee Roastery",
+            "description": "Bạn đam mê cà phê? Muốn làm việc trong môi trường chill, được hưởng cà phê miễn phí, lương cạnh tranh và ca làm linh hoạt? Gate 7 đang tìm bạn!",
+            "hiringOrganization": {
+                "@type": "Organization",
+                "name": "Gate 7 Coffee Roastery"
+            },
+            "jobLocation": {
+                "@type": "Place",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Thành phố Hồ Chí Minh",
+                    "addressRegion": "Tân Phú",
+                    "addressCountry": "VN"
+                }
+            }
         }
-      ],
-      "foundingDate": "2025-09-11]",
-      "founder": {
-        "@type": "Person",
-        "name": "Giang Nguyen"
-      }
-    },
-    {
-      "@type": "CafeOrCoffeeShop",
-      "@id": "https://gate7.vn/#cafe",
-      "name": "Gate 7 Coffee Roastery",
-      "url": "https://gate7.vn/",
-      "image": "https://gate7.vn/images/logo-only-black.webp",
-      "description": "Gate 7 Coffee Roastery – cà phê Phin đậm chất Sài Gòn tại TP.HCM, chuyên phin 100% Robusta, espresso Arabica, matcha & houjicha thủ công",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "162A Nguyễn Trường Tộ",
-        "addressLocality": "Thành phố Hồ Chí Minh",
-        "addressRegion": "Tân Phú",
-        "postalCode": "70000",
-        "addressCountry": "VN"
-      },
-      "offers": [
-        {
-          "@type": "Offer",
-          "name": "Cà phê đen pha phin",
-          "description": "100% hạt Robusta",
-          "priceCurrency": "VND",
-          "price": "30000"
-        },
-        {
-          "@type": "Offer",
-          "name": "Cà phê sữa pha phin",
-          "description": "100% hạt Robusta với sữa đặc, truyền thống Việt Nam, hoàn hảo",
-          "priceCurrency": "VND",
-          "price": "32000"
-        },
-        {
-          "@type": "Offer",
-          "name": "Espresso",
-          "description": "Espresso được chế tác từ 100% Arabica Việt Nam",
-          "priceCurrency": "VND",
-          "price": "35000"
-        },
-        {
-          "@type": "Offer",
-          "name": "Cappuccino ",
-          "description": "Arabica Việt Nam nguyên chất gặp sữa tươi lành mạnh, Cappuccino hoàn hảo",
-          "priceCurrency": "VND",
-          "price": "49000"
-        },
-        {
-          "@type": "Offer",
-          "name": "Mocha",
-          "description": "Espresso và sô cô la, được làm mềm bằng sữa kem, đơn giản là Mocha",
-          "priceCurrency": "VND",
-          "price": "57000"
-        },
-        {
-          "@type": "Offer",
-          "name": "Matcha Latte",
-          "description": "Matcha mịn, kết hợp sữa tươi, vị tinh khiết và cân bằng",
-          "priceCurrency": "VND",
-          "price": "45000"
-        },
-        {
-          "@type": "Offer",
-          "name": "Matcha Macchiato",
-          "description": "Matcha đậm vị kết hợp sữa, vị đơn giản cân bằng",
-          "priceCurrency": "VND",
-          "price": "45000"
-        },
-        {
-          "@type": "Offer",
-          "name": "Houjicha Latte",
-          "description": "Houjicha kết hợp sữa mịn, mượt như nhung",
-          "priceCurrency": "VND",
-          "price": "45000"
-        },
-        {
-          "@type": "Offer",
-          "name": "Houjicha Macchiato",
-          "description": "Houjicha đậm vị kết hợp với lớp sữa mịn, vị đơn giản cân bằng",
-          "priceCurrency": "VND",
-          "price": "45000"
-        },
-        {
-          "@type": "Offer",
-          "name": "Trà Oolong Lài Macchiato",
-          "description": "Bọt kem mịn trên trà oolong lài thơm, vị cân bằng và thanh",
-          "priceCurrency": "VND",
-          "price": "35000"
-        },
-        {
-          "@type": "Offer",
-          "name": "Trà Sữa Oolong Lài",
-          "description": "Sữa nhung gặp oolong lài tinh tế, đơn giản cân bằng",
-          "priceCurrency": "VND",
-          "price": "40000"
-        },
-        {
-          "@type": "Offer",
-          "name": "Smoothie Cam Xoài Đào",
-          "description": "Sinh tố mát lạnh kết hợp vị cam tươi, xoài ngọt và đào thơm, hài hòa, sảng khoái và giàu hương trái cây",
-          "priceCurrency": "VND",
-          "price": "45000"
-        }
-      ]
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://gate7.vn/#organization",
-      "name": "Gate 7 Coffee Roastery",
-      "url": "https://gate7.vn/",
-      "logo": "https://gate7.vn/images/logo-only-black.webp",
-      "description": "Gate 7 Coffee Roastery – cà phê Phin đậm chất Sài Gòn tại TP.HCM, chuyên phin 100% Robusta, espresso Arabica, matcha & houjicha thủ công",
-      "sameAs": [
-        "https://instagram.com/gate7.coffee",
-        "https://www.facebook.com/share/1CnRHZ9QSz/",
-        "https://zalo.me/2485475799709134069"
-      ],
-      "contact": {
-        "@type": "ContactPoint",
-        "contactType": "Dịch Vụ Khách Hàng",
-        "telephone": "(+84)0971091120",
-        "email": "hello@gate7.vn",
-        "areaServed": "VN",
-        "availableLanguage": ["vi", "en"]
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://gate7.vn/#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Trang Chủ",
-          "item": "https://gate7.vn/"
-        }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://gate7.vn/#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Gate 7 Coffee Roastery chuyên về loại cà phê nào?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Gate 7 Coffee Roastery chuyên cung cấp cà phê Phin truyền thống Việt Nam pha từ hạt Robusta 100%, cà phê espresso Arabica đặc sản, cùng các thức uống handcraft matcha và houjicha cao cấp"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Gate 7 Coffee Roastery ở đâu?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Gate 7 Coffee Roastery nằm tại quận Tân Phú, Thành phố Hồ Chí Minh, Việt Nam."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Gate 7 có bán hạt cà phê để về nhà pha không?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Có, chúng tôi cung cấp hạt cà phê Arabica và Robusta cao cấp cho bán lẻ và bán sỉ."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What type of coffee does Gate 7 specialize in?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Gate 7 Coffee Roastery specializes in authentic Vietnamese Phin drip coffee made with 100% Robusta beans, alongside specialty Arabica espresso and handcrafted matcha and houjicha drinks."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Where is Gate 7 Coffee Roastery located?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Gate 7 Coffee Roastery is located in Tan Phu district, Ho Chi Minh City, Vietnam."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do you offer specialty coffee beans for sale?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, we offer premium Arabica and Robusta coffee beans for retail and wholesale purposes."
-          }
-        }
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://gate7.vn/#website",
-      "url": "https://gate7.vn/",
-      "name": "Gate 7 Coffee Roastery",
-      "alternateName": "Gate 7 Coffee Roastery - Cà Phê Phin Đậm Chất Sài Gòn",
-      "description": "Gate 7 Coffee Roastery – cà phê Phin đậm chất Sài Gòn tại TP.HCM, chuyên phin 100% Robusta, espresso Arabica, matcha & houjicha thủ công",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://gate7.vn/?s={search_term_string}"
-        }
-      },
-      "inLanguage": ["vi", "en"]
-    }
-  ]
+    ]
 }
