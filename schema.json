@@ -45,7 +45,6 @@
                 "name": "Thành phố Hồ Chí Minh"
             },
             "priceRange": "VND 5000 - VND 57000",
-            "servesCuisine": "Cà phê",
             "sameAs": [
                 "https://instagram.com/gate7.coffee",
                 "https://www.facebook.com/share/1CnRHZ9QSz/",
@@ -95,92 +94,137 @@
                 "postalCode": "70000",
                 "addressCountry": "VN"
             },
-            "offers": [
-                {
-                    "@type": "Offer",
-                    "name": "Cà phê đen pha phin",
-                    "description": "100% hạt Robusta",
-                    "priceCurrency": "VND",
-                    "price": "30000"
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Cà phê sữa pha phin",
-                    "description": "100% hạt Robusta với sữa đặc, truyền thống Việt Nam, hoàn hảo",
-                    "priceCurrency": "VND",
-                    "price": "32000"
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Espresso",
-                    "description": "Espresso được chế tác từ 100% Arabica Việt Nam",
-                    "priceCurrency": "VND",
-                    "price": "35000"
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Cappuccino ",
-                    "description": "Arabica Việt Nam nguyên chất gặp sữa tươi lành mạnh, Cappuccino hoàn hảo",
-                    "priceCurrency": "VND",
-                    "price": "49000"
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Mocha",
-                    "description": "Espresso và sô cô la, được làm mềm bằng sữa kem, đơn giản là Mocha",
-                    "priceCurrency": "VND",
-                    "price": "57000"
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Matcha Latte",
-                    "description": "Matcha mịn, kết hợp sữa tươi, vị tinh khiết và cân bằng",
-                    "priceCurrency": "VND",
-                    "price": "45000"
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Matcha Macchiato",
-                    "description": "Matcha đậm vị kết hợp sữa, vị đơn giản cân bằng",
-                    "priceCurrency": "VND",
-                    "price": "45000"
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Houjicha Latte",
-                    "description": "Houjicha kết hợp sữa mịn, mượt như nhung",
-                    "priceCurrency": "VND",
-                    "price": "45000"
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Houjicha Macchiato",
-                    "description": "Houjicha đậm vị kết hợp với lớp sữa mịn, vị đơn giản cân bằng",
-                    "priceCurrency": "VND",
-                    "price": "45000"
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Trà Oolong Lài Macchiato",
-                    "description": "Bọt kem mịn trên trà oolong lài thơm, vị cân bằng và thanh",
-                    "priceCurrency": "VND",
-                    "price": "35000"
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Trà Sữa Oolong Lài",
-                    "description": "Sữa nhung gặp oolong lài tinh tế, đơn giản cân bằng",
-                    "priceCurrency": "VND",
-                    "price": "40000"
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Smoothie Cam Xoài Đào",
-                    "description": "Sinh tố mát lạnh kết hợp vị cam tươi, xoài ngọt và đào thơm, hài hòa, sảng khoái và giàu hương trái cây",
-                    "priceCurrency": "VND",
-                    "price": "45000"
-                }
-            ]
+            "hasMenu": {
+                "@type": "Menu",
+                "hasMenuSection": [
+                    {
+                        "@type": "MenuSection",
+                        "name": "Menu",
+                        "hasMenuItem": [
+                            {
+                                "@type": "MenuItem",
+                                "name": "Cà phê đen pha phin",
+                                "description": "100% hạt Robusta",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "priceCurrency": "VND",
+                                    "price": "30000"
+                                }
+                            },
+                            {
+                                "@type": "MenuItem",
+                                "name": "Cà phê sữa pha phin",
+                                "description": "100% hạt Robusta với sữa đặc, truyền thống Việt Nam, hoàn hảo",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "priceCurrency": "VND",
+                                    "price": "32000"
+                                }
+                            },
+                            {
+                                "@type": "MenuItem",
+                                "name": "Espresso",
+                                "description": "Espresso được chế tác từ 100% Arabica Việt Nam",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "priceCurrency": "VND",
+                                    "price": "35000"
+                                }
+                            },
+                            {
+                                "@type": "MenuItem",
+                                "name": "Cappuccino",
+                                "description": "Arabica Việt Nam nguyên chất gặp sữa tươi lành mạnh, Cappuccino hoàn hảo",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "priceCurrency": "VND",
+                                    "price": "49000"
+                                }
+                            },
+                            {
+                                "@type": "MenuItem",
+                                "name": "Mocha",
+                                "description": "Espresso và sô cô la, được làm mềm bằng sữa kem, đơn giản là Mocha",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "priceCurrency": "VND",
+                                    "price": "57000"
+                                }
+                            },
+                            {
+                                "@type": "MenuItem",
+                                "name": "Matcha Latte",
+                                "description": "Matcha mịn, kết hợp sữa tươi, vị tinh khiết và cân bằng",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "priceCurrency": "VND",
+                                    "price": "45000"
+                                }
+                            },
+                            {
+                                "@type": "MenuItem",
+                                "name": "Matcha Macchiato",
+                                "description": "Matcha đậm vị kết hợp sữa, vị đơn giản cân bằng",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "priceCurrency": "VND",
+                                    "price": "45000"
+                                }
+                            },
+                            {
+                                "@type": "MenuItem",
+                                "name": "Houjicha Latte",
+                                "description": "Houjicha kết hợp sữa mịn, mượt như nhung",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "priceCurrency": "VND",
+                                    "price": "45000"
+                                }
+                            },
+                            {
+                                "@type": "MenuItem",
+                                "name": "Houjicha Macchiato",
+                                "description": "Houjicha đậm vị kết hợp với lớp sữa mịn, vị đơn giản cân bằng",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "priceCurrency": "VND",
+                                    "price": "45000"
+                                }
+                            },
+                            {
+                                "@type": "MenuItem",
+                                "name": "Trà Oolong Lài Macchiato",
+                                "description": "Bọt kem mịn trên trà oolong lài thơm, vị cân bằng và thanh",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "priceCurrency": "VND",
+                                    "price": "35000"
+                                }
+                            },
+                            {
+                                "@type": "MenuItem",
+                                "name": "Trà Sữa Oolong Lài",
+                                "description": "Sữa nhung gặp oolong lài tinh tế, đơn giản cân bằng",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "priceCurrency": "VND",
+                                    "price": "40000"
+                                }
+                            },
+                            {
+                                "@type": "MenuItem",
+                                "name": "Smoothie Cam Xoài Đào",
+                                "description": "Sinh tố mát lạnh kết hợp vị cam tươi, xoài ngọt và đào thơm, hài hòa, sảng khoái và giàu hương trái cây",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "priceCurrency": "VND",
+                                    "price": "45000"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
         },
         {
             "@type": "Organization",
@@ -317,6 +361,7 @@
             "@type": "JobPosting",
             "@id": "https://gate7.vn/#hiring",
             "title": "Hiring At Gate 7 Coffee Roastery",
+            "url": "https://gate7.vn/hiring",
             "description": "Bạn đam mê cà phê? Muốn làm việc trong môi trường chill, được hưởng cà phê miễn phí, lương cạnh tranh và ca làm linh hoạt? Gate 7 đang tìm bạn!",
             "hiringOrganization": {
                 "@type": "Organization",
