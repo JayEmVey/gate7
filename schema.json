@@ -194,7 +194,7 @@
                 "https://www.facebook.com/share/1CnRHZ9QSz/",
                 "https://zalo.me/2485475799709134069"
             ],
-            "contact": {
+            "contactPoint": {
                 "@type": "ContactPoint",
                 "contactType": "Dịch Vụ Khách Hàng",
                 "telephone": "(+84)0971091120",
