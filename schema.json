@@ -14,10 +14,10 @@
             "url": "https://gate7.vn/",
             "image": {
                 "@type": "ImageObject",
-                "url": "https://gate7.vn/images/logo-only-black.webp",
+                "url": "https://gate7.vn/images/coffee-as-you-are-r11.webp",
                 "width": 1200,
                 "height": 630,
-                "name": "Gate 7 Coffee Roastery Logo"
+                "name": "Gate 7 Coffee Roastery"
             },
             "logo": {
                 "@type": "ImageObject",
@@ -84,7 +84,7 @@
             "@id": "https://gate7.vn/#cafe",
             "name": "Gate 7 Coffee Roastery",
             "url": "https://gate7.vn/",
-            "image": "https://gate7.vn/images/logo-only-black.webp",
+            "image": "https://gate7.vn/images/coffee-as-you-are-r11.webp",
             "description": "Gate 7 Coffee Roastery – cà phê Phin đậm chất Sài Gòn tại TP.HCM, chuyên phin 100% Robusta, espresso Arabica, matcha & houjicha thủ công",
             "address": {
                 "@type": "PostalAddress",
