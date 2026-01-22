@@ -1,0 +1,19 @@
+# Redirect Rules for Cloudflare Pages
+# Place this file in your project root (same level as your index.html)
+# Cloudflare Pages will automatically apply these rules
+
+# Ensure trailing slashes for blog paths
+/menu /menu/ 301
+/blog /blog/ 301
+/blog/article /blog/article/ 301
+/music /music/ 301
+/hiring /hiring/ 301
+
+
+# Optional: Add other paths with trailing slashes as needed
+# Format: source destination status_code
+# /path /path/ 301
+
+# Keep this at the end - catch-all for SPA (single page application)
+# This ensures all non-existent files serve index.html for client-side routing
+/* /index.html 200
