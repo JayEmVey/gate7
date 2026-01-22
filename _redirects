@@ -8,8 +8,3 @@
 /blog/article /blog/article/ 301
 /music /music/ 301
 /hiring /hiring/ 301
-
-# Keep this at the end - catch-all for SPA (single page application)
-# This ensures all non-existent files serve index.html for client-side routing
-# Only applies to requests without a file extension (not .html, .css, .js, etc.)
-/* /index.html 200 !rewrite
