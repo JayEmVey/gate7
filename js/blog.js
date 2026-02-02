@@ -139,9 +139,7 @@ async function loadArticleFromGist(gistId) {
         if (!mdFile) throw new Error('No markdown file found');
         
         // Fetch the raw content
-        const contentResponse = await fetch(mdFile.raw_url);
-        const content = await contentResponse.text();
-        
+        const content = mdFile.content;
         const articleTitle = mdFile.filename.replace('.md', '');
         
         // Update article view (elements must exist on the page)

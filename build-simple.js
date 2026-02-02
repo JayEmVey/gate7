@@ -14,7 +14,9 @@ const SOURCE_FILES = [
   { src: 'menu/index.html', dest: 'menu/index.html' },
   { src: 'music/index.html', dest: 'music/index.html' },
   { src: 'hiring/index.html', dest: 'hiring/index.html' },
-    { src: 'hiring/banner.html', dest: 'hiring/banner.html' }
+    { src: 'hiring/banner.html', dest: 'hiring/banner.html' },
+  { src: 'blog/index.html', dest: 'blog/index.html' },
+  { src: 'blog/article/index.html', dest: 'blog/article/index.html' }
 ];
 
 const STATIC_FILES = [
@@ -28,7 +30,8 @@ const STATIC_FILES = [
 const DIRS_TO_COPY = [
   'css',
   'js',
-  'images'
+  'images',
+  'lib'
 ];
 
 // Simple HTML minifier
