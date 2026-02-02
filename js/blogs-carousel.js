@@ -3,6 +3,50 @@
 const GIST_USER = 'JayEmVey';
 const GIST_API_URL = `https://api.github.com/users/${GIST_USER}/gists`;
 
+// Calculate reading time from text (average 200 words per minute)
+function calculateReadingTime(text) {
+    if (!text) return 1;
+    
+    // Remove markdown syntax and HTML tags
+    const cleanText = text
+        .replace(/[#*`\[\](){}]/g, '') // Remove markdown syntax
+        .replace(/<[^>]*>/g, '') // Remove HTML tags
+        .replace(/\n+/g, ' '); // Replace newlines with spaces
+    
+    // Count words
+    const wordCount = cleanText.trim().split(/\s+/).filter(word => word.length > 0).length;
+    
+    // Calculate reading time (200 words per minute)
+    const readingTime = Math.ceil(wordCount / 200);
+    
+    return readingTime || 1; // Minimum 1 minute
+}
+
+// Format reading time display with language support
+function formatReadingTime(minutes, lang = null) {
+    // Get language if not provided
+    if (!lang) {
+        const urlParams = new URLSearchParams(window.location.search);
+        let langToUse = urlParams.get('lang') || localStorage.getItem('selectedLanguage') || 'vn';
+        if (langToUse === 'vi') langToUse = 'vn';
+        lang = langToUse;
+    }
+    
+    // Format based on language
+    if (lang === 'vn' || lang === 'vi') {
+        if (minutes === 1) {
+            return '1 phút đọc';
+        }
+        return `${minutes} phút đọc`;
+    } else {
+        // English
+        if (minutes === 1) {
+            return '1 min read';
+        }
+        return `${minutes} min read`;
+    }
+}
+
 // Markdown to HTML converter using marked.js (same as blog.js)
 function markdownToHtml(markdown) {
     if (!markdown) return '';
@@ -62,6 +106,33 @@ document.addEventListener('DOMContentLoaded', function() {
             .replace(/-+/g, '-'); // Replace multiple hyphens with single hyphen
     }
     
+    // Get current language setting (matches language-switcher.js logic)
+    function getCurrentLanguage() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlLang = urlParams.get('lang');
+        const savedLang = localStorage.getItem('selectedLanguage') || 'vn';
+        
+        let langToUse = urlLang || savedLang;
+        // Normalize language code (vi -> vn for internal consistency)
+        if (langToUse === 'vi') {
+            langToUse = 'vn';
+        }
+        
+        return langToUse;
+    }
+    
+    // Extract language code from filename (first 4 characters: [Vi] or [En])
+    function extractLanguageFromFilename(filename) {
+        // Match pattern like [Vi] or [En] at the start
+        const match = filename.match(/^\[(Vi|En)\]/i);
+        if (match) {
+            const langCode = match[1].toLowerCase();
+            // Normalize to internal format: vi -> vn, en -> en
+            return langCode === 'vi' ? 'vn' : 'en';
+        }
+        return null; // No language identifier found
+    }
+    
     // Fetch all gists from JayEmVey
     async function fetchGists() {
         try {
@@ -69,10 +140,19 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!response.ok) throw new Error('Failed to fetch gists');
             
             const gists = await response.json();
+            const currentLang = getCurrentLanguage();
             
-            // Filter gists with markdown files
+            // Filter gists with markdown files and matching language
             const filteredGists = gists.filter(gist => {
-                return Object.values(gist.files).some(file => file.language === 'Markdown');
+                const hasMarkdown = Object.values(gist.files).some(file => file.language === 'Markdown');
+                if (!hasMarkdown) return false;
+                
+                // Filter by language: only show articles matching current language
+                const mdFile = Object.values(gist.files).find(file => file.language === 'Markdown');
+                const fileLanguage = extractLanguageFromFilename(mdFile.filename);
+                
+                // Only include if language matches current setting
+                return fileLanguage === currentLang;
             });
             
             return filteredGists;
@@ -82,11 +162,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Extract thumbnail from markdown content (same mechanism as blog.js)
-    async function extractThumbnail(rawUrl) {
+    // Extract thumbnail and reading time from markdown content
+    async function extractThumbnailAndReadingTime(rawUrl) {
+        const result = {
+            thumbnail: '/images/01122025-menu-sc.webp',
+            readingTime: 1
+        };
+        
         try {
             const response = await fetch(rawUrl);
             const content = await response.text();
+            
+            // Calculate reading time
+            result.readingTime = calculateReadingTime(content);
             
             // Convert markdown to HTML
             const html = markdownToHtml(content);
@@ -94,17 +182,16 @@ document.addEventListener('DOMContentLoaded', function() {
             // Find first img tag and extract src (same as blog.js)
             const imgMatch = html.match(/<img[^>]+src=["']([^"']+)["']/);
             if (imgMatch) {
-                const thumbnailUrl = imgMatch[1].trim();
-                console.log('Found thumbnail in carousel:', thumbnailUrl);
-                return thumbnailUrl;
+                result.thumbnail = imgMatch[1].trim();
+                console.log('Found thumbnail in carousel:', result.thumbnail);
             } else {
                 console.warn('No image found in markdown');
-                return '/images/01122025-menu-sc.webp';
             }
         } catch (error) {
-            console.error('Error extracting thumbnail:', error);
-            return '/images/01122025-menu-sc.webp';
+            console.error('Error extracting thumbnail and reading time:', error);
         }
+        
+        return result;
     }
     
     // Load blog articles from GitHub Gists
@@ -128,16 +215,21 @@ document.addEventListener('DOMContentLoaded', function() {
             // Extract blog data from gists
             blogs = await Promise.all(sortedGists.map(async (gist) => {
                 const mdFile = Object.values(gist.files).find(file => file.language === 'Markdown');
-                const title = mdFile?.filename?.replace('.md', '') || gist.description || 'Untitled Article';
+                let title = mdFile?.filename?.replace('.md', '') || gist.description || 'Untitled Article';
+                // Remove language identifier from title (e.g., "[Vi]" or "[En]")
+                title = title.replace(/^\[(Vi|En)\]\s*/i, '');
                 const description = gist.description || 'No description available';
                 const author = gist.owner.login || 'Gate 7 Team';
                 const date = new Date(gist.created_at).toLocaleDateString();
                 const slug = createSlug(title);
                 
-                // Extract thumbnail from markdown (same mechanism as blog.js)
+                // Extract thumbnail and reading time from markdown
                 let image = '/images/01122025-menu-sc.webp';
+                let readingTime = 1;
                 if (mdFile?.raw_url) {
-                    image = await extractThumbnail(mdFile.raw_url);
+                    const result = await extractThumbnailAndReadingTime(mdFile.raw_url);
+                    image = result.thumbnail;
+                    readingTime = result.readingTime;
                 }
                 
                 return {
@@ -147,7 +239,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     description: description,
                     image: image,
                     author: author,
-                    date: date
+                    date: date,
+                    readingTime: readingTime
                 };
             }));
             
@@ -171,7 +264,9 @@ document.addEventListener('DOMContentLoaded', function() {
         blogsContainer.innerHTML = '';
         
         // Get current language
-        const currentLanguage = document.documentElement.lang || localStorage.getItem('selectedLanguage') || 'vn';
+        const urlParams = new URLSearchParams(window.location.search);
+        let currentLanguage = urlParams.get('lang') || localStorage.getItem('selectedLanguage') || 'vn';
+        if (currentLanguage === 'vi') currentLanguage = 'vn';
         
         // For responsive grid layout, show all cards
         blogs.forEach((blog, index) => {
@@ -179,12 +274,14 @@ document.addEventListener('DOMContentLoaded', function() {
             card.className = 'blog-card';
             card.style.animationDelay = `${index * 0.1}s`;
             
+            const readingTimeStr = formatReadingTime(blog.readingTime, currentLanguage);
+            
             card.innerHTML = `
                 <img src="${blog.image}" alt="${blog.title}" class="blog-image" onerror="this.src='/images/01122025-menu-sc.webp'">
                 <div class="blog-content">
                     <div class="blog-meta">
                         <span class="blog-author">${blog.author}</span>
-                        <span class="blog-date">${blog.date}</span>
+                        <span class="blog-date">${blog.date} • ${readingTimeStr}</span>
                     </div>
                     <h3 class="blog-title">${blog.title}</h3>
                     <p class="blog-description">${blog.description}</p>
@@ -204,15 +301,15 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCarouselButtons();
     }
     
-    // Re-render blogs when language changes
+    // Reload carousel when language changes
+    async function reloadCarousel() {
+        currentIndex = 0; // Reset to first slide
+        loadBlogs();
+    }
+    
+    // Listen for language change event and reload carousel
     function setupLanguageSwitchListener() {
-        const langBtns = document.querySelectorAll('.lang-btn');
-        langBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Language change will be reflected in navigation URL
-                // No need to re-render as content is from Gists
-            });
-        });
+        window.addEventListener('languageChanged', reloadCarousel);
     }
     
     function updateCarouselButtons() {

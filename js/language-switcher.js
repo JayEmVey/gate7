@@ -55,14 +55,16 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update content
         updateLanguageContent(lang);
         
-        // Update URL with lang parameter
-        if (lang === 'vn') {
-            // Use ?lang=vi for Vietnamese (matching the requirement)
-            window.history.replaceState({}, '', '?lang=vi');
-        } else {
-            // Use ?lang=en for English
-            window.history.replaceState({}, '', '?lang=en');
-        }
+        // Update URL with lang parameter while preserving other params
+        const urlParams = new URLSearchParams(window.location.search);
+        const langParam = lang === 'vn' ? 'vi' : 'en';
+        urlParams.set('lang', langParam);
+        
+        const newUrl = window.location.pathname + '?' + urlParams.toString();
+        window.history.replaceState({}, '', newUrl);
+        
+        // Dispatch custom event for dynamic content reload (blog, articles, etc.)
+        window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang: lang } }));
     }
 
     // Load language: prioritize URL parameter, then saved preference, then default

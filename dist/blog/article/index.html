@@ -205,31 +205,52 @@ window.dispatchEvent(new Event('scroll'));
 document.addEventListener('DOMContentLoaded', async function() {
 // Get gist ID from sessionStorage (set by blog.js when navigating from listing)
 let gistId = sessionStorage.getItem('gistId');
+const urlParams = new URLSearchParams(window.location.search);
+const slug = urlParams.get('slug');
+const lang = urlParams.get('lang');
 if (gistId) {
 // Clear sessionStorage after retrieving
 sessionStorage.removeItem('gistId');
 // Load the article
 await loadArticleFromGist(gistId);
-} else {
-// Check if slug is in URL (direct visit)
-const urlParams = new URLSearchParams(window.location.search);
-const slug = urlParams.get('slug');
-if (slug) {
+} else if (slug) {
+// Check if slug is in URL (direct visit or after language change)
 // Find gist by slug
 const foundGistId = await findGistBySlug(slug);
 if (foundGistId) {
-// Update URL to use the slug path for SEO
-window.history.replaceState(null, '', `/blog/article/?slug=${slug}`);
+// Update URL to use the slug path and preserve lang parameter for SEO
+const langParam = lang ? `&lang=${lang}` : '';
+window.history.replaceState(null, '', `/blog/article/?slug=${slug}${langParam}`);
 await loadArticleFromGist(foundGistId);
 } else {
-// No article found for this slug
-document.getElementById('articleContent').innerHTML = '<p>Article not found.</p>';
+// No article found for this slug in current language
+// Redirect to blog listing with current language
+const langParam = lang ? `?lang=${lang}` : '';
+window.location.href = `/blog/${langParam}`;
 }
 } else {
 // No gist ID or slug found, redirect to blog listing
-window.location.href = '/blog/';
+const langParam = lang ? `?lang=${lang}` : '';
+window.location.href = `/blog/${langParam}`;
+}
+// Listen for language change event
+window.addEventListener('languageChanged', async function(event) {
+const newLang = event.detail.lang;
+const currentUrlParams = new URLSearchParams(window.location.search);
+const currentSlug = currentUrlParams.get('slug');
+// Try to find the article in the new language
+if (currentSlug) {
+const foundGistId = await findGistBySlug(currentSlug);
+if (foundGistId) {
+// Reload article in new language (slug is preserved in URL by language-switcher)
+await loadArticleFromGist(foundGistId);
+} else {
+// Article not available in the new language, redirect to blog listing
+const langParam = newLang === 'vn' ? 'vi' : newLang;
+window.location.href = `/blog/?lang=${langParam}`;
 }
 }
+});
 });
 </script>
 <script defer src="/js/blog.js"></script>
