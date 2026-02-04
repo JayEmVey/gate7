@@ -105,13 +105,14 @@ class ArticleViewer {
 
     const title = this.article.title || 'Article';
     const content = this.article.content || '';
+    const topicName = this.article.topic_name || '';
     const publishDate = this.article.published_at 
       ? new Date(this.article.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
       : '';
     
     // Calculate reading time
     const readingTime = this.calculateReadingTime(content);
-    const author = this.article.author || 'Gate 7 Coffee';
+    const author = this.article.author_name || this.article.author || 'Gate 7 Coffee';
     
     // Format metadata: "February 4, 2026 • Giang Nguyen • 4 minute read"
     const readTimeText = readingTime === 1 ? 'minute read' : 'minute read';
@@ -127,6 +128,7 @@ class ArticleViewer {
         <div class="article-breadcrumb">
           <a href="/blog">Blog</a>
           <span>→</span>
+          ${topicName ? `<span class="breadcrumb-category">${topicName}</span><span>/</span>` : ''}
           <span>${title}</span>
         </div>
         <h1 class="article-title">${title}</h1>
@@ -230,6 +232,7 @@ class ArticleViewer {
       const { data: related, error } = await window.supabaseClient
         .from(CONFIG.tables.articles)
         .select('*')
+        .eq('topic_name', this.article.topic_name)
         .neq('id', this.articleId)
         .order('published_at', { ascending: false })
         .limit(3);
@@ -249,6 +252,7 @@ class ArticleViewer {
     if (!container) return;
 
     const heading = this.currentLanguage === 'en' ? 'Related Articles' : 'Bài Viết Liên Quan';
+    const readMoreText = this.currentLanguage === 'en' ? 'Read More' : 'Đọc Thêm';
 
     container.innerHTML = `
       <h2 class="related-heading">${heading}</h2>
@@ -257,19 +261,60 @@ class ArticleViewer {
           const title = article.title || 'Article';
           const imgSrc = article.thumbnail_base64 && article.thumbnail_base64.length > 0
             ? (article.thumbnail_base64.startsWith('data:') ? article.thumbnail_base64 : `data:image/jpeg;base64,${article.thumbnail_base64}`)
-            : '/images/gate7-default-blog.jpg';
+            : '';
+          
+          // Format published date
+          const publishDate = article.published_at 
+            ? new Date(article.published_at).toLocaleDateString(
+                this.currentLanguage === 'en' ? 'en-US' : 'vi-VN',
+                { year: 'numeric', month: 'long', day: 'numeric' }
+              )
+            : '';
+          
+          // Get author name
+          const author = article.author_name || 'Gate 7';
+          
+          // Create excerpt
+          const excerpt = this.createExcerpt(article);
 
           return `
-            <article class="related-card">
-              <a href="/blog/article.html?id=${article.id}">
-                <img src="${imgSrc}" alt="${title}" loading="lazy">
-                <h3>${title}</h3>
+            <article class="blog-card-brick">
+              <a href="/blog/article?id=${article.id}" class="card-link">
+                ${imgSrc ? `
+                  <div class="card-image">
+                    <img src="${imgSrc}" alt="${title}" loading="lazy">
+                  </div>
+                ` : ''}
+                <div class="card-content">
+                  <div class="card-meta">
+                    ${publishDate ? `<span class="card-date">${publishDate}</span>` : ''}
+                    ${article.topic_name ? `<span class="card-category">${article.topic_name}</span>` : ''}
+                    ${author ? `<span class="card-author">${author}</span>` : ''}
+                  </div>
+                  <h3 class="card-title">${title}</h3>
+                  ${excerpt ? `<p class="card-excerpt">${excerpt}</p>` : ''}
+                  <span class="read-more">${readMoreText} →</span>
+                </div>
               </a>
             </article>
           `;
         }).join('')}
       </div>
     `;
+  }
+
+  createExcerpt(article) {
+    const content = article.excerpt || article.content || '';
+    
+    if (!content) return '';
+    
+    const plainText = content.replace(/<[^>]*>/g, '');
+    
+    if (plainText.length <= CONFIG.site.excerptLength) {
+      return plainText;
+    }
+    
+    return plainText.substring(0, CONFIG.site.excerptLength).trim() + '...';
   }
 
   updateMetaTags() {

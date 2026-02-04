@@ -5,7 +5,10 @@
 
 class BlogManager {
     constructor() {
-        this.currentLanguage = localStorage.getItem('language') || CONFIG.site.defaultLanguage;
+        // Use 'selectedLanguage' from localStorage (set by language-switcher.js)
+        // Normalize: convert 'en' to 'en', 'vi' or 'vn' to 'vi' for Supabase query
+        const savedLang = localStorage.getItem('selectedLanguage') || 'vn';
+        this.currentLanguage = (savedLang === 'en') ? 'en' : 'vi';
         this.currentCategory = 'all';
         this.currentPage = 1;
         this.articlesPerPage = CONFIG.site.articlesPerPage;
@@ -50,15 +53,21 @@ class BlogManager {
             });
         });
 
-        // Language switcher (integrate with existing system)
-        const langSwitcher = document.getElementById('languageSwitcher');
-        if (langSwitcher) {
-            langSwitcher.addEventListener('click', () => {
-                this.currentLanguage = this.currentLanguage === 'en' ? 'vi' : 'en';
-                localStorage.setItem('language', this.currentLanguage);
-                this.renderArticles();
-            });
-        }
+        // Listen for language changes from language-switcher.js
+        window.addEventListener('languageChanged', (e) => {
+            // Normalize language: vn -> vi for Supabase
+            const newLang = (e.detail.lang === 'en') ? 'en' : 'vi';
+            if (newLang !== this.currentLanguage) {
+                this.currentLanguage = newLang;
+                this.currentPage = 1;
+                this.loadArticles().then(() => {
+                    this.renderCategories();
+                    this.renderArticles();
+                });
+            }
+            // Update search placeholder
+            this.updateSearchPlaceholder();
+        });
 
         // Search functionality
         const searchInput = document.getElementById('blogSearch');
@@ -66,6 +75,14 @@ class BlogManager {
             searchInput.addEventListener('input', (e) => {
                 this.searchArticles(e.target.value);
             });
+        }
+    }
+
+    updateSearchPlaceholder() {
+        const searchInput = document.getElementById('blogSearch');
+        if (searchInput) {
+            const isEN = this.currentLanguage === 'en';
+            searchInput.placeholder = isEN ? 'Search articles...' : 'Tìm kiếm bài viết...';
         }
     }
 
@@ -224,11 +241,12 @@ class BlogManager {
         if (!container) return;
 
         if (this.filteredArticles.length === 0) {
+            const noArticlesMsg = this.currentLanguage === 'en'
+                ? 'No articles found.'
+                : 'Không tìm thấy bài viết nào.';
             container.innerHTML = `
         <div class="no-articles">
-          <p>${this.currentLanguage === 'en'
-                    ? 'No articles found.'
-                    : 'Không tìm thấy bài viết nào.'}</p>
+          <p>${noArticlesMsg}</p>
         </div>
       `;
             return;
@@ -250,16 +268,21 @@ class BlogManager {
         { year: 'numeric', month: 'long', day: 'numeric' }
       );
 
+      // Check if article has a valid thumbnail
+      const hasThumbnail = article.thumbnail_base64 && typeof article.thumbnail_base64 === 'string' && article.thumbnail_base64.length > 0;
+
       return `
-        <article class="blog-card">
-          <a href="/blog-new/article.html?id=${article.id}" class="card-link">
-            <div class="card-image">
-              <img 
-                src="${article.featuredImage.src}" 
-                alt="${article.featuredImage.alt}"
-                loading="lazy"
-              >
-            </div>
+        <article class="blog-card-brick">
+          <a href="/blog/article?id=${article.id}" class="card-link">
+            ${hasThumbnail ? `
+              <div class="card-image">
+                <img 
+                  src="${article.featuredImage.src}" 
+                  alt="${article.featuredImage.alt}"
+                  loading="lazy"
+                >
+              </div>
+            ` : ''}
             <div class="card-content">
               <div class="card-meta">
                 <span class="card-date">${publishDate}</span>
@@ -360,4 +383,8 @@ class BlogManager {
 let blogManager;
 document.addEventListener('DOMContentLoaded', () => {
     blogManager = new BlogManager();
+    // Update search placeholder after initialization
+    setTimeout(() => {
+        blogManager.updateSearchPlaceholder();
+    }, 100);
 });
