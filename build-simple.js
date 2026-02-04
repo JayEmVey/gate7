@@ -16,7 +16,9 @@ const SOURCE_FILES = [
   { src: 'hiring/index.html', dest: 'hiring/index.html' },
     { src: 'hiring/banner.html', dest: 'hiring/banner.html' },
   { src: 'blog/index.html', dest: 'blog/index.html' },
-  { src: 'blog/article/index.html', dest: 'blog/article/index.html' }
+  { src: 'blog/article/index.html', dest: 'blog/article/index.html' },
+  { src: 'blog/index.html', dest: 'blog-new/index.html' },
+  { src: 'blog/article/index.html', dest: 'blog-new/article.html' }
 ];
 
 const STATIC_FILES = [

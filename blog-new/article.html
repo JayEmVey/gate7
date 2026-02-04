@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags (will be updated dynamically) -->
+    <title>Article - Gate 7 Coffee Roastery Blog</title>
+    <meta name="title" content="Article - Gate 7 Coffee Roastery Blog">
+    <meta name="description" content="Read about Vietnamese coffee culture and specialty brewing techniques.">
+    <meta name="keywords" content="vietnamese coffee, specialty coffee, coffee brewing, gate 7 coffee">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://gate7.vn/blog/article.html">
+    <meta property="og:title" content="Article - Gate 7 Coffee Roastery Blog">
+    <meta property="og:description" content="Read about Vietnamese coffee culture and specialty brewing techniques.">
+    <meta property="og:image" content="https://gate7.vn/images/gate7-og-image.jpg">
+    <meta property="og:site_name" content="Gate 7 Coffee Blog">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://gate7.vn/blog/article.html">
+    <meta property="twitter:title" content="Article - Gate 7 Coffee Roastery Blog">
+    <meta property="twitter:description" content="Read about Vietnamese coffee culture and specialty brewing techniques.">
+    <meta property="twitter:image" content="https://gate7.vn/images/gate7-og-image.jpg">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://gate7.vn/blog/article.html">
+    
+    <!-- Language Alternates -->
+    <link rel="alternate" hreflang="en" href="https://gate7.vn/blog/article.html?lang=en">
+    <link rel="alternate" hreflang="vi" href="https://gate7.vn/blog/article.html?lang=vi">
+    <link rel="alternate" hreflang="x-default" href="https://gate7.vn/blog/article.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/style-gate7.css">
+    <link rel="stylesheet" href="/css/blog-new.css">
+    
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Marked.js - Markdown Parser -->
+    <script src="/lib/marked.js"></script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S72S3FXR6Z"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-S72S3FXR6Z');
+    </script>
+    
+    <!-- Structured Data (will be updated dynamically) -->
+    <script type="application/ld+json" id="articleSchema">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://gate7.vn/blog/article.html"
+        },
+        "headline": "Article Title",
+        "description": "Article description",
+        "image": "https://gate7.vn/images/gate7-og-image.jpg",
+        "author": {
+            "@type": "Organization",
+            "name": "Gate 7 Coffee Roastery"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Gate 7 Coffee Roastery",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://gate7.vn/images/gate7-logo.png"
+            }
+        },
+        "datePublished": "2024-01-01",
+        "dateModified": "2024-01-01"
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/" class="logo">
+                <img src="/images/gate7-logo.png" alt="Gate 7 Coffee Roastery" width="120" height="40">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="/" data-en="Home" data-vn="Trang Chủ">Trang Chủ</a></li>
+                <li><a href="/menu" data-en="Menu" data-vn="Thực Đơn">Thực Đơn</a></li>
+                <li><a href="/blog" class="active" data-en="Blog" data-vn="Bài Viết">Bài Viết</a></li>
+                <li><a href="/music" data-en="Music" data-vn="Âm Nhạc">Âm Nhạc</a></li>
+            </ul>
+            <button id="languageSwitcher" class="language-btn" aria-label="Switch Language">
+                EN / VI
+            </button>
+        </nav>
+    </header>
+
+    <!-- Article Container -->
+    <main class="article-container">
+        <!-- Loading State -->
+        <div id="articleLoader" class="article-loader" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Article Header -->
+        <div id="articleHeader">
+            <!-- Breadcrumb, title, and meta will be loaded dynamically -->
+        </div>
+
+        <!-- Featured Image -->
+        <div id="featuredImage">
+            <!-- Featured image will be loaded dynamically -->
+        </div>
+
+        <!-- Article Content -->
+        <article id="articleContent" class="article-content">
+            <!-- Article content will be loaded dynamically -->
+        </article>
+
+        <!-- Tags -->
+        <div id="articleTags">
+            <!-- Tags will be loaded dynamically -->
+        </div>
+
+        <!-- Share Buttons -->
+        <div class="article-share">
+            <h3 data-en="Share this article" data-vn="Chia sẻ bài viết">Chia sẻ bài viết</h3>
+            <div class="share-buttons">
+                <button class="share-btn" data-share="facebook" aria-label="Share on Facebook">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </button>
+                <button class="share-btn" data-share="twitter" aria-label="Share on Twitter">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                </button>
+                <button class="share-btn" data-share="linkedin" aria-label="Share on LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </button>
+                <button class="share-btn" data-share="copy" aria-label="Copy link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Related Articles -->
+        <section id="relatedArticles" class="related-articles">
+            <!-- Related articles will be loaded dynamically -->
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 data-en="Location" data-vn="Địa Chỉ">Địa Chỉ</h3>
+                <p>162A Nguyễn Trường Tộ<br>Phường Phú Thọ Hòa, TP HCM</p>
+            </div>
+            <div class="footer-section">
+                <h3 data-en="Contact" data-vn="Liên Hệ">Liên Hệ</h3>
+                <p>
+                    <a href="tel:+84971091120">0971 091 120</a><br>
+                    <a href="mailto:hello@gate7.vn">hello@gate7.vn</a>
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3 data-en="Follow Us" data-vn="Theo Dõi">Theo Dõi</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/1CnRHZ9QSz/" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com/gate7.coffee" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                        </svg>
+                    </a>
+                    <a href="https://zalo.me/2485475799709134069" target="_blank" rel="noopener" aria-label="Zalo">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.975 18.627 0 12 0z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Gate 7 Coffee Roastery. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/config.js"></script>
+    <script src="/js/article.js"></script>
+    
+    <!-- Language Switcher -->
+    <script>
+        // Language switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = localStorage.getItem('language') || 'vi';
+            switchLanguage(currentLang);
+            
+            document.getElementById('languageSwitcher')?.addEventListener('click', function() {
+                const newLang = currentLang === 'en' ? 'vi' : 'en';
+                switchLanguage(newLang);
+                localStorage.setItem('language', newLang);
+            });
+        });
+
+        function switchLanguage(lang) {
+            document.querySelectorAll('[data-en][data-vn]').forEach(el => {
+                el.textContent = lang === 'en' ? el.dataset.en : el.dataset.vn;
+            });
+        }
+    </script>
+</body>
+</html>

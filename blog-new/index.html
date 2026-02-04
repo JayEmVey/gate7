@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Blog - Gate 7 Coffee Roastery | Vietnamese Coffee Culture & Brewing Guides</title>
+    <meta name="title" content="Blog - Gate 7 Coffee Roastery | Vietnamese Coffee Culture & Brewing Guides">
+    <meta name="description" content="Explore Vietnamese coffee culture, brewing guides, and specialty bean spotlights from Gate 7 Coffee Roastery. Learn the art of Vietnamese coffee.">
+    <meta name="keywords" content="vietnamese coffee blog, coffee brewing guide, specialty coffee vietnam, coffee culture, gate 7 coffee, robusta coffee, arabica coffee, phin coffee">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gate7.vn/blog/">
+    <meta property="og:title" content="Blog - Gate 7 Coffee Roastery">
+    <meta property="og:description" content="Explore Vietnamese coffee culture, brewing guides, and specialty bean spotlights.">
+    <meta property="og:image" content="https://gate7.vn/images/gate7-og-image.jpg">
+    <meta property="og:site_name" content="Gate 7 Coffee Blog">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://gate7.vn/blog/">
+    <meta property="twitter:title" content="Blog - Gate 7 Coffee Roastery">
+    <meta property="twitter:description" content="Explore Vietnamese coffee culture, brewing guides, and specialty bean spotlights.">
+    <meta property="twitter:image" content="https://gate7.vn/images/gate7-og-image.jpg">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://gate7.vn/blog/">
+    
+    <!-- Language Alternates -->
+    <link rel="alternate" hreflang="en" href="https://gate7.vn/blog/?lang=en">
+    <link rel="alternate" hreflang="vi" href="https://gate7.vn/blog/?lang=vi">
+    <link rel="alternate" hreflang="x-default" href="https://gate7.vn/blog/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/style-gate7.css">
+    <link rel="stylesheet" href="/css/blog-new.css">
+    
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S72S3FXR6Z"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-S72S3FXR6Z');
+    </script>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Gate 7 Coffee Blog",
+        "description": "Vietnamese coffee culture, brewing guides, and specialty coffee insights",
+        "url": "https://gate7.vn/blog/",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Gate 7 Coffee Roastery",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://gate7.vn/images/gate7-logo.png"
+            }
+        },
+        "inLanguage": ["en", "vi"]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header (reuse from main site) -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/" class="logo">
+                <img src="/images/gate7-logo.png" alt="Gate 7 Coffee Roastery" width="120" height="40">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="/" data-en="Home" data-vn="Trang Chủ">Trang Chủ</a></li>
+                <li><a href="/menu" data-en="Menu" data-vn="Thực Đơn">Thực Đơn</a></li>
+                <li><a href="/blog-new" class="active" data-en="Blog" data-vn="Bài Viết">Bài Viết</a></li>
+                <li><a href="/music" data-en="Music" data-vn="Âm Nhạc">Âm Nhạc</a></li>
+            </ul>
+            <button id="languageSwitcher" class="language-btn" aria-label="Switch Language">
+                EN / VI
+            </button>
+        </nav>
+    </header>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+        <h1 data-en="Coffee Stories & Insights" data-vn="Câu Chuyện & Góc Nhìn Về Cà Phê">
+            Câu Chuyện & Góc Nhìn Về Cà Phê
+        </h1>
+        <p data-en="Exploring Vietnamese coffee culture, brewing techniques, and the art behind every cup" 
+           data-vn="Khám phá văn hóa cà phê Việt, kỹ thuật pha chế và nghệ thuật đằng sau mỗi tách cà phê">
+            Khám phá văn hóa cà phê Việt, kỹ thuật pha chế và nghệ thuật đằng sau mỗi tách cà phê
+        </p>
+    </section>
+
+    <!-- Blog Controls -->
+    <section class="blog-controls">
+        <!-- Search -->
+        <div class="blog-search">
+            <input 
+                type="text" 
+                id="blogSearch" 
+                class="search-input"
+                placeholder="Search articles..."
+                data-placeholder-en="Search articles..."
+                data-placeholder-vn="Tìm kiếm bài viết..."
+                aria-label="Search blog articles"
+            >
+        </div>
+
+        <!-- Category Filters -->
+        <div id="categoryFilters" class="category-filters">
+            <button class="category-filter active" data-category="all">
+                <span data-en="All" data-vn="Tất Cả">Tất Cả</span>
+            </button>
+            <!-- Categories loaded dynamically -->
+        </div>
+    </section>
+
+    <!-- Blog Grid -->
+    <main class="blog-container">
+        <!-- Loading State -->
+        <div id="blogLoader" class="blog-loader" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Articles Grid -->
+        <div id="blogGrid" class="blog-grid">
+            <!-- Articles loaded dynamically -->
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination" class="pagination">
+            <!-- Pagination buttons loaded dynamically -->
+        </div>
+    </main>
+
+    <!-- Footer (reuse from main site) -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 data-en="Location" data-vn="Địa Chỉ">Địa Chỉ</h3>
+                <p>162A Nguyễn Trường Tộ<br>Phường Phú Thọ Hòa, TP HCM</p>
+            </div>
+            <div class="footer-section">
+                <h3 data-en="Contact" data-vn="Liên Hệ">Liên Hệ</h3>
+                <p>
+                    <a href="tel:+84971091120">0971 091 120</a><br>
+                    <a href="mailto:hello@gate7.vn">hello@gate7.vn</a>
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3 data-en="Follow Us" data-vn="Theo Dõi">Theo Dõi</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/1CnRHZ9QSz/" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com/gate7.coffee" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                        </svg>
+                    </a>
+                    <a href="https://zalo.me/2485475799709134069" target="_blank" rel="noopener" aria-label="Zalo">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.975 18.627 0 12 0z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Gate 7 Coffee Roastery. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script defer src="/js/config.js"></script>
+    <script defer src="/js/blog-new.js"></script>
+    
+    <!-- Language Switcher (reuse from main site) -->
+    <script>
+        // Language switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = localStorage.getItem('language') || 'vi';
+            switchLanguage(currentLang);
+            
+            document.getElementById('languageSwitcher')?.addEventListener('click', function() {
+                const newLang = currentLang === 'en' ? 'vi' : 'en';
+                switchLanguage(newLang);
+                localStorage.setItem('language', newLang);
+            });
+        });
+
+        function switchLanguage(lang) {
+            document.querySelectorAll('[data-en][data-vn]').forEach(el => {
+                el.textContent = lang === 'en' ? el.dataset.en : el.dataset.vn;
+            });
+            
+            // Update placeholders
+            document.querySelectorAll('[data-placeholder-en][data-placeholder-vn]').forEach(el => {
+                el.placeholder = lang === 'en' ? el.dataset.placeholderEn : el.dataset.placeholderVn;
+            });
+        }
+    </script>
+</body>
+</html>
