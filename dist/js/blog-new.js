@@ -273,7 +273,7 @@ class BlogManager {
 
       return `
         <article class="blog-card-brick">
-          <a href="/blog/article?id=${article.id}" class="card-link">
+          <a href="/blog/article?slug=${article.slug || article.id}" class="card-link">
             ${hasThumbnail ? `
               <div class="card-image">
                 <img 

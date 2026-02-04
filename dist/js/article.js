@@ -15,7 +15,8 @@ class ArticleViewer {
 
   getArticleIdFromUrl() {
     const params = new URLSearchParams(window.location.search);
-    return params.get('id');
+    // Support both slug and id for backward compatibility
+    return params.get('slug') || params.get('id');
   }
 
   async init() {
@@ -52,12 +53,22 @@ class ArticleViewer {
     try {
       this.showLoading(true);
 
-      // Fetch article - simple query first
-      const { data: article, error } = await window.supabaseClient
+      // Fetch article by slug or id
+      // First try slug if it looks like a slug, otherwise try id
+      let query = window.supabaseClient
         .from(CONFIG.tables.articles)
-        .select('*')
-        .eq('id', this.articleId)
-        .single();
+        .select('*');
+      
+      // Determine if input is a slug (contains letters) or id (numeric or UUID)
+      const isSlug = isNaN(this.articleId) && this.articleId.length > 0;
+      
+      if (isSlug) {
+        query = query.eq('slug', this.articleId);
+      } else {
+        query = query.eq('id', this.articleId);
+      }
+
+      const { data: article, error } = await query.single();
 
       if (error) throw error;
 
@@ -105,13 +116,14 @@ class ArticleViewer {
 
     const title = this.article.title || 'Article';
     const content = this.article.content || '';
+    const topicName = this.article.topic_name || '';
     const publishDate = this.article.published_at 
       ? new Date(this.article.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
       : '';
     
     // Calculate reading time
     const readingTime = this.calculateReadingTime(content);
-    const author = this.article.author || 'Gate 7 Coffee';
+    const author = this.article.author_name || this.article.author || 'Gate 7 Coffee';
     
     // Format metadata: "February 4, 2026 • Giang Nguyen • 4 minute read"
     const readTimeText = readingTime === 1 ? 'minute read' : 'minute read';
@@ -127,6 +139,7 @@ class ArticleViewer {
         <div class="article-breadcrumb">
           <a href="/blog">Blog</a>
           <span>→</span>
+          ${topicName ? `<span class="breadcrumb-category">${topicName}</span><span>/</span>` : ''}
           <span>${title}</span>
         </div>
         <h1 class="article-title">${title}</h1>
@@ -227,17 +240,28 @@ class ArticleViewer {
 
   async loadRelatedArticles() {
     try {
-      const { data: related, error } = await window.supabaseClient
+      // Only load related articles if current article has a topic
+      if (!this.article.topic_name) {
+        return;
+      }
+
+      // Build query
+      let query = window.supabaseClient
         .from(CONFIG.tables.articles)
         .select('*')
-        .neq('id', this.articleId)
+        .eq('topic_name', this.article.topic_name)
+        .neq('id', this.article.id)
         .order('published_at', { ascending: false })
         .limit(3);
+
+      const { data: related, error } = await query;
 
       if (error) throw error;
 
       if (related && related.length > 0) {
         this.renderRelatedArticles(related);
+      } else {
+        console.log('No related articles found for topic:', this.article.topic_name);
       }
     } catch (error) {
       console.error('Error loading related articles:', error);
@@ -276,7 +300,7 @@ class ArticleViewer {
 
           return `
             <article class="blog-card-brick">
-              <a href="/blog/article?id=${article.id}" class="card-link">
+              <a href="/blog/article?slug=${article.slug || article.id}" class="card-link">
                 ${imgSrc ? `
                   <div class="card-image">
                     <img src="${imgSrc}" alt="${title}" loading="lazy">

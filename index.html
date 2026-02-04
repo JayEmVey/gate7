@@ -84,6 +84,9 @@
     <!-- Critical styles (Phase 2 optimization ready) -->
     <link rel="stylesheet" href="/css/style-gate7.css" />
 
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <!-- Schema Implementation -->
     <script> fetch('/schema.json').then(response => response.json()).then(data => { const script = document.createElement('script'); script.type = 'application/ld+json'; script.textContent = JSON.stringify(data); document.head.appendChild(script); }).catch(error => console.error('Schema load error:', error)); </script>
 
@@ -618,9 +621,10 @@
     <!-- Load deferred scripts -->
 
     <script src="/lib/marked.js"></script>
+    <script defer src="/js/config.js"></script>
     <script defer src="/js/scroll-animations.js"></script>
     <script defer src="/js/language-switcher.js"></script>
-    <script defer src="/js/blogs-carousel.js"></script>
+    <script defer src="/js/blogs-carousel-supabase.js"></script>
 </body>
 
 </html>

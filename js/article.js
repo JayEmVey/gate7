@@ -242,11 +242,8 @@ class ArticleViewer {
     try {
       // Only load related articles if current article has a topic
       if (!this.article.topic_name) {
-        console.warn('Current article has no topic_name, skipping related articles');
         return;
       }
-
-      console.log('Loading related articles for topic:', this.article.topic_name, 'current article id:', this.article.id);
 
       // Build query
       let query = window.supabaseClient
@@ -260,8 +257,6 @@ class ArticleViewer {
       const { data: related, error } = await query;
 
       if (error) throw error;
-
-      console.log('Related articles found:', related?.length || 0, 'articles:', related);
 
       if (related && related.length > 0) {
         this.renderRelatedArticles(related);
