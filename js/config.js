@@ -1,39 +1,44 @@
 /**
  * Gate 7 Coffee Blog - Configuration
  * Supabase connection and site settings
+ * 
+ * NOTE: Supabase credentials are injected at build time from environment variables
+ * Never commit sensitive keys to git - use .env.local for local development
  */
 
-const CONFIG = {
-  // Supabase Configuration
-  supabase: {
-    url: 'https://klrakmbgjnrlvzkisevh.supabase.co',
-    anonKey: 'sb_publishable_c5nM1m_fHkh2OYfE1nPXcA_Cp5ID2Z_'
-  },
+// Get environment variables injected by Vite at build time
+const getConfig = () => {
+  // For development/direct script loading, fallback to window vars if available
+  const supabaseUrl = globalThis.VITE_SUPABASE_URL || 'https://klrakmbgjnrlvzkisevh.supabase.co';
+  const supabaseKey = globalThis.VITE_SUPABASE_ANON_KEY || 'sb_publishable_c5nM1m_fHkh2OYfE1nPXcA_Cp5ID2Z_';
 
-  // Site Configuration
-  site: {
-    name: 'Gate 7 Coffee Roastery',
-    url: 'https://gate7.vn',
-    blogPath: '/blog-new',
-    defaultLanguage: 'vi',
-    articlesPerPage: 9,
-    excerptLength: 150
-  },
-
-  // SEO Configuration
-  seo: {
-    defaultImage: '/images/gate7-og-image.jpg',
-    twitterHandle: '@gate7coffee',
-    siteName: 'Gate 7 Coffee Blog'
-  },
-
-  // Database Table Names
-  tables: {
-    articles: 'articles_full',  // Update with your actual table name
-    images: 'article_images',
-    categories: 'categories'
-  }
+  return {
+    supabase: {
+      url: supabaseUrl,
+      anonKey: supabaseKey
+    },
+    site: {
+      name: 'Gate 7 Coffee Roastery',
+      url: 'https://gate7.vn',
+      blogPath: '/blog-new',
+      defaultLanguage: 'vi',
+      articlesPerPage: 9,
+      excerptLength: 150
+    },
+    seo: {
+      defaultImage: '/images/gate7-og-image.jpg',
+      twitterHandle: '@gate7coffee',
+      siteName: 'Gate 7 Coffee Blog'
+    },
+    tables: {
+      articles: 'articles_full',
+      images: 'article_images',
+      categories: 'categories'
+    }
+  };
 };
+
+const CONFIG = getConfig();
 
 // Initialize Supabase client when library loads
 function initializeSupabase() {

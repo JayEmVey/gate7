@@ -2,6 +2,10 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   base: '/',
+  define: {
+    'globalThis.VITE_SUPABASE_URL': JSON.stringify(process.env.VITE_SUPABASE_URL),
+    'globalThis.VITE_SUPABASE_ANON_KEY': JSON.stringify(process.env.VITE_SUPABASE_ANON_KEY)
+  },
   build: {
     target: 'ES2020',
     minify: 'terser',
@@ -12,7 +16,9 @@ export default defineConfig({
         menu: './menu/index.html',
         music: './music/index.html',
         hiring: './hiring/index.html',
-        hiringBanner: './hiring/banner.html'
+        hiringBanner: './hiring/banner.html',
+        blog: './blog/index.html',
+        article: './blog/article/index.html'
       },
       output: {
         dir: 'dist',
