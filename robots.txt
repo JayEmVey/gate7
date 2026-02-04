@@ -52,6 +52,10 @@ Allow: /
 User-agent: Twitterbot
 Allow: /
 
+User-agent: *
+Allow: /blog/
+Sitemap: https://gate7.vn/sitemap.xml
+
 # Block aggressive/unwanted bots
 User-agent: MJ12bot
 Disallow: /
