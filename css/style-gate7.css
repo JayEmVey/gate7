@@ -806,8 +806,9 @@ h1 {
 }
 
 .blogs-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 32px;
     padding: 0 50px;
     width: 100%;
@@ -821,8 +822,7 @@ h1 {
     overflow: hidden;
     cursor: pointer;
     transition: all 0.3s var(--animation-timing);
-    display: flex;
-    flex-direction: column;
+    flex: 0 0 33.3333%;
     height: 100%;
     opacity: 0;
     transform: translateY(20px);
@@ -851,10 +851,7 @@ h1 {
 
 .blog-content {
     text-align: left;
-    padding: 20px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+    padding: 15px;
 }
 
 .blog-meta {
@@ -987,6 +984,20 @@ h1 {
     }
 }
 
+/* Styles for screens between 768px and 1024px */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .blogs-container {
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .blog-card{
+        flex: 0 0 45%;
+    }
+
+}
+
 /* Responsive - Tablet */
 @media (max-width: 768px) {
     .latest-blogs {
@@ -994,6 +1005,7 @@ h1 {
     }
 
     .blogs-container {
+        display: grid;
         grid-template-columns: 1fr;
         gap: 20px;
         padding: 0 20px;
