@@ -124,6 +124,7 @@
 }
 
 .category-filters {
+    font-family: var(--font-body);
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -860,6 +861,7 @@
     }
 
     .category-filters {
+        font-family: var(--font-body);
         justify-content: center;
         overflow-x: auto;
         padding-bottom: 1rem;
@@ -871,6 +873,7 @@
 
     .article-container {
         padding: 2rem 1.5rem;
+        max-width: 100%;
     }
 
     .article-title {
@@ -952,6 +955,7 @@
     }
 
     .category-filters {
+        font-family: var(--font-body);
         gap: 0.5rem;
     }
 
@@ -967,6 +971,7 @@
 
     .article-container {
         padding: 1.5rem 1rem;
+        max-width: 100%;
     }
 
     .article-header {
@@ -1119,6 +1124,7 @@
     .related-articles,
     header,
     footer {
+        font-family: var(--font-body);
         display: none;
     }
 

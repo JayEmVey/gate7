@@ -71,26 +71,26 @@
   <!-- Blog Page -->
   <url>
     <loc>https://gate7.vn/blog</loc>
-    <lastmod>2026-01-20</lastmod>
+    <lastmod>2026-02-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <mobile:mobile/>
     <image:image>
       <image:loc>https://gate7.vn/images/logo-only-black.webp</image:loc>
-      <image:title>Gate 7 Coffee Roastery Blogs</image:title>
+      <image:title>Our Blogs - Gate 7 Coffee Roastery</image:title>
     </image:image>
   </url>
 
   <!-- Blog Article Page -->
   <url>
     <loc>https://gate7.vn/blog/article/</loc>
-    <lastmod>2026-01-20</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-02-07</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.7</priority>
     <mobile:mobile/>
     <image:image>
       <image:loc>https://gate7.vn/images/logo-only-black.webp</image:loc>
-      <image:title>Gate 7 Coffee Blog Article</image:title>
+      <image:title>Article - Gate 7 Coffee Roastery Blog</image:title>
     </image:image>
   </url>
   
