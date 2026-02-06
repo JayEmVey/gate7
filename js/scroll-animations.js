@@ -35,7 +35,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 requestAnimationFrame(() => {
                     transitioning = false;
                 });
-            }
+            } 
+        } else {
+            document.querySelector('.header').style.display = 'none';
+            document.querySelector('main').style.display = 'flex';                  
         }
     });
 
