@@ -130,7 +130,7 @@
 
         <!-- Share Buttons -->
         <div class="article-share">
-            <h3 data-en="Share this article" data-vn="Chia sẻ bài viết">Chia sẻ bài viết</h3>
+            <h3 data-en="Share this article" data-vi="Chia sẻ bài viết">Chia sẻ bài viết</h3>
             <div class="share-buttons">
                 <button class="share-btn" data-share="facebook" aria-label="Share on Facebook">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -166,20 +166,20 @@
     <footer class="footer">
         <div class="footer-container">
             <div>
-                <h4 data-en="Address" data-vn="Địa Chỉ">Địa Chỉ</h4>
+                <h4 data-en="Address" data-vi="Địa Chỉ">Địa Chỉ</h4>
                 <p>162A Nguyễn Trường Tộ<br/>Phường Phú Thọ Hòa, TP HCM</p>
                 <p>hello@gate7.vn<br/>(+84) 0971-091-120</p>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.237932965956!2d106.63045397428787!3d10.793080158887879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529a8b3819463%3A0x5aec4a7508322c9d!2sGate%207%20Coffee%20Roastery!5e0!3m2!1sen!2s!4v1758699078419!5m2!1sen!2s" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div>
-                <h4 data-en="Hours" data-vn="Khung Giờ">Khung Giờ</h4>
+                <h4 data-en="Hours" data-vi="Khung Giờ">Khung Giờ</h4>
                 <div class="hours">
-                    <span data-en="Monday – Friday" data-vn="Thứ Hai – Thứ Sáu">Thứ Hai – Thứ Sáu</span><span data-en="7:00 AM – 9:00 PM" data-vn="7:00 sáng – 21:00">7:00 sáng – 21:00</span>
-                    <span data-en="Saturday – Sunday" data-vn="Thứ Bảy – Chủ Nhật">Thứ Bảy – Chủ Nhật</span><span data-en="7:00 AM – 10:00 PM" data-vn="7:00 sáng – 22:00">7:00 sáng – 22:00</span>
+                    <span data-en="Monday – Friday" data-vi="Thứ Hai – Thứ Sáu">Thứ Hai – Thứ Sáu</span><span data-en="7:00 AM – 9:00 PM" data-vi="7:00 sáng – 21:00">7:00 sáng – 21:00</span>
+                    <span data-en="Saturday – Sunday" data-vi="Thứ Bảy – Chủ Nhật">Thứ Bảy – Chủ Nhật</span><span data-en="7:00 AM – 10:00 PM" data-vi="7:00 sáng – 22:00">7:00 sáng – 22:00</span>
                 </div>
             </div>
             <div>
-            <h4 data-en="Follow" data-vn="Theo Dõi Gate Tại">Theo Dõi Gate Tại</h4>
+            <h4 data-en="Follow" data-vi="Theo Dõi Gate Tại">Theo Dõi Gate Tại</h4>
             <div class="social-links">
             <a href="https://instagram.com/gate7.coffee" target="_blank" rel="noopener noreferrer">
             <img src="/images/social-icon-instagram.webp" alt="Instagram" loading="lazy"> Instagram
@@ -195,7 +195,7 @@
 
         </div>
         <div class="footer-bottom">
-            <span data-en="© 2025 Gate 7 Coffee Roastery. All rights reserved." data-vn="© 2025 Gate 7 Coffee Roastery. Tất cả quyền được bảo lưu.">© 2025 Gate 7 Coffee Roastery. Tất cả quyền được bảo lưu.</span>
+            <span data-en="© 2025 Gate 7 Coffee Roastery. All rights reserved." data-vi="© 2025 Gate 7 Coffee Roastery. Tất cả quyền được bảo lưu.">© 2025 Gate 7 Coffee Roastery. Tất cả quyền được bảo lưu.</span>
             <div class="language-switcher">
                 <button class="lang-btn" data-lang="en">EN</button>
                 <span>|</span>
@@ -236,8 +236,18 @@
         }, { passive: false });
 
         // Scroll animations - Can be deferred
-        document.addEventListener('DOMContentLoaded', function() {
-            let isCompacted = false;
+         document.addEventListener('DOMContentLoaded', function() {
+             let isCompacted = false;
+
+              // Immediately show container and footer to prevent disappearing content
+              const container = document.querySelector('.container');
+              const footer = document.querySelector('.footer');
+              
+              // Use requestAnimationFrame to ensure the browser processes the initial state before adding the class
+              requestAnimationFrame(() => {
+                  if (container) container.classList.add('animate-in');
+                  if (footer) footer.classList.add('animate-in');
+              });
 
             // Check if portrait mode
             function isPortraitMode() {
@@ -275,21 +285,6 @@
                 rootMargin: '7px'
             };
 
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-in');
-                        // Don't unobserve - keep observing to maintain state
-                    }
-                });
-            }, observerOptions);
-
-            // Observe elements that should animate on scroll
-            const animateElements = document.querySelectorAll('.container, .footer');
-            animateElements.forEach(el => {
-                observer.observe(el);
-            });
-
             // Recalculate scroll animations on window resize
             window.addEventListener('resize', function() {
                 // Trigger scroll event to recalculate animations based on new viewport dimensions
@@ -297,23 +292,36 @@
             });
         });
 
-        // Language switching functionality
+        // Language switching functionality for article page
         document.addEventListener('DOMContentLoaded', function() {
-            const currentLang = localStorage.getItem('language') || 'vi';
-            switchLanguage(currentLang);
+            const langButtons = document.querySelectorAll('.lang-btn');
             
-            document.getElementById('languageSwitcher')?.addEventListener('click', function() {
-                const newLang = currentLang === 'en' ? 'vi' : 'en';
-                switchLanguage(newLang);
-                localStorage.setItem('language', newLang);
+            langButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.dataset.lang;
+                    
+                    // Get topic slug from article
+                    const topicSlug = articleViewer?.article?.topic_name 
+                        ? articleViewer.article.topic_name
+                            .toLowerCase()
+                            .trim()
+                            .replace(/\s+/g, '-')
+                            .replace(/[^\w-]/g, '')
+                        : '';
+                    
+                    // Navigate to blog page with language and topic params
+                    const langParam = lang === 'vn' ? 'vi' : 'en';
+                    let blogUrl = '/blog/?lang=' + langParam;
+                    
+                    if (topicSlug) {
+                        blogUrl += '&topic=' + topicSlug;
+                    }
+                    
+                    window.location.href = blogUrl;
+                });
             });
         });
-
-        function switchLanguage(lang) {
-            document.querySelectorAll('[data-en][data-vn]').forEach(el => {
-                el.textContent = lang === 'en' ? el.dataset.en : el.dataset.vn;
-            });
-        }
     </script>
 </body>
 </html>

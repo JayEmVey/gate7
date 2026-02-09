@@ -1,4 +1,4 @@
-// Language switcher - Enhanced with proper synchronization
+// Language switcher - Consistent use of 'vi' (language code) throughout
 document.addEventListener('DOMContentLoaded', function() {
     const langBtns = document.querySelectorAll('.lang-btn');
     
@@ -6,23 +6,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const urlLang = urlParams.get('lang');
     
-    let currentLang = 'vn'; // Default to Vietnamese (primary language)
+    let currentLang = 'vi'; // Default to Vietnamese (ISO 639-1 language code)
+    
+    // Map button data-lang values to internal language codes
+    const langMap = {
+        'vn': 'vi',  // Button shows 'vn' (country code) but internally use 'vi'
+        'en': 'en',  // English remains 'en'
+        'vi': 'vi'   // Support 'vi' from URL params
+    };
 
     function updateLanguageContent(lang) {
-        // Normalize language code (vi -> vn for internal consistency)
-        if (lang === 'vi') {
-            lang = 'vn';
-        }
+        // Normalize language code using map
+        lang = langMap[lang] || 'vi';
         
         // Validate language code
-        if (!['en', 'vn'].includes(lang)) {
-            console.warn(`Invalid language: ${lang}, defaulting to vn`);
-            lang = 'vn';
+        if (!['en', 'vi'].includes(lang)) {
+            console.warn(`Invalid language: ${lang}, defaulting to vi`);
+            lang = 'vi';
         }
 
-        // Update button states
+        // Update button states (match against data-lang attribute values)
         langBtns.forEach(btn => {
-            if (btn.dataset.lang === lang) {
+            const btnLang = langMap[btn.dataset.lang] || btn.dataset.lang;
+            if (btnLang === lang) {
                 btn.classList.add('active');
             } else {
                 btn.classList.remove('active');
@@ -30,11 +36,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Update all translatable elements with data attributes
-        const elements = document.querySelectorAll('[data-en][data-vn]');
+        const elements = document.querySelectorAll('[data-en][data-vi]');
         elements.forEach(el => {
             const translations = {
                 'en': el.getAttribute('data-en'),
-                'vn': el.getAttribute('data-vn')
+                'vi': el.getAttribute('data-vi') || el.getAttribute('data-vn') // Support legacy data-vn
             };
             
             if (translations[lang]) {
@@ -46,19 +52,21 @@ document.addEventListener('DOMContentLoaded', function() {
         currentLang = lang;
         localStorage.setItem('selectedLanguage', lang);
         
-        // Optional: Add language attribute to HTML element for CSS targeting
+        // Set language attribute on HTML element (use 'vi' not 'vn')
         document.documentElement.lang = lang;
     }
 
     // Main switchLanguage function that handles both URL and content updates
     function switchLanguage(lang) {
+        // Normalize incoming language code
+        lang = langMap[lang] || lang;
+        
         // Update content
         updateLanguageContent(lang);
         
         // Update URL with lang parameter while preserving other params
         const urlParams = new URLSearchParams(window.location.search);
-        const langParam = lang === 'vn' ? 'vi' : 'en';
-        urlParams.set('lang', langParam);
+        urlParams.set('lang', lang); // Use 'vi' in URLs (not 'vn')
         
         const newUrl = window.location.pathname + '?' + urlParams.toString();
         window.history.replaceState({}, '', newUrl);
@@ -68,13 +76,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Load language: prioritize URL parameter, then saved preference, then default
-    const savedLang = localStorage.getItem('selectedLanguage') || 'vn';
+    const savedLang = localStorage.getItem('selectedLanguage') || 'vi';
     let langToUse = urlLang || savedLang;
     
-    // Normalize language code if URL has ?lang=vi
-    if (langToUse === 'vi') {
-        langToUse = 'vn';
-    }
+    // Normalize language code
+    langToUse = langMap[langToUse] || langToUse;
     
     updateLanguageContent(langToUse);
 
@@ -82,8 +88,8 @@ document.addEventListener('DOMContentLoaded', function() {
     langBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            const lang = btn.dataset.lang;
-            switchLanguage(lang);
+            const btnLang = btn.dataset.lang; // Gets 'vn' or 'en'
+            switchLanguage(btnLang);
         });
     });
 

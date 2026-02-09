@@ -5,18 +5,50 @@
 
 class BlogManager {
     constructor() {
-        // Use 'selectedLanguage' from localStorage (set by language-switcher.js)
-        // Normalize: convert 'en' to 'en', 'vi' or 'vn' to 'vi' for Supabase query
-        const savedLang = localStorage.getItem('selectedLanguage') || 'vn';
-        this.currentLanguage = (savedLang === 'en') ? 'en' : 'vi';
-        this.currentCategory = 'all';
-        this.currentPage = 1;
-        this.articlesPerPage = CONFIG.site.articlesPerPage;
-        this.allArticles = [];
-        this.filteredArticles = [];
+         // Use 'selectedLanguage' from localStorage (set by language-switcher.js)
+         // Normalize: convert 'en' to 'en', 'vn' to 'vi', default to 'vi' for Vietnamese
+         const savedLang = localStorage.getItem('selectedLanguage') || 'vi';
+         this.currentLanguage = (savedLang === 'en') ? 'en' : 'vi';
+         this.currentCategory = 'all';
+         this.currentPage = 1;
+         this.articlesPerPage = CONFIG.site.articlesPerPage;
+         this.allArticles = [];
+         this.filteredArticles = [];
 
-        this.init();
-    }
+         this.init();
+     }
+
+     getTopicFromUrl() {
+         const params = new URLSearchParams(window.location.search);
+         const topicSlug = params.get('topic');
+         if (!topicSlug) return null;
+         
+         // Convert slug back to original topic name
+         return this.slugToTopic(topicSlug);
+     }
+
+     slugToTopic(slug) {
+         // Find matching topic in articles by comparing slugs
+         // This will be set after articles are loaded
+         if (!this.allArticles || this.allArticles.length === 0) {
+             return null;
+         }
+         
+         const topic = this.allArticles
+             .map(a => a.topic_name)
+             .filter(Boolean)
+             .find(topicName => this.topicToSlug(topicName) === slug);
+         
+         return topic || null;
+     }
+
+     topicToSlug(topicName) {
+         return topicName
+             .toLowerCase()
+             .trim()
+             .replace(/\s+/g, '-')
+             .replace(/[^\w-]/g, '');
+     }
 
     async init() {
         // Wait for Supabase client to be initialized
@@ -24,21 +56,33 @@ class BlogManager {
         const maxRetries = 100; // 10 seconds
 
         const waitForClient = async () => {
-            if (window.supabaseClient) {
-                console.log('BlogManager: Supabase client ready');
-                this.setupEventListeners();
-                await this.loadArticles();
-                this.renderCategories();
-                this.renderArticles();
-            } else if (retries < maxRetries) {
-                retries++;
-                console.log(`BlogManager: Waiting for Supabase client (${retries}/${maxRetries})`);
-                setTimeout(waitForClient, 100);
-            } else {
-                console.error('BlogManager: Supabase client timeout');
-                this.showError('Database connection not initialized');
-            }
-        };
+             if (window.supabaseClient) {
+                 console.log('BlogManager: Supabase client ready');
+                 this.setupEventListeners();
+                 await this.loadArticles();
+                 
+                 // Re-check URL topic parameter after articles are loaded
+                 const urlTopic = this.getTopicFromUrl();
+                 if (urlTopic) {
+                     this.currentCategory = urlTopic;
+                 }
+                 
+                 this.renderCategories();
+                 // Apply category filter if topic was in URL
+                 if (this.currentCategory !== 'all') {
+                     this.filterByCategory(this.currentCategory);
+                 } else {
+                     this.renderArticles();
+                 }
+             } else if (retries < maxRetries) {
+                 retries++;
+                 console.log(`BlogManager: Waiting for Supabase client (${retries}/${maxRetries})`);
+                 setTimeout(waitForClient, 100);
+             } else {
+                 console.error('BlogManager: Supabase client timeout');
+                 this.showError('Database connection not initialized');
+             }
+         };
 
         await waitForClient();
     }

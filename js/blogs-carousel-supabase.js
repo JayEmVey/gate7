@@ -35,12 +35,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function getCurrentLanguage() {
         const urlParams = new URLSearchParams(window.location.search);
         const urlLang = urlParams.get('lang');
-        const savedLang = localStorage.getItem('selectedLanguage') || 'vn';
+        const savedLang = localStorage.getItem('selectedLanguage') || 'vi';
         
         let langToUse = urlLang || savedLang;
-        // Normalize language code (vi -> vn for display, but vi for Supabase query)
-        if (langToUse === 'vi') {
-            langToUse = 'vn';
+        // Normalize language code to use 'vi' consistently (ISO 639-1)
+        if (langToUse === 'vn') {
+            langToUse = 'vi';
         }
         
         return langToUse;
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
             lang = getCurrentLanguage();
         }
         
-        if (lang === 'vn' || lang === 'vi') {
+        if (lang === 'vi') {
             if (minutes === 1) {
                 return '1 phút đọc';
             }
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error('Supabase client not initialized');
             }
             
-            const currentLang = getCurrentLanguage() === 'vn' ? 'vi' : 'en';
+            const currentLang = getCurrentLanguage() === 'vi' ? 'vi' : 'en';
             
             // Fetch latest articles from Supabase
             const { data: articles, error } = await window.supabaseClient

@@ -123,7 +123,7 @@
     <div class="container">
         <div class="content">
             <!-- Listing Page -->
-            <h1 class="section-title" data-en="Our Blogs" data-vn="Bài viết">Bài viết</h1>
+            <h1 class="section-title" data-en="Our Blogs" data-vi="Bài viết">Bài viết</h1>
 
             <!-- Blog Controls -->
             <section class="blog-controls">
@@ -137,7 +137,7 @@
                 <!-- Category Filters -->
                 <div id="categoryFilters" class="category-filters">
                     <button class="category-filter active" data-category="all">
-                        <span data-en="All" data-vn="Tất Cả">Tất Cả</span>
+                        <span data-en="All" data-vi="Tất Cả">Tất Cả</span>
                     </button>
                     <!-- Categories loaded dynamically -->
                 </div>
@@ -177,7 +177,7 @@
     <footer class="footer">
         <div class="footer-container">
             <div>
-                <h4 data-en="Address" data-vn="Địa Chỉ">Địa Chỉ</h4>
+                <h4 data-en="Address" data-vi="Địa Chỉ">Địa Chỉ</h4>
                 <p>162A Nguyễn Trường Tộ<br />Phường Phú Thọ Hòa, TP HCM</p>
                 <p>hello@gate7.vn<br />(+84) 0971-091-120</p>
                 <iframe
@@ -185,16 +185,16 @@
                     allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div>
-                <h4 data-en="Hours" data-vn="Khung Giờ">Khung Giờ</h4>
+                <h4 data-en="Hours" data-vi="Khung Giờ">Khung Giờ</h4>
                 <div class="hours">
-                    <span data-en="Monday – Friday" data-vn="Thứ Hai – Thứ Sáu">Thứ Hai – Thứ Sáu</span><span
-                        data-en="7:00 AM – 9:00 PM" data-vn="7:00 sáng – 21:00">7:00 sáng – 21:00</span>
-                    <span data-en="Saturday – Sunday" data-vn="Thứ Bảy – Chủ Nhật">Thứ Bảy – Chủ Nhật</span><span
-                        data-en="7:00 AM – 10:00 PM" data-vn="7:00 sáng – 22:00">7:00 sáng – 22:00</span>
+                    <span data-en="Monday – Friday" data-vi="Thứ Hai – Thứ Sáu">Thứ Hai – Thứ Sáu</span><span
+                        data-en="7:00 AM – 9:00 PM" data-vi="7:00 sáng – 21:00">7:00 sáng – 21:00</span>
+                    <span data-en="Saturday – Sunday" data-vi="Thứ Bảy – Chủ Nhật">Thứ Bảy – Chủ Nhật</span><span
+                        data-en="7:00 AM – 10:00 PM" data-vi="7:00 sáng – 22:00">7:00 sáng – 22:00</span>
                 </div>
             </div>
             <div>
-                <h4 data-en="Follow" data-vn="Theo Dõi Gate Tại">Theo Dõi Gate Tại</h4>
+                <h4 data-en="Follow" data-vi="Theo Dõi Gate Tại">Theo Dõi Gate Tại</h4>
                 <div class="social-links">
                     <a href="https://instagram.com/gate7.coffee" target="_blank" rel="noopener noreferrer">
                         <img src="/images/social-icon-instagram.webp" alt="Instagram" loading="lazy"> Instagram
@@ -211,7 +211,7 @@
         </div>
         <div class="footer-bottom">
             <span data-en="© 2025 Gate 7 Coffee Roastery. All rights reserved."
-                data-vn="© 2025 Gate 7 Coffee Roastery. Tất cả quyền được bảo lưu.">© 2025 Gate 7 Coffee Roastery. Tất
+                data-vi="© 2025 Gate 7 Coffee Roastery. Tất cả quyền được bảo lưu.">© 2025 Gate 7 Coffee Roastery. Tất
                 cả quyền được bảo lưu.</span>
             <div class="language-switcher">
                 <button class="lang-btn" data-lang="en">EN</button>
@@ -220,6 +220,11 @@
             </div>
         </div>
     </footer>
+
+    <!-- Load deferred scripts -->
+    <script defer src="/js/config.js"></script>
+    <script defer src="/js/blog-new.js"></script>
+    <script defer src="/js/language-switcher.js"></script>
 
     <!-- Critical scripts (inline for immediate execution) -->
     <script>
@@ -294,11 +299,6 @@
             });
         });
     </script>
-
-    <!-- Load deferred scripts -->
-    <script defer src="/js/config.js"></script>
-    <script defer src="/js/blog-new.js"></script>
-    <script defer src="/js/language-switcher.js"></script>
 </body>
 
 </html>

@@ -27,13 +27,13 @@ function formatReadingTime(minutes, lang = null) {
     // Get language if not provided
     if (!lang) {
         const urlParams = new URLSearchParams(window.location.search);
-        let langToUse = urlParams.get('lang') || localStorage.getItem('selectedLanguage') || 'vn';
-        if (langToUse === 'vi') langToUse = 'vn';
+        let langToUse = urlParams.get('lang') || localStorage.getItem('selectedLanguage') || 'vi';
+        if (langToUse === 'vn') langToUse = 'vi';
         lang = langToUse;
     }
     
     // Format based on language
-    if (lang === 'vn' || lang === 'vi') {
+    if (lang === 'vi') {
         if (minutes === 1) {
             return '1 phút đọc';
         }
@@ -110,12 +110,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function getCurrentLanguage() {
         const urlParams = new URLSearchParams(window.location.search);
         const urlLang = urlParams.get('lang');
-        const savedLang = localStorage.getItem('selectedLanguage') || 'vn';
+        const savedLang = localStorage.getItem('selectedLanguage') || 'vi';
         
         let langToUse = urlLang || savedLang;
-        // Normalize language code (vi -> vn for internal consistency)
-        if (langToUse === 'vi') {
-            langToUse = 'vn';
+        // Normalize language code to use 'vi' consistently
+        if (langToUse === 'vn') {
+            langToUse = 'vi';
         }
         
         return langToUse;
@@ -127,8 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const match = filename.match(/^\[(Vi|En)\]/i);
         if (match) {
             const langCode = match[1].toLowerCase();
-            // Normalize to internal format: vi -> vn, en -> en
-            return langCode === 'vi' ? 'vn' : 'en';
+            // Normalize to internal format: vi (consistent with ISO 639-1)
+            return langCode === 'vi' ? 'vi' : 'en';
         }
         return null; // No language identifier found
     }
@@ -265,8 +265,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Get current language
         const urlParams = new URLSearchParams(window.location.search);
-        let currentLanguage = urlParams.get('lang') || localStorage.getItem('selectedLanguage') || 'vn';
-        if (currentLanguage === 'vi') currentLanguage = 'vn';
+        let currentLanguage = urlParams.get('lang') || localStorage.getItem('selectedLanguage') || 'vi';
+        if (currentLanguage === 'vn') currentLanguage = 'vi';
         
         // For responsive grid layout, show all cards
         blogs.forEach((blog, index) => {

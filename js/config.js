@@ -20,9 +20,9 @@ const getConfig = () => {
     site: {
       name: 'Gate 7 Coffee Roastery',
       url: 'https://gate7.vn',
-      blogPath: '/blog-new',
+      blogPath: '/blog',
       defaultLanguage: 'vi',
-      articlesPerPage: 9,
+      articlesPerPage: 7,
       excerptLength: 150
     },
     seo: {

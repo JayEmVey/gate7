@@ -5,11 +5,14 @@
 
 class ArticleViewer {
   constructor() {
-    this.currentLanguage = localStorage.getItem('language') || CONFIG.site.defaultLanguage;
+    // Get language from localStorage with proper validation
+    const storedLanguage = localStorage.getItem('selectedLanguage');
+    this.currentLanguage = (storedLanguage === 'vi' || storedLanguage === 'en') ? storedLanguage : 'vi';
     this.articleId = this.getArticleIdFromUrl();
     this.article = null;
     this.imageMap = new Map(); // Map of image references to base64 data
     
+    console.log('Initial language:', this.currentLanguage);
     this.init();
   }
 
@@ -42,6 +45,7 @@ class ArticleViewer {
         this.currentLanguage = this.currentLanguage === 'en' ? 'vi' : 'en';
         localStorage.setItem('language', this.currentLanguage);
         this.renderArticle();
+        this.loadRelatedArticles();
       });
     }
 
@@ -81,7 +85,7 @@ class ArticleViewer {
       const { data: images, error: imagesError } = await window.supabaseClient
         .from(CONFIG.tables.images)
         .select('*')
-        .eq('article_id', this.articleId)
+        .eq('article_id', article.id)
         .order('position', { ascending: true });
 
       if (imagesError) {
@@ -103,12 +107,38 @@ class ArticleViewer {
     }
   }
 
+  formatImageData(imageData) {
+    if (!imageData) return null;
+    
+    // Skip external URLs (CORS issue)
+    if (imageData.startsWith('http://') || imageData.startsWith('https://')) {
+      console.warn('Skipping external image URL due to CORS restrictions:', imageData.substring(0, 50));
+      return null;
+    }
+    
+    // Already formatted as data URI
+    if (imageData.startsWith('data:')) {
+      return imageData;
+    }
+    
+    // Assume base64 string, add data URI prefix
+    return `data:image/jpeg;base64,${imageData}`;
+  }
+
   calculateReadingTime(text) {
     // Average reading speed: 200 words per minute
     const wordsPerMinute = 200;
     const words = text.trim().split(/\s+/).length;
     const minutes = Math.ceil(words / wordsPerMinute);
     return Math.max(1, minutes); // Minimum 1 minute
+  }
+
+  topicToSlug(topicName) {
+    return topicName
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]/g, '');
   }
 
   renderArticle() {
@@ -135,12 +165,12 @@ class ArticleViewer {
     // Render article header
     const headerContainer = document.getElementById('articleHeader');
     if (headerContainer) {
+      const topicSlug = topicName ? this.topicToSlug(topicName) : '';
       headerContainer.innerHTML = `
         <div class="article-breadcrumb">
           <a href="/blog">Blog</a>
           <span>→</span>
-          ${topicName ? `<span class="breadcrumb-category">${topicName}</span><span>/</span>` : ''}
-          <span>${title}</span>
+          ${topicName ? `<a href="/blog?topic=${topicSlug}" class="breadcrumb-category">${topicName}</a>` : ''}
         </div>
         <h1 class="article-title">${title}</h1>
         <div class="article-meta">
@@ -154,13 +184,16 @@ class ArticleViewer {
     if (featuredImageContainer && this.article.article_images && this.article.article_images.length > 0) {
       const featuredImg = this.article.article_images[0];
       const altText = featuredImg.alt_text || 'Featured image';
-      featuredImageContainer.innerHTML = `
-        <img 
-          src="data:image/jpeg;base64,${featuredImg.image_data}" 
-          alt="${altText}"
-          class="featured-image"
-        >
-      `;
+      const imgSrc = this.formatImageData(featuredImg.image_data);
+      if (imgSrc) {
+        featuredImageContainer.innerHTML = `
+          <img 
+            src="${imgSrc}" 
+            alt="${altText}"
+            class="featured-image"
+          >
+        `;
+      }
     }
 
     // Render article content
@@ -180,17 +213,18 @@ class ArticleViewer {
       // Skip first image (it's the featured image)
       this.article.article_images.slice(1).forEach((img, index) => {
         const altText = img.alt_text || 'Article image';
-        const base64Data = img.image_data.startsWith('data:') 
-          ? img.image_data 
-          : `data:image/jpeg;base64,${img.image_data}`;
+        const imgSrc = this.formatImageData(img.image_data);
         
-        this.imageMap.set(
-          `{{image_${index + 1}}}`,
-          {
-            src: base64Data,
-            alt: altText
-          }
-        );
+        if (imgSrc) {
+          console.log('image source: ',imgSrc)
+          this.imageMap.set(
+            `{{image_${index + 1}}}`,
+            {
+              src: imgSrc,
+              alt: altText
+            }
+          );
+        }
       });
     }
 
@@ -240,21 +274,30 @@ class ArticleViewer {
 
   async loadRelatedArticles() {
     try {
-      // Only load related articles if current article has a topic
-      if (!this.article.topic_name) {
+      // Only load related articles if current article has a topic_id
+      if (!this.article.topic_id) {
         return;
       }
 
-      // Build query
+      // Build query using topic_id from article data
+      console.log('Related articles query params:', {
+        topic_id: this.article.topic_id,
+        language: this.currentLanguage,
+        article_id: this.article.id
+      });
+
       let query = window.supabaseClient
         .from(CONFIG.tables.articles)
         .select('*')
-        .eq('topic_name', this.article.topic_name)
+        .eq('topic_id', this.article.topic_id)
+        .eq('language', this.currentLanguage)
         .neq('id', this.article.id)
         .order('published_at', { ascending: false })
         .limit(3);
 
       const { data: related, error } = await query;
+
+      console.log('Related articles result:', related);
 
       if (error) throw error;
 
@@ -281,7 +324,7 @@ class ArticleViewer {
         ${articles.map(article => {
           const title = article.title || 'Article';
           const imgSrc = article.thumbnail_base64 && article.thumbnail_base64.length > 0
-            ? (article.thumbnail_base64.startsWith('data:') ? article.thumbnail_base64 : `data:image/jpeg;base64,${article.thumbnail_base64}`)
+            ? this.formatImageData(article.thumbnail_base64)
             : '';
           
           // Format published date
@@ -293,7 +336,7 @@ class ArticleViewer {
             : '';
           
           // Get author name
-          const author = article.author_name || 'Gate 7';
+          const author = article.author_name || 'Gate 7 Coffee Roastery';
           
           // Create excerpt
           const excerpt = this.createExcerpt(article);
@@ -344,7 +387,7 @@ class ArticleViewer {
     
     // Get featured image for OG tags
     const ogImage = this.article.thumbnail_base64 && this.article.thumbnail_base64.length > 0
-      ? (this.article.thumbnail_base64.startsWith('data:') ? this.article.thumbnail_base64 : `data:image/jpeg;base64,${this.article.thumbnail_base64}`)
+      ? (this.formatImageData(this.article.thumbnail_base64) || CONFIG.seo.defaultImage)
       : CONFIG.seo.defaultImage;
 
     // Update meta tags
