@@ -282,7 +282,7 @@ class BlogManager {
 
       const buttonsHTML = `
         <button class="category-filter active" data-category="all">
-          ${this.currentLanguage === 'en' ? 'All' : 'T?t C?'}
+          ${this.currentLanguage === 'en' ? 'All' : 'Tất Cả'}
         </button>
         ${categories.map(cat => `
           <button class="category-filter" data-category="${cat}">
@@ -313,7 +313,7 @@ class BlogManager {
         if (this.articles.length === 0) {
             const noArticlesMsg = this.currentLanguage === 'en'
                 ? 'No articles found.'
-                : 'Kh?ng t?m th?y b?i vi?t n?o.';
+                : 'Không tìm thấy bài viết nào.';
             container.innerHTML = `
         <div class="no-articles">
           <p>${noArticlesMsg}</p>
