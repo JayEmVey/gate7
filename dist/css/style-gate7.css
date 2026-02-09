@@ -869,18 +869,12 @@ h1 {
 }
 
 .blog-date {
-    color: var(--accent-color);
+    color: var(--text-secondary);
     font-weight: 500;
 }
 
-.blog-date::after {
-    content: '|';
-    margin-left: 16px;
-    color: #555555;
-}
-
 .blog-topic {
-    color: #888888;
+    color: var(--text-muted);
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -894,12 +888,12 @@ h1 {
 }
 
 .blog-author {
-    color: #888888;
+    color: var(--text-secondary);
     font-weight: 400;
 }
 
 .blog-title {
-    color: var(--text-color);
+    color: var(--accent-color);
     font-weight: 700;
     font-size: 20px;
     line-height: 1.4;
