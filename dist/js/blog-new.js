@@ -12,8 +12,11 @@ class BlogManager {
          this.currentCategory = 'all';
          this.currentPage = 1;
          this.articlesPerPage = CONFIG.site.articlesPerPage;
-         this.allArticles = [];
-         this.filteredArticles = [];
+         this.articles = [];
+         this.totalArticles = 0;
+         this.categories = [];
+         this.searchTerm = '';
+         this.searchDebounceId = null;
 
          this.init();
      }
@@ -30,12 +33,11 @@ class BlogManager {
      slugToTopic(slug) {
          // Find matching topic in articles by comparing slugs
          // This will be set after articles are loaded
-         if (!this.allArticles || this.allArticles.length === 0) {
+         if (!this.categories || this.categories.length === 0) {
              return null;
          }
          
-         const topic = this.allArticles
-             .map(a => a.topic_name)
+         const topic = this.categories
              .filter(Boolean)
              .find(topicName => this.topicToSlug(topicName) === slug);
          
@@ -59,7 +61,7 @@ class BlogManager {
              if (window.supabaseClient) {
                  console.log('BlogManager: Supabase client ready');
                  this.setupEventListeners();
-                 await this.loadArticles();
+                 await this.loadCategories();
                  
                  // Re-check URL topic parameter after articles are loaded
                  const urlTopic = this.getTopicFromUrl();
@@ -67,13 +69,9 @@ class BlogManager {
                      this.currentCategory = urlTopic;
                  }
                  
+                 await this.loadArticles();
                  this.renderCategories();
-                 // Apply category filter if topic was in URL
-                 if (this.currentCategory !== 'all') {
-                     this.filterByCategory(this.currentCategory);
-                 } else {
-                     this.renderArticles();
-                 }
+                 this.renderArticles();
              } else if (retries < maxRetries) {
                  retries++;
                  console.log(`BlogManager: Waiting for Supabase client (${retries}/${maxRetries})`);
@@ -104,7 +102,13 @@ class BlogManager {
             if (newLang !== this.currentLanguage) {
                 this.currentLanguage = newLang;
                 this.currentPage = 1;
-                this.loadArticles().then(() => {
+                this.currentCategory = 'all';
+                this.searchTerm = '';
+                const searchInput = document.getElementById('blogSearch');
+                if (searchInput) searchInput.value = '';
+                this.loadCategories().then(() => {
+                    return this.loadArticles();
+                }).then(() => {
                     this.renderCategories();
                     this.renderArticles();
                 });
@@ -130,25 +134,55 @@ class BlogManager {
         }
     }
 
+    async loadCategories() {
+      try {
+        const { data, error } = await window.supabaseClient
+          .from(CONFIG.tables.articles)
+          .select('topic_name')
+          .eq('language', this.currentLanguage)
+          .not('topic_name', 'is', null)
+          .order('topic_name', { ascending: true });
+
+        if (error) throw error;
+
+        this.categories = [...new Set((data || []).map(row => row.topic_name).filter(Boolean))];
+      } catch (error) {
+        console.error('Error loading categories:', error);
+        this.categories = [];
+      }
+    }
+
     async loadArticles() {
       try {
         this.showLoading(true);
 
-        // Fetch articles from articles_full table
-        const { data: articles, error } = await window.supabaseClient
+        const startIndex = (this.currentPage - 1) * this.articlesPerPage;
+        const endIndex = startIndex + this.articlesPerPage - 1;
+
+        let query = window.supabaseClient
           .from(CONFIG.tables.articles)
-          .select('*')
+          .select('id,title,slug,excerpt,author_name,topic_name,language,published_at,thumbnail_base64', { count: 'exact' })
           .eq('language', this.currentLanguage)
-          .order('published_at', { ascending: false });
+          .order('published_at', { ascending: false })
+          .range(startIndex, endIndex);
+
+        if (this.currentCategory !== 'all') {
+          query = query.eq('topic_name', this.currentCategory);
+        }
+
+        if (this.searchTerm) {
+          const searchValue = this.searchTerm.replace(/%/g, '\\%').replace(/_/g, '\\_');
+          query = query.or(`title.ilike.%${searchValue}%,excerpt.ilike.%${searchValue}%`);
+        }
+
+        const { data: articles, error, count } = await query;
 
         if (error) throw error;
 
-        console.log('Total articles loaded for language:', this.currentLanguage, articles?.length);
-        console.log('First article columns:', Object.keys(articles[0] || {}));
-        console.log('First article data:', articles[0]);
+        this.totalArticles = count || 0;
 
         // Process articles
-        this.allArticles = articles.map(article => {
+        this.articles = (articles || []).map(article => {
           // Extract featured image from thumbnail_base64 column
           let featuredImage = {
             src: '/images/gate7-default-blog.jpg',
@@ -169,10 +203,6 @@ class BlogManager {
             excerpt: this.createExcerpt(article)
           };
         });
-
-        this.filteredArticles = [...this.allArticles];
-        this.renderCategories();
-        console.log('Articles processed:', this.allArticles.length);
         
       } catch (error) {
         console.error('Error loading articles:', error);
@@ -201,7 +231,7 @@ class BlogManager {
 
     createExcerpt(article) {
       // Use excerpt column (already language-specific from the query)
-      const content = article.excerpt || article.content || '';
+      const content = article.excerpt || '';
       
       if (!content) return '';
       
@@ -223,45 +253,36 @@ class BlogManager {
         btn.classList.toggle('active', btn.dataset.category === category);
       });
 
-      if (category === 'all') {
-        this.filteredArticles = [...this.allArticles];
-      } else {
-        this.filteredArticles = this.allArticles.filter(article => 
-          article.topic_name === category
-        );
-      }
-
-      this.renderArticles();
+      this.loadArticles().then(() => {
+        this.renderArticles();
+      });
     }
 
     searchArticles(query) {
-      const searchTerm = query.toLowerCase().trim();
-      
-      if (!searchTerm) {
-        this.filteredArticles = [...this.allArticles];
-      } else {
-        this.filteredArticles = this.allArticles.filter(article => {
-          const title = article.title || '';
-          const content = article.excerpt || article.content || '';
-          
-          return title.toLowerCase().includes(searchTerm) ||
-                 content.toLowerCase().includes(searchTerm);
-        });
+      const nextTerm = query.toLowerCase().trim();
+      this.searchTerm = nextTerm;
+      this.currentPage = 1;
+
+      if (this.searchDebounceId) {
+        clearTimeout(this.searchDebounceId);
       }
 
-      this.currentPage = 1;
-      this.renderArticles();
+      this.searchDebounceId = setTimeout(() => {
+        this.loadArticles().then(() => {
+          this.renderArticles();
+        });
+      }, 250);
     }
 
     renderCategories() {
-      const categories = [...new Set(this.allArticles.map(a => a.topic_name).filter(Boolean))];
+      const categories = this.categories || [];
       const categoryContainer = document.getElementById('categoryFilters');
       
       if (!categoryContainer) return;
 
       const buttonsHTML = `
         <button class="category-filter active" data-category="all">
-          ${this.currentLanguage === 'en' ? 'All' : 'Tất Cả'}
+          ${this.currentLanguage === 'en' ? 'All' : 'T?t C?'}
         </button>
         ${categories.map(cat => `
           <button class="category-filter" data-category="${cat}">
@@ -278,30 +299,31 @@ class BlogManager {
           this.filterByCategory(e.target.dataset.category);
         });
       });
+
+      // Sync active button state
+      categoryContainer.querySelectorAll('.category-filter').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.category === this.currentCategory);
+      });
     }
 
     renderArticles() {
         const container = document.getElementById('blogGrid');
         if (!container) return;
 
-        if (this.filteredArticles.length === 0) {
+        if (this.articles.length === 0) {
             const noArticlesMsg = this.currentLanguage === 'en'
                 ? 'No articles found.'
-                : 'Không tìm thấy bài viết nào.';
+                : 'Kh?ng t?m th?y b?i vi?t n?o.';
             container.innerHTML = `
         <div class="no-articles">
           <p>${noArticlesMsg}</p>
         </div>
       `;
+            this.renderPagination();
             return;
         }
 
-        // Pagination
-        const startIndex = (this.currentPage - 1) * this.articlesPerPage;
-        const endIndex = startIndex + this.articlesPerPage;
-        const articlesToShow = this.filteredArticles.slice(startIndex, endIndex);
-
-        container.innerHTML = articlesToShow.map(article => this.createArticleCard(article)).join('');
+        container.innerHTML = this.articles.map(article => this.createArticleCard(article)).join('');
         this.renderPagination();
     }
 
@@ -348,7 +370,7 @@ class BlogManager {
         const paginationContainer = document.getElementById('pagination');
         if (!paginationContainer) return;
 
-        const totalPages = Math.ceil(this.filteredArticles.length / this.articlesPerPage);
+        const totalPages = Math.ceil(this.totalArticles / this.articlesPerPage);
 
         if (totalPages <= 1) {
             paginationContainer.innerHTML = '';
@@ -400,8 +422,10 @@ class BlogManager {
 
     goToPage(pageNum) {
         this.currentPage = pageNum;
-        this.renderArticles();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        this.loadArticles().then(() => {
+          this.renderArticles();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     }
 
     showLoading(show) {
