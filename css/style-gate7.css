@@ -824,16 +824,9 @@ h1 {
     justify-content: flex-start;
     transition: transform 0.45s var(--animation-timing);
     will-change: transform;
-    cursor: grab;
-    touch-action: pan-y;
-    user-select: none;
-    -webkit-user-select: none;
+    cursor: default;
 }
 
-.blogs-container.is-dragging {
-    cursor: grabbing;
-    transition: none;
-}
 
 .blog-card {
     flex: 0 0 calc((100% - 64px) / 3);

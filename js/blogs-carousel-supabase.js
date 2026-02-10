@@ -18,14 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     let blogs = [];
     let cardsPerView = 3;
-    let isDragging = false;
-    let dragMoved = false;
-    let suppressClick = false;
     let startX = 0;
     let startOffset = 0;
     let currentOffset = 0;
-    let activePointerId = null;
-    let activePointerType = null;
     
     // Determine cards per view based on screen size
     function updateCardsPerView() {
@@ -293,88 +288,9 @@ document.addEventListener('DOMContentLoaded', function() {
         blogsContainer.style.transform = `translateX(${currentOffset}px)`;
     }
 
-    function onPointerDown(event) {
-        if (event.pointerType === 'mouse') return;
-        if (event.target.closest('a')) return;
-
-        const metrics = getCarouselMetrics();
-        if (!metrics) return;
-
-        isDragging = true;
-        dragMoved = false;
-        suppressClick = false;
-        startX = event.clientX;
-        startOffset = currentOffset;
-        activePointerId = event.pointerId;
-        activePointerType = event.pointerType;
-        blogsContainer.classList.add('is-dragging');
-    }
-
-    function onPointerMove(event) {
-        if (!isDragging || event.pointerId !== activePointerId) return;
-
-        const metrics = getCarouselMetrics();
-        if (!metrics) return;
-
-        const delta = event.clientX - startX;
-        const clickThreshold = Math.max(20, metrics.step * 0.12);
-        if (Math.abs(delta) >= clickThreshold) {
-            dragMoved = true;
-        }
-
-        currentOffset = clamp(startOffset + delta, -metrics.maxOffset, 0);
-        blogsContainer.style.transform = `translateX(${currentOffset}px)`;
-
-        if (dragMoved && event.cancelable) {
-            event.preventDefault();
-        }
-    }
-
-    function endDrag(event) {
-        if (!isDragging || event.pointerId !== activePointerId) return;
-
-        const metrics = getCarouselMetrics();
-        const delta = event.clientX - startX;
-        const threshold = metrics ? Math.max(24, metrics.step * 0.2) : 0;
-
-        if (delta <= -threshold && currentIndex < blogs.length - cardsPerView) {
-            currentIndex++;
-        } else if (delta >= threshold && currentIndex > 0) {
-            currentIndex--;
-        }
-
-        suppressClick = dragMoved;
-        dragMoved = false;
-        isDragging = false;
-        activePointerId = null;
-        activePointerType = null;
-        blogsContainer.classList.remove('is-dragging');
-        animateScroll();
-        updateCarouselButtons();
-
-        if (suppressClick) {
-            setTimeout(() => {
-                suppressClick = false;
-            }, 0);
-        }
-    }
-    
     // Event listeners
     if (prevBtn) prevBtn.addEventListener('click', () => scroll('prev'));
     if (nextBtn) nextBtn.addEventListener('click', () => scroll('next'));
-
-    blogsContainer.addEventListener('pointerdown', onPointerDown);
-    blogsContainer.addEventListener('pointermove', onPointerMove);
-    blogsContainer.addEventListener('pointerup', endDrag);
-    blogsContainer.addEventListener('pointercancel', endDrag);
-
-    blogsContainer.addEventListener('click', function(event) {
-        if (suppressClick && !event.target.closest('a')) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-        suppressClick = false;
-    }, true);
     
     // Update on window resize
     window.addEventListener('resize', function() {
