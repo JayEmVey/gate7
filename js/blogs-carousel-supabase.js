@@ -18,6 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     let blogs = [];
     let cardsPerView = 3;
+    let isDragging = false;
+    let dragMoved = false;
+    let suppressClick = false;
+    let startX = 0;
+    let startOffset = 0;
+    let currentOffset = 0;
+    let activePointerId = null;
+    let activePointerType = null;
     
     // Determine cards per view based on screen size
     function updateCardsPerView() {
@@ -94,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Fetch latest 7 articles from Supabase (minimal fields for fast loading)
             const { data: articles, error } = await window.supabaseClient
                 .from(CONFIG.tables.articles)
-                .select('id,slug,title,excerpt,author_name,topic_name,published_at,thumbnail_base64')
+                .select('id,slug,title,excerpt,author_name,topic_name,topic_slug,published_at,thumbnail_base64')
                 .eq('language', currentLang)
                 .order('published_at', { ascending: false })
                 .range(0, 6);
@@ -111,6 +119,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
+            const defaultImage = (CONFIG && CONFIG.seo && CONFIG.seo.defaultImage)
+                ? CONFIG.seo.defaultImage
+                : '/images/article-default.png';
+
             // Transform articles to blog card format
             blogs = articles.map(article => {
                 // Extract featured image from thumbnail_base64 (null if not available)
@@ -119,6 +131,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     image = article.thumbnail_base64.startsWith('data:')
                         ? article.thumbnail_base64
                         : `data:image/jpeg;base64,${article.thumbnail_base64}`;
+                }
+
+                if (!image) {
+                    image = defaultImage;
                 }
                 
                 // Create excerpt from excerpt field only (avoid loading full content)
@@ -138,7 +154,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     image: image,
                     author: article.author_name || 'Gate 7 Coffee Roastery',
                     date: new Date(article.published_at).toLocaleDateString(),
-                    topic: article.topic_name || 'Coffee'
+                    topic: article.topic_name || 'Coffee',
+                    topic_slug: article.topic_slug || 'topic-slug'
                 };
             });
             
@@ -169,32 +186,39 @@ document.addEventListener('DOMContentLoaded', function() {
             const card = document.createElement('div');
             card.className = 'blog-card';
             card.style.animationDelay = `${index * 0.1}s`;
+            const articleUrl = `/blog/article?slug=${blog.slug}`;
+            const topicUrl = `/blog/?topic=${blog.topic_slug}`;
             
             card.innerHTML = `
-                ${blog.image ? `<img src="${blog.image}" alt="${blog.title}" class="blog-image">` : ''}
+                ${blog.image ? `<a class="blog-image-link" href="${articleUrl}" aria-label="${blog.title}"><img src="${blog.image}" alt="${blog.title}" class="blog-image" onerror="this.onerror=null;this.src='${(CONFIG && CONFIG.seo && CONFIG.seo.defaultImage) ? CONFIG.seo.defaultImage : '/images/article-default.png'}';"></a>` : ''}
                 <div class="blog-content">
                     <div class="blog-meta">
                         <span class="blog-date">${blog.date}</span>
-                        ${blog.topic ? `<span class="blog-topic">${blog.topic.toUpperCase()}</span>` : ''}
+                        <a href="${topicUrl}" aria-label="${blog.topic.toUpperCase()}">
+                            ${blog.topic ? `<span class="blog-topic">${blog.topic.toUpperCase()}</span>` : ''}
+                        </a>
                         <span class="blog-author">${blog.author}</span>
                     </div>
                     <h3 class="blog-title">${blog.title}</h3>
                     <p class="blog-description">${blog.excerpt}</p>
-                    <span class="read-more">
-                        ${this.currentLanguage === 'en' ? 'Read More' : 'Đọc Thêm'} →
-                    </span>
+                    <a class="read-more" href="${articleUrl}">
+                        ${currentLanguage === 'en' ? 'Read More' : 'Đọc Thêm'} →
+                    </a>
                 </div>
             `;
             
-            card.addEventListener('click', function() {
+            card.addEventListener('click', function(event) {
+                if (event.target.closest('a')) {
+                    return;
+                }
                 // Navigate to blog article page
-                const langParam = currentLanguage === 'en' ? 'en' : 'vi';
-                window.location.href = `/blog/article?slug=${blog.slug}&lang=${langParam}`;
+                window.location.href = articleUrl;
             });
             
             blogsContainer.appendChild(card);
         });
-        
+
+        animateScroll();
         updateCarouselButtons();
     }
     
@@ -222,6 +246,29 @@ document.addEventListener('DOMContentLoaded', function() {
             nextBtn.disabled = currentIndex >= blogs.length - cardsPerView;
         }
     }
+
+    function getCarouselGap() {
+        const containerStyle = window.getComputedStyle(blogsContainer);
+        const gapValue = containerStyle.columnGap || containerStyle.gap || '0px';
+        const gap = parseFloat(gapValue);
+        return Number.isFinite(gap) ? gap : 0;
+    }
+
+    function getCarouselMetrics() {
+        const cards = document.querySelectorAll('.blog-card');
+        if (cards.length === 0) return null;
+
+        const cardWidth = cards[0].getBoundingClientRect().width;
+        const gap = getCarouselGap();
+        const step = cardWidth + gap;
+        const maxOffset = Math.max(0, (blogs.length - cardsPerView) * step);
+
+        return { step, maxOffset };
+    }
+
+    function clamp(value, min, max) {
+        return Math.min(max, Math.max(min, value));
+    }
     
     function scroll(direction) {
         if (direction === 'next') {
@@ -236,24 +283,104 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCarouselButtons();
         animateScroll();
     }
-    
+
     function animateScroll() {
-        const cards = document.querySelectorAll('.blog-card');
-        if (cards.length === 0) return;
-        
-        const cardWidth = cards[0].offsetWidth + 32; // 32px is the gap
-        const offset = -currentIndex * cardWidth;
-        blogsContainer.style.transform = `translateX(${offset}px)`;
+        const metrics = getCarouselMetrics();
+        if (!metrics) return;
+
+        const offset = -currentIndex * metrics.step;
+        currentOffset = clamp(offset, -metrics.maxOffset, 0);
+        blogsContainer.style.transform = `translateX(${currentOffset}px)`;
+    }
+
+    function onPointerDown(event) {
+        if (event.pointerType === 'mouse') return;
+        if (event.target.closest('a')) return;
+
+        const metrics = getCarouselMetrics();
+        if (!metrics) return;
+
+        isDragging = true;
+        dragMoved = false;
+        suppressClick = false;
+        startX = event.clientX;
+        startOffset = currentOffset;
+        activePointerId = event.pointerId;
+        activePointerType = event.pointerType;
+        blogsContainer.classList.add('is-dragging');
+    }
+
+    function onPointerMove(event) {
+        if (!isDragging || event.pointerId !== activePointerId) return;
+
+        const metrics = getCarouselMetrics();
+        if (!metrics) return;
+
+        const delta = event.clientX - startX;
+        const clickThreshold = Math.max(20, metrics.step * 0.12);
+        if (Math.abs(delta) >= clickThreshold) {
+            dragMoved = true;
+        }
+
+        currentOffset = clamp(startOffset + delta, -metrics.maxOffset, 0);
+        blogsContainer.style.transform = `translateX(${currentOffset}px)`;
+
+        if (dragMoved && event.cancelable) {
+            event.preventDefault();
+        }
+    }
+
+    function endDrag(event) {
+        if (!isDragging || event.pointerId !== activePointerId) return;
+
+        const metrics = getCarouselMetrics();
+        const delta = event.clientX - startX;
+        const threshold = metrics ? Math.max(24, metrics.step * 0.2) : 0;
+
+        if (delta <= -threshold && currentIndex < blogs.length - cardsPerView) {
+            currentIndex++;
+        } else if (delta >= threshold && currentIndex > 0) {
+            currentIndex--;
+        }
+
+        suppressClick = dragMoved;
+        dragMoved = false;
+        isDragging = false;
+        activePointerId = null;
+        activePointerType = null;
+        blogsContainer.classList.remove('is-dragging');
+        animateScroll();
+        updateCarouselButtons();
+
+        if (suppressClick) {
+            setTimeout(() => {
+                suppressClick = false;
+            }, 0);
+        }
     }
     
     // Event listeners
     if (prevBtn) prevBtn.addEventListener('click', () => scroll('prev'));
     if (nextBtn) nextBtn.addEventListener('click', () => scroll('next'));
+
+    blogsContainer.addEventListener('pointerdown', onPointerDown);
+    blogsContainer.addEventListener('pointermove', onPointerMove);
+    blogsContainer.addEventListener('pointerup', endDrag);
+    blogsContainer.addEventListener('pointercancel', endDrag);
+
+    blogsContainer.addEventListener('click', function(event) {
+        if (suppressClick && !event.target.closest('a')) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        suppressClick = false;
+    }, true);
     
     // Update on window resize
     window.addEventListener('resize', function() {
         updateCardsPerView();
         updateCarouselButtons();
+        animateScroll();
     });
     
     // Initial load

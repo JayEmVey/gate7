@@ -26,7 +26,7 @@ const getConfig = () => {
       excerptLength: 150
     },
     seo: {
-      defaultImage: '/images/gate7-og-image.jpg',
+      defaultImage: '/images/article-default.png',
       twitterHandle: '@gate7coffee',
       siteName: 'Gate 7 Coffee Blog'
     },
