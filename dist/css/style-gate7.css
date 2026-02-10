@@ -814,6 +814,7 @@ h1 {
     width: 100%;
     margin: 0 auto;
     min-height: 300px;
+    justify-content: center;
 }
 
 .blog-card {
@@ -822,7 +823,7 @@ h1 {
     overflow: hidden;
     cursor: pointer;
     transition: all 0.3s var(--animation-timing);
-    flex: 0 0 33.3333%;
+    flex: 0 0 30.3333%;
     height: 100%;
     opacity: 0;
     transform: translateY(20px);
