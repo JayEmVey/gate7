@@ -91,13 +91,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const currentLang = getCurrentLanguage() === 'vi' ? 'vi' : 'en';
             
-            // Fetch latest articles from Supabase
+            // Fetch latest 7 articles from Supabase (minimal fields for fast loading)
             const { data: articles, error } = await window.supabaseClient
                 .from(CONFIG.tables.articles)
-                .select('*')
+                .select('id,slug,title,excerpt,author_name,topic_name,published_at,thumbnail_base64,word_count')
                 .eq('language', currentLang)
                 .order('published_at', { ascending: false })
-                .limit(6); // Get more to ensure we have enough visible items
+                .range(0, 6);
             
             if (error) {
                 throw new Error(`Supabase query error: ${error.message}`);
@@ -121,10 +121,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         : `data:image/jpeg;base64,${article.thumbnail_base64}`;
                 }
                 
-                // Create excerpt from content
+                // Create excerpt from excerpt field only (avoid loading full content)
                 let excerpt = article.excerpt || '';
-                if (!excerpt && article.content) {
-                    const plainText = article.content.replace(/<[^>]*>/g, '').trim();
+                if (excerpt) {
+                    const plainText = excerpt.replace(/<[^>]*>/g, '').trim();
                     excerpt = plainText.length > 150
                         ? plainText.substring(0, 150).trim() + '...'
                         : plainText;
@@ -136,10 +136,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     title: article.title || 'Untitled',
                     excerpt: excerpt || 'No description available',
                     image: image,
-                    author: article.author_name || 'Gate 7 Team',
+                    author: article.author_name || 'Gate 7 Coffee Roastery',
                     date: new Date(article.published_at).toLocaleDateString(),
-                    topic: article.topic_name || 'Coffee',
-                    readingTime: calculateReadingTime(article.word_count)
+                    topic: article.topic_name || 'Coffee'
                 };
             });
             
@@ -171,8 +170,6 @@ document.addEventListener('DOMContentLoaded', function() {
             card.className = 'blog-card';
             card.style.animationDelay = `${index * 0.1}s`;
             
-            const readingTimeStr = formatReadingTime(blog.readingTime, currentLanguage);
-            
             card.innerHTML = `
                 ${blog.image ? `<img src="${blog.image}" alt="${blog.title}" class="blog-image">` : ''}
                 <div class="blog-content">
@@ -183,6 +180,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <h3 class="blog-title">${blog.title}</h3>
                     <p class="blog-description">${blog.excerpt}</p>
+                    <span class="read-more">
+                        ${this.currentLanguage === 'en' ? 'Read More' : 'Đọc Thêm'} →
+                    </span>
                 </div>
             `;
             
