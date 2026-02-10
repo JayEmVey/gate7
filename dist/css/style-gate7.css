@@ -936,8 +936,8 @@ h1 {
 .blog-title {
     color: var(--accent-color);
     font-weight: 700;
-    font-size: 1.5rem;
-    line-height: 1.4;
+    font-size: 1.1rem;
+    line-height: 1.35;
     margin-bottom: 1rem;
     flex-grow: 1;
     font-family: var(--font-display);
@@ -1044,32 +1044,68 @@ h1 {
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     .blogs-container {
         justify-content: flex-start;
-        gap: 20px;
-        padding: 20px;
+        gap: 18px;
+        padding: 16px 28px;
     }
 
     .blog-card{
-        flex: 0 0 calc((100% - 40px) / 3);
+        flex: 0 0 calc((100% - 18px) / 2);
+        border-radius: 12px;
+    }
+
+    .blog-image-link {
+        height: 160px;
+    }
+
+    .blog-content {
+        padding: 1.25rem 1.25rem 1.5rem;
+    }
+
+    .blog-meta {
+        font-size: 0.75rem;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .blog-title {
+        font-size: 1.1rem;
+        line-height: 1.35;
+        margin-bottom: 0.75rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .blog-description {
+        font-size: 13px;
+        line-height: 1.55;
+        margin-bottom: 1rem;
+        -webkit-line-clamp: 2;
+    }
+
+    .read-more {
+        font-size: 12px;
     }
 
 }
 
 /* Responsive - Tablet */
-@media (max-width: 768px) {
-    .latest-blogs {
-        padding: 48px 20px;
-    }
-
-    .blogs-container {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 20px;
-        padding: 0 20px;
-    }
-
-    .blog-card {
-        flex: 0 0 100%;
-    }
+  @media (max-width: 768px) {
+      .latest-blogs {
+          padding: 48px 20px;
+      }
+  
+      .blogs-container {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 20px;
+          padding: 0 20px;
+      }
+  
+      .blog-card {
+          width: 100%;
+      }
 
     .carousel-btn {
         width: 36px;
