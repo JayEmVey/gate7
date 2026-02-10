@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const topicUrl = `/blog/?topic=${blog.topic_slug}`;
             
             card.innerHTML = `
-                ${blog.image ? `<a class="blog-image-link" href="${articleUrl}" aria-label="${blog.title}"><img src="${blog.image}" alt="${blog.title}" class="blog-image" onerror="this.onerror=null;this.src='${(CONFIG && CONFIG.seo && CONFIG.seo.defaultImage) ? CONFIG.seo.defaultImage : '/images/article-default.png'}';"></a>` : ''}
+                ${blog.image ? `<a class="blog-image-link" href="${articleUrl}" aria-label="${blog.title}"><img src="${blog.image}" alt="${blog.title}" class="blog-image" onerror="this.onerror=null;this.src='${(CONFIG && CONFIG.seo && CONFIG.seo.defaultImage) ? CONFIG.seo.defaultImage : '/images/logo-color-black-bg1.webp'}';"></a>` : ''}
                 <div class="blog-content">
                     <div class="blog-meta">
                         <span class="blog-date">${blog.date}</span>
