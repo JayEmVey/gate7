@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Fetch latest 7 articles from Supabase (minimal fields for fast loading)
             const { data: articles, error } = await window.supabaseClient
                 .from(CONFIG.tables.articles)
-                .select('id,slug,title,excerpt,author_name,topic_name,published_at,thumbnail_base64,word_count')
+                .select('id,slug,title,excerpt,author_name,topic_name,published_at,thumbnail_base64')
                 .eq('language', currentLang)
                 .order('published_at', { ascending: false })
                 .range(0, 6);
