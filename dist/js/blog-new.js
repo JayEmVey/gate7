@@ -161,7 +161,7 @@ class BlogManager {
 
         let query = window.supabaseClient
           .from(CONFIG.tables.articles)
-          .select('id,title,slug,excerpt,author_name,topic_name,language,published_at,thumbnail_base64', { count: 'exact' })
+          .select('id,title,slug,description,author_name,topic_name,language,published_at,thumbnail_base64', { count: 'exact' })
           .eq('language', this.currentLanguage)
           .order('published_at', { ascending: false })
           .range(startIndex, endIndex);
@@ -172,7 +172,7 @@ class BlogManager {
 
         if (this.searchTerm) {
           const searchValue = this.searchTerm.replace(/%/g, '\\%').replace(/_/g, '\\_');
-          query = query.or(`title.ilike.%${searchValue}%,excerpt.ilike.%${searchValue}%`);
+          query = query.or(`title.ilike.%${searchValue}%,description.ilike.%${searchValue}%`);
         }
 
         const { data: articles, error, count } = await query;
@@ -200,7 +200,7 @@ class BlogManager {
           return {
             ...article,
             featuredImage: featuredImage,
-            excerpt: this.createExcerpt(article)
+            description: this.createDescription(article)
           };
         });
         
@@ -229,19 +229,23 @@ class BlogManager {
         };
     }
 
-    createExcerpt(article) {
-      // Use excerpt column (already language-specific from the query)
-      const content = article.excerpt || '';
+    createDescription(article) {
+      // Use description column (already language-specific from the query)
+      const content = article.description || '';
       
       if (!content) return '';
       
       const plainText = content.replace(/<[^>]*>/g, '');
       
-      if (plainText.length <= CONFIG.site.excerptLength) {
+      const maxLength = (CONFIG && CONFIG.site && Number.isFinite(CONFIG.site.descLength))
+        ? CONFIG.site.descLength
+        : 500;
+
+      if (plainText.length <= maxLength) {
         return plainText;
       }
       
-      return plainText.substring(0, CONFIG.site.excerptLength).trim() + '...';
+      return plainText.substring(0, maxLength).trim() + '...';
     }
 
     filterByCategory(category) {
@@ -356,7 +360,7 @@ class BlogManager {
                 ${article.author_name ? `<span class="card-author">${article.author_name}</span>` : `<span class="card-author">Gate 7</span>`}
               </div>
               <h2 class="card-title">${title}</h2>
-              <p class="card-excerpt">${article.excerpt}</p>
+              <p class="card-excerpt">${article.description}</p>
               <span class="read-more">
                 ${this.currentLanguage === 'en' ? 'Read More' : 'Đọc Thêm'} →
               </span>

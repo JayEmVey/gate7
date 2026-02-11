@@ -23,7 +23,7 @@ const getConfig = () => {
       blogPath: '/blog',
       defaultLanguage: 'vi',
       articlesPerPage: 7,
-      excerptLength: 150
+      descLength: 500
     },
     seo: {
       defaultImage: '/images/logo-color-black-bg1.webp',

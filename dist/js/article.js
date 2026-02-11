@@ -338,8 +338,8 @@ class ArticleViewer {
           // Get author name
           const author = article.author_name || 'Gate 7 Coffee Roastery';
           
-          // Create excerpt
-          const excerpt = this.createExcerpt(article);
+          // Create description
+          const description = this.createDescription(article);
 
           return `
             <article class="blog-card-brick">
@@ -356,7 +356,7 @@ class ArticleViewer {
                     ${author ? `<span class="card-author">${author}</span>` : ''}
                   </div>
                   <h3 class="card-title">${title}</h3>
-                  ${excerpt ? `<p class="card-excerpt">${excerpt}</p>` : ''}
+                  ${description ? `<p class="card-excerpt">${description}</p>` : ''}
                   <span class="read-more">${readMoreText} →</span>
                 </div>
               </a>
@@ -367,18 +367,22 @@ class ArticleViewer {
     `;
   }
 
-  createExcerpt(article) {
-    const content = article.excerpt || article.content || '';
+  createDescription(article) {
+    const content = article.description || article.content || '';
     
     if (!content) return '';
     
     const plainText = content.replace(/<[^>]*>/g, '');
     
-    if (plainText.length <= CONFIG.site.excerptLength) {
+    const maxLength = (CONFIG && CONFIG.site && Number.isFinite(CONFIG.site.descLength))
+      ? CONFIG.site.descLength
+      : 500;
+
+    if (plainText.length <= maxLength) {
       return plainText;
     }
     
-    return plainText.substring(0, CONFIG.site.excerptLength).trim() + '...';
+    return plainText.substring(0, maxLength).trim() + '...';
   }
 
   updateMetaTags() {

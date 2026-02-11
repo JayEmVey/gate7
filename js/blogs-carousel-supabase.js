@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Fetch latest 7 articles from Supabase (minimal fields for fast loading)
             const { data: articles, error } = await window.supabaseClient
                 .from(CONFIG.tables.articles)
-                .select('id,slug,title,excerpt,author_name,topic_name,topic_slug,published_at,thumbnail_base64')
+                .select('id,slug,title,description,author_name,topic_name,topic_slug,published_at,thumbnail_base64')
                 .eq('language', currentLang)
                 .order('published_at', { ascending: false })
                 .range(0, 6);
@@ -132,12 +132,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     image = defaultImage;
                 }
                 
-                // Create excerpt from excerpt field only (avoid loading full content)
-                let excerpt = article.excerpt || '';
-                if (excerpt) {
-                    const plainText = excerpt.replace(/<[^>]*>/g, '').trim();
-                    excerpt = plainText.length > 150
-                        ? plainText.substring(0, 150).trim() + '...'
+                // Create description from description field only (avoid loading full content)
+                let description = article.description || '';
+                if (description) {
+                    const plainText = description.replace(/<[^>]*>/g, '').trim();
+                    const maxLength = (CONFIG && CONFIG.site && Number.isFinite(CONFIG.site.descLength))
+                        ? CONFIG.site.descLength
+                        : 500;
+                    description = plainText.length > maxLength
+                        ? plainText.substring(0, maxLength).trim() + '...'
                         : plainText;
                 }
                 
@@ -145,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     id: article.id,
                     slug: article.slug,
                     title: article.title || 'Untitled',
-                    excerpt: excerpt || 'No description available',
+                    description: description || 'No description available',
                     image: image,
                     author: article.author_name || 'Gate 7 Coffee Roastery',
                     date: new Date(article.published_at).toLocaleDateString(),
@@ -195,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span class="blog-author">${blog.author}</span>
                     </div>
                     <h3 class="blog-title">${blog.title}</h3>
-                    <p class="blog-description">${blog.excerpt}</p>
+                    <p class="blog-description">${blog.description}</p>
                     <a class="read-more" href="${articleUrl}">
                         ${currentLanguage === 'en' ? 'Read More' : 'Đọc Thêm'} →
                     </a>
