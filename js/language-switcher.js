@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Update all translatable elements with data attributes
-        const elements = document.querySelectorAll('[data-en][data-vi]');
+        const elements = document.querySelectorAll('[data-en][data-vi], [data-en][data-vn]');
         elements.forEach(el => {
             const translations = {
                 'en': el.getAttribute('data-en'),

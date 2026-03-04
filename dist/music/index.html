@@ -63,10 +63,6 @@ gtag('config', 'G-S72S3FXR6Z');
 </div>
 <div class="container">
 <div class="playlist-grid">
-<div class="tet-holiday">
-<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2xXrTeTqpNWkRMqF07oAQO?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1E8NaAbHdcmc32?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-</div>
 <div class="time-slot">
 <div class="time-period">6 AM – 9 AM</div>
 <div class="audience" data-en="Morning Regulars" data-vn="Khách Buổi Sáng">Morning Regulars</div>
@@ -74,17 +70,21 @@ gtag('config', 'G-S72S3FXR6Z');
 Smooth awakening. Jazz and indie tracks to energize your morning ritual.
 </div>
 <div class="playlist-list playlist-grid-2">
-<a onclick="openSpotifyPlaylist('37i9dQZF1DXdwTUxmGKrdN'); return false;" class="playlist-item">
+<a onclick="openSpotifyPlaylist('37i9dQZF1DX8NTLI2TtZa6'); return false;" class="playlist-item">
 <div class="spotify-icon">♪</div>
-<span class="playlist-link">Coffee Table Jazz</span>
+<span class="playlist-link">Fresh Finds</span>
 </a>
-<a onclick="openSpotifyPlaylist('1JJgzNrj8GZhgPkGpKXI2s'); return false;" class="playlist-item">
+<a onclick="openSpotifyPlaylist('gfqUrPjrQneblJnl2PFH1g'); return false;" class="playlist-item">
 <div class="spotify-icon">♪</div>
-<span class="playlist-link">Jazz Cafe Playlist</span>
+<span class="playlist-link">mellow morning</span>
 </a>
-<a onclick="openSpotifyPlaylist('5kHQ3Cp945yye3pKQMnPg2'); return false;" class="playlist-item">
+<a onclick="openSpotifyPlaylist('37i9dQZF1DX0SM0LYsmbMT'); return false;" class="playlist-item">
 <div class="spotify-icon">♪</div>
-<span class="playlist-link">Morning Coffee Music</span>
+<span class="playlist-link">Soft Pop Hits</span>
+</a>
+<a onclick="openSpotifyPlaylist('37i9dQZF1DXdxcBWuJkbcy'); return false;" class="playlist-item">
+<div class="spotify-icon">♪</div>
+<span class="playlist-link">lofi beats</span>
 </a>
 </div>
 </div>
@@ -199,52 +199,54 @@ At Gate 7, we believe music is part of what makes a space feel like home. These 
 const playlists = {
 en: {
 morning: [
-{ id: '37i9dQZF1DXdwTUxmGKrdN', name: 'Coffee Table Jazz' },
-{ id: '1JJgzNrj8GZhgPkGpKXI2s', name: 'Jazz Cafe Playlist' },
-{ id: '5kHQ3Cp945yye3pKQMnPg2', name: 'Morning Coffee Music' }
+{ id: '37i9dQZF1DX8NTLI2TtZa6', name: 'Fresh Finds' },
+{ id: 'gfqUrPjrQneblJnl2PFH1g', name: 'mellow morning' },
+{ id: '37i9dQZF1DX0SM0LYsmbMT', name: 'Soft Pop Hits' },
+{ id: '37i9dQZF1DXdxcBWuJkbcy', name: 'lofi beats' }
 ],
 afternoon: [
-{ id: '37i9dQZF1DXbITWG1ZJKYt', name: 'Jazz Classics' },
-{ id: '37i9dQZF1DWSSSls9eK29h', name: 'Smooth Jazz Classics' },
-{ id: '2XgAG7lLZ4w9atuENOthbA', name: 'Old Jazz Classics' },
-{ id: '3ywHgnkZYffTgfiZ0tcaXs', name: 'Classic Film Noir Jazz' }
+{ id: '37i9dQZF1DX4WYpdgoIcn6', name: 'Chill Hits' },
+{ id: '37i9dQZF1DX889U0CL85jj', name: 'Indie Pop' },
+{ id: '37i9dQZF1DX2sUQwD7tbmL', name: 'Feel-Good Indie Rock' },
+{ id: '37i9dQZF1DX3Ogo9pFvBkY', name: 'Young & Free' }
 ],
 lunch: [
-{ id: '37i9dQZF1DWYoYGBbGKurt', name: 'lofi chill' },
-{ id: '37i9dQZF1DX0CIO5EOSHeD', name: 'Lofi Indie' },
-{ id: '0I3GwneqvQlrFhIsDxz9IF', name: 'lofi Indie Pop 2025' },
-{ id: '37i9dQZF1DX9RwfGbeGQwP', name: 'lofi cafe' }
+{ id: '37i9dQZF1DX0XUsuxWHRQd', name: "Today's Top Hits" },
+{ id: '37i9dQZF1DXcBWIGoYBM5M', name: 'Pop Rising' },
+{ id: '37i9dQZF1DX1BzILRveYHb', name: 'Hot Hits USA' },
+{ id: '37i9dQZF1DXbYM3nMM0oPk', name: 'Viral Hits' }
 ],
 evening: [
-{ id: '0I3GwneqvQlrFhIsDxz9IF', name: 'lofi Indie Pop 2025' },
-{ id: '37i9dQZF1DWYoYGBbGKurt', name: 'lofi chill' },
-{ id: '37i9dQZF1DWSoyxGghlqv5', name: 'hot girl bops' },
-{ id: '37i9dQZF1DX0XUsuxWHRQd', name: 'Today\'s Top Hits' }
+{ id: '37i9dQZF1DX5Vy6DFOcx00', name: 'Big On The Internet' },
+{ id: '37i9dQZF1DX6xZZEgC9Ubl', name: 'POV: Indie' },
+{ id: '37i9dQZF1DX2L0iB23Enbq', name: 'Chill Pop' },
+{ id: '37i9dQZF1DX4dyzvuaRJ0n', name: 'mint' }
 ]
 },
 vn: {
 morning: [
 { id: '37i9dQZF1DX4PP3DA4J0N8', name: 'Chill Hits Việt Nam' },
+{ id: '37i9dQZF1DX6GwdWRQMQpq', name: 'Trending Việt Nam' },
 { id: '37i9dQZF1DX0XUfEo1d0IQ', name: 'Nhạc Việt Nam Hay Nhất' },
 { id: '37i9dQZF1DX4jP4eebSNFH', name: 'Coffee & Chill' }
 ],
 afternoon: [
-{ id: '37i9dQZF1DX0XUfEo1d0IQ', name: 'Nhạc Việt Nam Hay Nhất' },
 { id: '37i9dQZF1DWZrc3lwvImLj', name: 'V-Pop Không Thể Thiếu' },
-{ id: '37i9dQZF1DX4jP4eebSNFH', name: 'Coffee & Chill' },
-{ id: '37i9dQZF1DX4PP3DA4J0N8', name: 'Chill Hits Việt Nam' }
-],
-lunch: [
-{ id: '37i9dQZF1DWZrc3lwvImLj', name: 'V-Pop Không Thể Thiếu' },
-{ id: '37i9dQZF1DX4PP3DA4J0N8', name: 'Chill Hits Việt Nam' },
-{ id: '37i9dQZF1DX0XUfEo1d0IQ', name: 'Nhạc Việt Nam Hay Nhất' },
-{ id: '37i9dQZF1DX4jP4eebSNFH', name: 'Coffee & Chill' }
-],
-evening: [
-{ id: '37i9dQZF1DWZrc3lwvImLj', name: 'V-Pop Không Thể Thiếu' },
-{ id: '37i9dQZF1DX0XUfEo1d0IQ', name: 'Nhạc Việt Nam Hay Nhất' },
+{ id: '37i9dQZF1DX2ZAsXSXxd2u', name: 'Indie Việt' },
 { id: '37i9dQZF1DX4PP3DA4J0N8', name: 'Chill Hits Việt Nam' },
 { id: '37i9dQZF1DX6GwdWRQMQpq', name: 'Trending Việt Nam' }
+],
+lunch: [
+{ id: '37i9dQZF1DX6GwdWRQMQpq', name: 'Trending Việt Nam' },
+{ id: '37i9dQZF1DWZrc3lwvImLj', name: 'V-Pop Không Thể Thiếu' },
+{ id: '37i9dQZF1DX0XUfEo1d0IQ', name: 'Nhạc Việt Nam Hay Nhất' },
+{ id: '37i9dQZF1DX8FwnYE6PRvL', name: 'Top Hits Việt Nam' }
+],
+evening: [
+{ id: '37i9dQZF1DX6GwdWRQMQpq', name: 'Trending Việt Nam' },
+{ id: '37i9dQZF1DX8FwnYE6PRvL', name: 'Top Hits Việt Nam' },
+{ id: '37i9dQZF1DWZrc3lwvImLj', name: 'V-Pop Không Thể Thiếu' },
+{ id: '37i9dQZF1DX2ZAsXSXxd2u', name: 'Indie Việt' }
 ]
 }
 };
